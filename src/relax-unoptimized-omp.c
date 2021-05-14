@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <math.h>
+#include <omp.h>
 
 //
 // allocate a a flattened matrix of "nxn" elements
@@ -23,12 +24,15 @@ void init( double *out, size_t n)
 {
    size_t i,j;
 
-   for( i=0; i<n; i++) {
-      for( j=0; j<n; j++) {
-         out[i*n+j] = 0;
+   #pragma omp parallel
+   {
+      #pragma omp for collapse(2)
+      for( i=0; i<n; i++) {
+         for( j=0; j<n; j++) {
+            out[i*n+j] = 0;
+         }
       }
    }
-
 }
 
 //
@@ -39,14 +43,20 @@ void print( double *out, size_t n)
    size_t i,j,maxn;
 
    maxn = (n < 20 ? n : 20);
+
+   #pragma omp parallel for ordered
    for( i=0; i<maxn; i++) {
+      #pragma omp ordered
       printf( "|");
       for( j=0; j<maxn; j++) {
+         #pragma omp ordered
          printf( " %7.2f", out[i*n+j]);
       }
       if( maxn < n) {
+         #pragma omp ordered
          printf( "...|\n");
       } else {
+         #pragma omp ordered
          printf( "|\n");
       }
    }
@@ -63,6 +73,8 @@ void print( double *out, size_t n)
 void relax( double *in, double *out, size_t n)
 {
    size_t i,j;
+
+   #pragma omp for collapse(2) //reduction(+:out)
    for( i=1; i<n-1; i++) {
       for( j=1; j<n-1; j++) {
          out[i*n+j] = 0.25*in[(i-1)*n+j]      // upper neighbour
@@ -89,7 +101,7 @@ int main (int argc, char *argv[])
       printf("non size_t value for matrix size\n");
       exit(1);
    }
-  
+
    if( sscanf( argv[2], "%d", &max_iter) != 1) {
       printf("non int value for # iterations\n");
       exit(1);
@@ -97,6 +109,8 @@ int main (int argc, char *argv[])
 
    a = allocMatrix( n);
    b = allocMatrix( n);
+
+   omp_set_num_threads(4); // todo: make it not hard coded
 
    init( a, n);
    init( b, n);
@@ -113,6 +127,7 @@ int main (int argc, char *argv[])
 
    print(a, n);
 
+   #pragma omp parallel for
    for( i=0; i<max_iter; i++) {
       tmp = a;
       a = b;
