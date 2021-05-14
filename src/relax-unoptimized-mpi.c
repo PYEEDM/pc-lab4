@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <math.h>
+#include <mpi.h>
 
 //
 // allocate a a flattened matrix of "nxn" elements
@@ -60,16 +61,21 @@ void print( double *out, size_t n)
 // computes values in matrix "out" from those in matrix "in"
 // assuming both are of size "nxn"
 //
-void relax( double *in, double *out, size_t n)
+void relax( double *in, double *out, size_t n, int start_index, int length)
 {
-   size_t i,j;
-   for( i=1; i<n-1; i++) {
-      for( j=1; j<n-1; j++) {
-         out[i*n+j] = 0.25*in[(i-1)*n+j]      // upper neighbour
-                      + 0.25*in[i*n+j]        // center
-                      + 0.125*in[(i+1)*n+j]   // lower neighbour
-                      + 0.175*in[i*n+(j-1)]   // left neighbour
-                      + 0.2*in[i*n+(j+1)];    // right neighbour
+   size_t i;
+
+   for (i = start_index, 1; i < start_index + length; i++)
+   {
+       // TODO: use i directly, creating r and c is unnecessary
+      size_t r = i / n, c = i % n;
+      if (r > 0 && r < n-1 && c > 0 && c < n-1)
+      {
+         out[r*n+c] = 0.25*in[(r-1)*n+c]      // upper neighbour
+                      + 0.25*in[r*n+c]        // center
+                      + 0.125*in[(r+1)*n+c]   // lower neighbour
+                      + 0.175*in[r*n+(c-1)]   // left neighbour
+                      + 0.2*in[r*n+(c+1)];    // right neighbour
       }
    }
 }
@@ -81,19 +87,34 @@ int main (int argc, char *argv[])
    int i;
    int max_iter;
 
-   if( argc < 3) {
-      printf("call should have two arguments \"%s <n> <iter>\"\n", argv[0]);
-      exit(1);
-   }
-   if( sscanf( argv[1], "%zu", &n) != 1) {
-      printf("non size_t value for matrix size\n");
-      exit(1);
-   }
+   int my_rank, num_ranks;
+
+   MPI_Init(&argc, &argv);
+   MPI_Comm_rank(MPI_COMM_WORLD, &my_rank);
+   MPI_Comm_size(MPI_COMM_WORLD, &num_ranks);
+
+   if (my_rank == 0)
+   {
+      if( argc < 3) {
+         printf("call should have two arguments \"%s <n> <iter>\"\n", argv[0]);
+         exit(1);
+      }
+      if( sscanf( argv[1], "%zu", &n) != 1) {
+         printf("non size_t value for matrix size\n");
+         exit(1);
+      }
   
-   if( sscanf( argv[2], "%d", &max_iter) != 1) {
-      printf("non int value for # iterations\n");
-      exit(1);
+      if( sscanf( argv[2], "%d", &max_iter) != 1) {
+         printf("non int value for # iterations\n");
+         exit(1);
+      }
    }
+
+   MPI_Bcast(&n, 1, MPI_UINT64_T, 0, MPI_COMM_WORLD);
+   MPI_Bcast(&max_iter, 1, MPI_INT, 0, MPI_COMM_WORLD);
+
+   int n_per_rank = (n*n + num_ranks - 1)/num_ranks;
+   int my_start = my_rank * n_per_rank;
 
    a = allocMatrix( n);
    b = allocMatrix( n);
@@ -107,21 +128,28 @@ int main (int argc, char *argv[])
    a[(n*3)/4] = 1000.0;;
    b[(n*3)/4] = 1000.0;;
 
-   printf( "size   : n = %zu => %d M elements (%d MB)\n",
-           n, (int)(n*n/1000000), (int)(n*n*sizeof(double) / (1024*1024)));
-   printf( "iter   : %d\n", max_iter);
+   if (my_rank == 0)
+   {
+      printf( "size   : n = %zu => %d M elements (%d MB)\n",
+              n, (int)(n*n/1000000), (int)(n*n*sizeof(double) / (1024*1024)));
+      printf( "iter   : %d\n", max_iter);
 
-   print(a, n);
-
-   for( i=0; i<max_iter; i++) {
-      tmp = a;
-      a = b;
-      b = tmp;
-      relax( a, b, n);
+      print(a, n);
    }
 
-   printf( "Matrix after %d iterations:\n", i);
-   print( b, n);
+   for( i=0; i<max_iter; i++) {  
+      relax( a, b, n, my_start, n_per_rank);
+
+      MPI_Allreduce(b, a, n*n, MPI_DOUBLE, MPI_MAX, MPI_COMM_WORLD);
+   }
+
+   if (my_rank == 0)
+   {
+      printf( "Matrix after %d iterations:\n", i);
+      print( a, n); 
+   }
+ 
+   MPI_Finalize();
 
    return 0;
 }
