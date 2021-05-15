@@ -65,12 +65,14 @@ void print( double *out, size_t n)
 void relax( double *in, double *out, size_t n, int start_index, int length)
 {
    size_t i,j;
+   //TODO: if this ain't the messiest possible code to do this then I don't know what is
    size_t init_i = start_index/n, last_i = (start_index+length)/n, init_j = start_index%n, last_j = n-1;
    init_i = init_i > 0 ? init_i : 1;
    last_i = last_i < n-1 ? last_i : n-1;
    for( i=init_i; i<last_i; i++) {
       init_j = i == init_i ? init_j : 1;
       last_j = i < last_i - 1 ? last_j : (start_index+length)%n;
+      //TODO: until here ^
       for( j=init_j; j<last_j; j++) {
          out[i*n+j] = 0.25*in[(i-1)*n+j]      // upper neighbour
                       + 0.25*in[i*n+j]        // center
