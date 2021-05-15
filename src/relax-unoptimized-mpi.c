@@ -72,11 +72,11 @@ void relax( double *in, double *out, size_t n, int start_index, int length)
       size_t r = i / n, c = i % n;
       if (r > 0 && r < n-1 && c > 0 && c < n-1)
       {
-         out[r*n+c] = 0.25*in[(r-1)*n+c]      // upper neighbour
-                      + 0.25*in[r*n+c]        // center
-                      + 0.125*in[(r+1)*n+c]   // lower neighbour
-                      + 0.175*in[r*n+(c-1)]   // left neighbour
-                      + 0.2*in[r*n+(c+1)];    // right neighbour
+         out[i-start_index] = 0.25*in[(r-1)*n+c]      // upper neighbour
+                              + 0.25*in[r*n+c]        // center
+                              + 0.125*in[(r+1)*n+c]   // lower neighbour
+                              + 0.175*in[r*n+(c-1)]   // left neighbour
+                              + 0.2*in[r*n+(c+1)];    // right neighbour
       }
    }
 }
@@ -124,11 +124,8 @@ int main (int argc, char *argv[])
    init( a, elements);
    init( b, elements_per_rank);
 
-   a[n/4] = 100.0;;
-   b[n/4] = 100.0;;
-
-   a[(n*3)/4] = 1000.0;;
-   b[(n*3)/4] = 1000.0;;
+   a[n/4] = 100.0;
+   a[(n*3)/4] = 1000.0;
 
    if (my_rank == 0)
    {
