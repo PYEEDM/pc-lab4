@@ -119,9 +119,11 @@ int main (int argc, char *argv[])
    int my_start = my_rank * elements_per_rank;
 
    int *lengths = (int *)malloc( num_ranks*sizeof(int));
+   int *displs = (int *)malloc( num_ranks*sizeof(int));
    for (int j = 0; j < num_ranks; j++)
    {
       lengths[j] = j < num_ranks-1 ? elements_per_rank : elements % elements_per_rank;
+      displs[j] = j*elements_per_rank;
    }
 
    int my_length = lengths[my_rank];
@@ -151,7 +153,7 @@ int main (int argc, char *argv[])
 
       relax( a, b, n, my_start, my_length);
 
-      MPI_Allgatherv(b, my_length, MPI_DOUBLE, a, lengths, MPI_DOUBLE, MPI_COMM_WORLD);
+      MPI_Allgatherv(b, my_length, MPI_DOUBLE, a, lengths, displs, MPI_DOUBLE, MPI_COMM_WORLD);
 
       a[n/4] = 100.0;
       a[(n*3)/4] = 1000.0;
