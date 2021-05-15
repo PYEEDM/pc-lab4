@@ -136,6 +136,9 @@ int main (int argc, char *argv[])
    init( a, elements);
    init( b, elements_per_rank);
 
+   a[n/4] = 100.0;
+   a[(n*3)/4] = 1000.0;
+
    if (my_rank == 0)
    {
       printf( "size   : n = %zu => %d M elements (%d MB)\n",
@@ -152,10 +155,6 @@ int main (int argc, char *argv[])
 
       if (my_rank == 0)
       {
-         // TODO: this is prolly bad
-         a[n/4] = 100.0;
-         a[(n*3)/4] = 1000.0;
-         
          for (int r = 1; r < num_ranks; r++)
          {
             MPI_Send(a+displs[r]-(r > 0 ? n : 0), lengths[r]+(r < num_ranks - 1 ? n : 0), MPI_DOUBLE, r, 0, MPI_COMM_WORLD);
@@ -169,6 +168,9 @@ int main (int argc, char *argv[])
       relax( a, b, n, my_start, my_length);
 
       MPI_Gatherv(b, my_length, MPI_DOUBLE, a, lengths, displs, MPI_DOUBLE, 0, MPI_COMM_WORLD);
+
+      a[n/4] = 100.0;
+      a[(n*3)/4] = 1000.0;
    }
 
    if (my_rank == 0)
