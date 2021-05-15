@@ -148,10 +148,10 @@ int main (int argc, char *argv[])
 
    for( i=0; i<max_iter; i++) {  
       MPI_Scatter(a, n*n, MPI_DOUBLE, al, n_per_rank, MPI_DOUBLE, 0, MPI_COMM_WORLD);
-      
+
       relax( al, bl, n, my_start, n_per_rank);
 
-      MPI_Gather(bl, n*n, MPI_DOUBLE, a, MPI_DOUBLE, 0, MPI_COMM_WORLD);
+      MPI_Gather(bl, n, MPI_DOUBLE, a, n*n, MPI_DOUBLE, 0, MPI_COMM_WORLD);
    }
 
    if (my_rank == 0)
