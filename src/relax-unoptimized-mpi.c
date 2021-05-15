@@ -119,7 +119,7 @@ int main (int argc, char *argv[])
    int my_start = my_rank * elements_per_rank;
 
    a = allocArray( elements);
-   bl = allocArray( elements_per_rank);
+   b = allocArray( elements_per_rank);
 
    init( a, elements);
    init( bl, elements_per_rank);
@@ -138,9 +138,9 @@ int main (int argc, char *argv[])
 
    for( i=0; i<max_iter; i++) {  
 
-      relax( a, bl, n, my_start, elements_per_rank);
+      relax( a, b, n, my_start, elements_per_rank);
 
-      MPI_Allgather(bl, elements_per_rank, MPI_DOUBLE, a, elements, MPI_DOUBLE, MPI_COMM_WORLD);
+      MPI_Allgather(b, elements_per_rank, MPI_DOUBLE, a, elements, MPI_DOUBLE, MPI_COMM_WORLD);
    }
 
    if (my_rank == 0)
