@@ -83,16 +83,16 @@ void relax( double *in, double *out, size_t n, int start_index, int length)
 
 int main (int argc, char *argv[])
 {
-   double *a,*b;
-   size_t n=0;
-   int i;
-   int max_iter;
-
    int my_rank, num_ranks;
 
    MPI_Init(&argc, &argv);
    MPI_Comm_rank(MPI_COMM_WORLD, &my_rank);
    MPI_Comm_size(MPI_COMM_WORLD, &num_ranks);
+
+   double *a,*b;
+   size_t n=0;
+   int i;
+   int max_iter;
 
    if (my_rank == 0)
    {
@@ -118,6 +118,14 @@ int main (int argc, char *argv[])
    int elements_per_rank = (elements + num_ranks - 1)/num_ranks;
    int my_start = my_rank * elements_per_rank;
 
+   int *lengths = (int *)malloc( num_ranks*sizeof(int));
+   for (int j = 0; j < num_ranks; j++)
+   {
+      lengths[j] = j < num_ranks-1 ? elements_per_rank : elements % elements_per_rank;
+   }
+
+   int my_length = lengths[my_rank];
+
    a = allocArray( elements);
    b = allocArray( elements_per_rank);
 
@@ -141,9 +149,9 @@ int main (int argc, char *argv[])
 
    for( i=0; i<max_iter; i++) {  
 
-      relax( a, b, n, my_start, elements_per_rank);
+      relax( a, b, n, my_start, my_length);
 
-      MPI_Allgather(b, elements_per_rank, MPI_DOUBLE, a, elements, MPI_DOUBLE, MPI_COMM_WORLD);
+      MPI_Allgatherv(b, my_length, MPI_DOUBLE, a, lengths, MPI_DOUBLE, MPI_COMM_WORLD);
 
       a[n/4] = 100.0;
       a[(n*3)/4] = 1000.0;
