@@ -82,7 +82,7 @@ int main (int argc, char *argv[])
    int i;
    int max_iter, num_threads = 1;
 
-   if( argc < 3) {
+   if( argc < 4) {
       printf("call should have two arguments \"%s <n> <iter>\"\n", argv[0]);
       exit(1);
    }
