@@ -70,7 +70,7 @@ void relax( double *in, double *out, size_t n, int start_index, int length)
    init_i = init_i > 0 ? init_i : 1;
    last_i = last_i < n-1 ? last_i : n-1;
    for( i=init_i; i<last_i; i++) {
-      init_j = i == init_i ? init_j : 1;
+      init_j = i == init_i && init_j > 0 ? init_j : 1;
       last_j = i < last_i - 1 ? last_j : (start_index+length)%n;
       //TODO: until here ^
       for( j=init_j; j<last_j; j++) {
