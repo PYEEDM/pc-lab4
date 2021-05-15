@@ -152,22 +152,9 @@ int main (int argc, char *argv[])
    start = time_gettime();
 
    for( i=0; i<max_iter; i++) {  
-
-      if (my_rank == 0)
-      {
-         for (int r = 1; r < num_ranks; r++)
-         {
-            MPI_Send(a+displs[r], lengths[r]+(r < num_ranks - 1 ? n : 0), MPI_DOUBLE, r, 0, MPI_COMM_WORLD);
-         }
-      }
-      else
-      {
-         MPI_Recv(a+displs[my_rank], lengths[my_rank]+(my_rank < num_ranks - 1 ? n : 0), MPI_DOUBLE, 0, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
-      }
-
       relax( a, b, n, my_start, my_length);
 
-      MPI_Gatherv(b, my_length, MPI_DOUBLE, a, lengths, displs, MPI_DOUBLE, 0, MPI_COMM_WORLD);
+      MPI_Allgatherv(b, my_length, MPI_DOUBLE, a, lengths, displs, MPI_DOUBLE, MPI_COMM_WORLD);
 
       a[n/4] = 100.0;
       a[(n*3)/4] = 1000.0;
