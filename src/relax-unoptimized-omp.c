@@ -42,7 +42,6 @@ void print( double *out, size_t n)
    size_t i,j,maxn;
 
    maxn = (n < 20 ? n : 20);
-
    for( i=0; i<maxn; i++) {
       printf( "|");
       for( j=0; j<maxn; j++) {
@@ -97,7 +96,8 @@ int main (int argc, char *argv[])
       exit(1);
    }
    if(sscanf(argv[3], "%d", &num_threads) != 1) {
-      num_threads = 1;
+      printf("specify number of threads\n");
+      exit(1);
    }
 
    a = allocMatrix( n);
