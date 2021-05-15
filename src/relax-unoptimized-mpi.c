@@ -83,7 +83,7 @@ void relax( double *in, double *out, size_t n, int start_index, int length)
 
 int main (int argc, char *argv[])
 {
-   double *a,*b,*tmp;
+   double *a,*b;
    size_t n=0;
    int i;
    int max_iter;
