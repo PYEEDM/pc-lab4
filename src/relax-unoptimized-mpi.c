@@ -122,7 +122,7 @@ int main (int argc, char *argv[])
    b = allocArray( elements_per_rank);
 
    init( a, elements);
-   init( bl, elements_per_rank);
+   init( b, elements_per_rank);
 
    if (my_rank == 0)
    {
