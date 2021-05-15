@@ -118,8 +118,8 @@ int main (int argc, char *argv[])
    int elements_per_rank = (elements + num_ranks - 1)/num_ranks;
    int my_start = my_rank * elements_per_rank;
 
-   al = allocMatrix( elements_per_rank);
-   bl = allocMatrix( elements_per_rank);
+   al = allocArray( elements_per_rank);
+   bl = allocArray( elements_per_rank);
 
    init( al, elements_per_rank);
    init( bl, elements_per_rank);
