@@ -122,7 +122,7 @@ int main (int argc, char *argv[])
    int *displs = (int *)malloc( num_ranks*sizeof(int));
    for (int j = 0; j < num_ranks; j++)
    {
-      lengths[j] = j < num_ranks-1 && elements % elements_per_rank != 0 ? elements_per_rank : elements % elements_per_rank;
+      lengths[j] = j < num_ranks-1 || elements % elements_per_rank != 0 ? elements_per_rank : elements % elements_per_rank;
       displs[j] = j*elements_per_rank;
    }
 
