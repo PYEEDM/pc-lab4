@@ -8,12 +8,12 @@
 #include "job-time.h"
 
 //
-// allocate a a flattened matrix of "nxn" elements
+// allocate an array of n elements
 //
-double *allocMatrix( size_t n)
+double *allocArray( size_t n)
 {
    double *m;
-   m = (double *)malloc( n*n*sizeof(double));
+   m = (double *)malloc( n*sizeof(double));
    if( m==NULL) {
       perror( "failed to allocate matrix; ");
    }
@@ -21,16 +21,14 @@ double *allocMatrix( size_t n)
 }
 
 //
-// initialise the values of the given matrix "out" of size "nxn" with 0s
+// initialise the values of the given array "out" of length n with 0s
 //
 void init( double *out, size_t n)
 {
    size_t i,j;
 
    for( i=0; i<n; i++) {
-      for( j=0; j<n; j++) {
-         out[i*n+j] = 0;
-      }
+      out[i] = 0;
    }
 
 }
@@ -116,19 +114,23 @@ int main (int argc, char *argv[])
    MPI_Bcast(&n, 1, MPI_UINT64_T, 0, MPI_COMM_WORLD);
    MPI_Bcast(&max_iter, 1, MPI_INT, 0, MPI_COMM_WORLD);
 
-   int n_per_rank = (n*n + num_ranks - 1)/num_ranks;
-   int my_start = my_rank * n_per_rank;
+   int elements = n*n;
+   int elements_per_rank = (elements + num_ranks - 1)/num_ranks;
+   int my_start = my_rank * elements_per_rank;
 
-   al = allocMatrix( n_per_rank);
-   bl = allocMatrix( n_per_rank);
+   al = allocMatrix( elements_per_rank);
+   bl = allocMatrix( elements_per_rank);
 
-   init( al, n_per_rank);
-   init( bl, n_per_rank);
+   init( al, elements_per_rank);
+   init( bl, elements_per_rank);
 
    if (my_rank == 0)
    {
-      init( a, n);
-      init( b, n);
+      a = allocArray(elements);
+      b = allocArray(elements);
+
+      init( a, elements);
+      init( b, elements);
 
       a[n/4] = 100.0;
       b[n/4] = 100.0;
@@ -146,13 +148,13 @@ int main (int argc, char *argv[])
    struct timespec start, finish;
    start = time_gettime();
 
-   MPI_Scatter(a, n*n, MPI_DOUBLE, al, n_per_rank, MPI_DOUBLE, 0, MPI_COMM_WORLD);
+   MPI_Scatter(a, elements, MPI_DOUBLE, al, elements_per_rank, MPI_DOUBLE, 0, MPI_COMM_WORLD);
 
    for( i=0; i<max_iter; i++) {  
 
-      relax( al, bl, n, my_start, n_per_rank);
+      relax( al, bl, n, my_start, elements_per_rank);
 
-      MPI_Allgather(bl, n_per_rank, MPI_DOUBLE, a, n*n, MPI_DOUBLE, MPI_COMM_WORLD);
+      MPI_Allgather(bl, elements_per_rank, MPI_DOUBLE, a, elements, MPI_DOUBLE, MPI_COMM_WORLD);
    }
 
    if (my_rank == 0)
