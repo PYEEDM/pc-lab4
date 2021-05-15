@@ -64,19 +64,19 @@ void print( double *out, size_t n)
 //
 void relax( double *in, double *out, size_t n, int start_index, int length)
 {
-   size_t i;
-
-   for (i = start_index, 1; i < start_index + length; i++)
-   {
-       // TODO: use i directly, creating r and c is unnecessary
-      size_t r = i / n, c = i % n;
-      if (r > 0 && r < n-1 && c > 0 && c < n-1)
-      {
-         out[i-start_index] = 0.25*in[(r-1)*n+c]      // upper neighbour
-                              + 0.25*in[r*n+c]        // center
-                              + 0.125*in[(r+1)*n+c]   // lower neighbour
-                              + 0.175*in[r*n+(c-1)]   // left neighbour
-                              + 0.2*in[r*n+(c+1)];    // right neighbour
+   size_t i,j;
+   size_t init_i = start_index/n, last_i = (start_index+length)/n, init_j = start_index%n, last_j = n-1;
+   init_i = init_i > 0 ? init_i : 1;
+   last_i = last_i < n-1 ? last_i : n-1;
+   for( i=init_i; i<last_i; i++) {
+      init_j = i == init_i ? init_j : 1;
+      last_j = i < last_i - 1 ? last_j : (start_index+lengths)%n;
+      for( j=init_j; j<last_j; j++) {
+         out[i*n+j] = 0.25*in[(i-1)*n+j]      // upper neighbour
+                      + 0.25*in[i*n+j]        // center
+                      + 0.125*in[(i+1)*n+j]   // lower neighbour
+                      + 0.175*in[i*n+(j-1)]   // left neighbour
+                      + 0.2*in[i*n+(j+1)];    // right neighbour
       }
    }
 }
