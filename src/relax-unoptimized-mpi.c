@@ -145,6 +145,9 @@ int main (int argc, char *argv[])
 
       MPI_Allgather(b, elements_per_rank, MPI_DOUBLE, a, elements, MPI_DOUBLE, MPI_COMM_WORLD);
    }
+   
+   a[n/4] = 100.0;
+   a[(n*3)/4] = 1000.0;
 
    if (my_rank == 0)
    {
