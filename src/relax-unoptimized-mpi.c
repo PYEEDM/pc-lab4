@@ -85,7 +85,7 @@ void relax( double *in, double *out, size_t n, int start_index, int length)
 
 int main (int argc, char *argv[])
 {
-   double *a,*b, *tmp;
+   double *a,*b, *al, *bl, *tmp;
    size_t n=0;
    int i;
    int max_iter;
@@ -119,20 +119,23 @@ int main (int argc, char *argv[])
    int n_per_rank = (n*n + num_ranks - 1)/num_ranks;
    int my_start = my_rank * n_per_rank;
 
-   a = allocMatrix( n);
-   b = allocMatrix( n);
+   al = allocMatrix( n_per_rank);
+   bl = allocMatrix( n_per_rank);
 
-   init( a, n);
-   init( b, n);
-
-   a[n/4] = 100.0;;
-   b[n/4] = 100.0;;
-
-   a[(n*3)/4] = 1000.0;;
-   b[(n*3)/4] = 1000.0;;
+   init( al, n_per_rank);
+   init( bl, n_per_rank);
 
    if (my_rank == 0)
    {
+      init( a, n);
+      init( b, n);
+
+      a[n/4] = 100.0;
+      b[n/4] = 100.0;
+
+      a[(n*3)/4] = 1000.0;
+      b[(n*3)/4] = 1000.0;
+
       printf( "size   : n = %zu => %d M elements (%d MB)\n",
               n, (int)(n*n/1000000), (int)(n*n*sizeof(double) / (1024*1024)));
       printf( "iter   : %d\n", max_iter);
@@ -144,9 +147,11 @@ int main (int argc, char *argv[])
    start = time_gettime();
 
    for( i=0; i<max_iter; i++) {  
-      relax( a, b, n, my_start, n_per_rank);
+      MPI_Scatter(a, n*n, MPI_DOUBLE, al, n_per_rank, MPI_DOUBLE, 0, MPI_COMM_WORLD);
+      
+      relax( al, bl, n, my_start, n_per_rank);
 
-      MPI_Allreduce(b, a, n*n, MPI_DOUBLE, MPI_MAX, MPI_COMM_WORLD);
+      MPI_Gather(bl, n*n, MPI_DOUBLE, a, MPI_DOUBLE, 0, MPI_COMM_WORLD);
    }
 
    if (my_rank == 0)
