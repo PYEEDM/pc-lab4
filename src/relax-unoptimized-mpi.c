@@ -157,12 +157,12 @@ int main (int argc, char *argv[])
       {
          for (int r = 1; r < num_ranks; r++)
          {
-            MPI_Send(a+displs[r]-(r > 0 ? n : 0), lengths[r]+(r < num_ranks - 1 ? n : 0), MPI_DOUBLE, r, 0, MPI_COMM_WORLD);
+            MPI_Send(a+displs[r], lengths[r]+(r < num_ranks - 1 ? n : 0), MPI_DOUBLE, r, 0, MPI_COMM_WORLD);
          }
       }
       else
       {
-         MPI_Recv(a+displs[my_rank]-(my_rank > 0 ? n : 0), lengths[my_rank]+(my_rank < num_ranks - 1 ? n : 0), MPI_DOUBLE, 0, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+         MPI_Recv(a+displs[my_rank], lengths[my_rank]+(my_rank < num_ranks - 1 ? n : 0), MPI_DOUBLE, 0, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
       }
 
       relax( a, b, n, my_start, my_length);
