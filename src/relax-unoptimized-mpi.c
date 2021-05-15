@@ -162,7 +162,7 @@ int main (int argc, char *argv[])
       }
       else
       {
-         MPI_Recv(a+displs[my_rank]-(my_rank > 0 ? n : 0), lengths[my_rank]+(my_rank < num_ranks - 1 ? n : 0), MPI_DOUBLE, 0, 0, MPI_Comm_rank);
+         MPI_Recv(a+displs[my_rank]-(my_rank > 0 ? n : 0), lengths[my_rank]+(my_rank < num_ranks - 1 ? n : 0), MPI_DOUBLE, 0, 0, MPI_Comm_rank, MPI_STATUS_IGNORE);
       }
 
       relax( a, b, n, my_start, my_length);
