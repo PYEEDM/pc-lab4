@@ -124,6 +124,12 @@ int main (int argc, char *argv[])
    init( a, elements);
    init( b, elements_per_rank);
 
+   a[n/4] = 100.0;;
+   b[n/4] = 100.0;;
+
+   a[(n*3)/4] = 1000.0;;
+   b[(n*3)/4] = 1000.0;;
+
    if (my_rank == 0)
    {
       printf( "size   : n = %zu => %d M elements (%d MB)\n",
