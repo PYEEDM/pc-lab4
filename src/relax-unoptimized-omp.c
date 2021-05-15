@@ -44,6 +44,7 @@ void print( double *out, size_t n)
 
    maxn = (n < 20 ? n : 20);
 
+   // this might not be doing anything, might still be sequential ?
    #pragma omp parallel for ordered
    for( i=0; i<maxn; i++) {
       #pragma omp ordered
@@ -74,7 +75,7 @@ void relax( double *in, double *out, size_t n)
 {
    size_t i,j;
 
-   #pragma omp for collapse(2) //reduction(+:out)
+   #pragma omp for collapse(2)
    for( i=1; i<n-1; i++) {
       for( j=1; j<n-1; j++) {
          #pragma omp critical
