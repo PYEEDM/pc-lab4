@@ -27,7 +27,6 @@ void init( double *out, size_t n)
 {
    size_t i,j;
 
-   #pragma omp parallel for collapse(2)
    for( i=0; i<n; i++) {
       for( j=0; j<n; j++) {
          out[i*n+j] = 0;
@@ -44,20 +43,14 @@ void print( double *out, size_t n)
 
    maxn = (n < 20 ? n : 20);
 
-   // this might not be doing anything, might still be sequential ?
-   #pragma omp parallel for ordered
    for( i=0; i<maxn; i++) {
-      #pragma omp ordered
       printf( "|");
       for( j=0; j<maxn; j++) {
-         #pragma omp ordered
          printf( " %7.2f", out[i*n+j]);
       }
       if( maxn < n) {
-         #pragma omp ordered
          printf( "...|\n");
       } else {
-         #pragma omp ordered
          printf( "|\n");
       }
    }
@@ -78,7 +71,7 @@ void relax( double *in, double *out, size_t n)
    #pragma omp for collapse(2)
    for( i=1; i<n-1; i++) {
       for( j=1; j<n-1; j++) {
-         #pragma omp critical
+//         #pragma omp critical
          out[i*n+j] = 0.25*in[(i-1)*n+j] + 0.25*in[i*n+j] + 0.125*in[(i+1)*n+j] + 0.175*in[i*n+(j-1)] + 0.2*in[i*n+(j+1)];
       }
    }
@@ -108,7 +101,7 @@ int main (int argc, char *argv[])
    a = allocMatrix( n);
    b = allocMatrix( n);
 
-   omp_set_num_threads(2); // todo: make it not hard coded
+   omp_set_num_threads(4); // todo: make it not hard coded
 
    init( a, n);
    init( b, n);
@@ -128,6 +121,7 @@ int main (int argc, char *argv[])
    struct timespec start, finish;
    start = time_gettime();
 
+//   #pragma parallel for
    for( i=0; i<max_iter; i++) {
       tmp = a;
       a = b;
@@ -135,9 +129,9 @@ int main (int argc, char *argv[])
       relax( a, b, n);
    }
 
+   finish = time_gettime();
    printf( "Matrix after %d iterations:\n", i);
    print( b, n);
-   finish = time_gettime();
    time_print_elapsed(__FILE__, start, finish);
 
    return 0;
