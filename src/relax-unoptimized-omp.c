@@ -68,10 +68,9 @@ void relax( double *in, double *out, size_t n)
 {
    size_t i,j;
 
-   #pragma omp for collapse(2)
+   #pragma parallel omp for collapse(2)
    for( i=1; i<n-1; i++) {
       for( j=1; j<n-1; j++) {
-//         #pragma omp critical
          out[i*n+j] = 0.25*in[(i-1)*n+j] + 0.25*in[i*n+j] + 0.125*in[(i+1)*n+j] + 0.175*in[i*n+(j-1)] + 0.2*in[i*n+(j+1)];
       }
    }
@@ -82,7 +81,7 @@ int main (int argc, char *argv[])
    double *a,*b, *tmp;
    size_t n=0;
    int i;
-   int max_iter;
+   int max_iter, num_threads;
 
    if( argc < 3) {
       printf("call should have two arguments \"%s <n> <iter>\"\n", argv[0]);
@@ -97,11 +96,14 @@ int main (int argc, char *argv[])
       printf("non int value for # iterations\n");
       exit(1);
    }
+   if(sscanf(argv[3], "%d", $num_threads) != 1) {
+      num_threads = 1;
+   }
 
    a = allocMatrix( n);
    b = allocMatrix( n);
 
-   omp_set_num_threads(4); // todo: make it not hard coded
+   omp_set_num_threads(num_threads);
 
    init( a, n);
    init( b, n);
@@ -121,7 +123,6 @@ int main (int argc, char *argv[])
    struct timespec start, finish;
    start = time_gettime();
 
-//   #pragma parallel for
    for( i=0; i<max_iter; i++) {
       tmp = a;
       a = b;
