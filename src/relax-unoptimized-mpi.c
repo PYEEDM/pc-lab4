@@ -146,12 +146,13 @@ int main (int argc, char *argv[])
    struct timespec start, finish;
    start = time_gettime();
 
+   MPI_Scatter(a, n*n, MPI_DOUBLE, al, n_per_rank, MPI_DOUBLE, 0, MPI_COMM_WORLD);
+
    for( i=0; i<max_iter; i++) {  
-      MPI_Scatter(a, n*n, MPI_DOUBLE, al, n_per_rank, MPI_DOUBLE, 0, MPI_COMM_WORLD);
 
       relax( al, bl, n, my_start, n_per_rank);
 
-      MPI_Gather(bl, n, MPI_DOUBLE, a, n*n, MPI_DOUBLE, 0, MPI_COMM_WORLD);
+      MPI_Allgather(bl, n_per_rank, MPI_DOUBLE, a, n*n, MPI_DOUBLE, MPI_COMM_WORLD);
    }
 
    if (my_rank == 0)
