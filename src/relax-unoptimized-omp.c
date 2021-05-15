@@ -3,6 +3,9 @@
 #include <stdbool.h>
 #include <math.h>
 #include <omp.h>
+#include "job-time.h"
+#include <time.h>
+
 
 //
 // allocate a a flattened matrix of "nxn" elements
@@ -121,6 +124,9 @@ int main (int argc, char *argv[])
 
    print(a, n);
 
+   struct timespec start, finish;
+   start = time_gettime();
+
    for( i=0; i<max_iter; i++) {
       tmp = a;
       a = b;
@@ -130,6 +136,8 @@ int main (int argc, char *argv[])
 
    printf( "Matrix after %d iterations:\n", i);
    print( b, n);
+   finish = time_gettime();
+   time_print_elapsed(__FILE__, start, finish);
 
    return 0;
 }
