@@ -15,6 +15,15 @@ do
 	n=$(( 2*n ))	
 done
 
+# n=1
+# ./a.out 512 $n
+# n=100
+# while (( $n <= 1000 ))
+# do
+#     ./a.out 512 $n 
+# 	n=$(( 100+n ))	
+# done
+
 
 # for i in $(seq 1 10 20) #size
 # do
