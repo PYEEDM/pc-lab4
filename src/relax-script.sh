@@ -1,17 +1,14 @@
 #!/bin/bash
 
-#compile file
-gcc relax-fix-original.c -o orginal.o #orginal relax
-gcc -fopenmp relax-unoptimized_omp.c job-time.c -o openmp.o #openmp
-mpicc -DMPI -o mpi.o relax-unoptimized_mpi.c job-time.c
-
+#compile files
+make
 
 #!/bin/bash
 n=1
 while (( $n <= 350 ))
 do
 	echo "matrix $n * $n."
-    ./a.out $n 1
+    ./relax-seq.o $n 1
 	n=$(( 2*n ))	
 done
 
@@ -20,7 +17,7 @@ done
 # n=100
 # while (( $n <= 1000 ))
 # do
-#     ./a.out 512 $n 
+#     ./relax-seq.o 512 $n 
 # 	n=$(( 100+n ))	
 # done
 
