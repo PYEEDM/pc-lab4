@@ -123,7 +123,6 @@ int main (int argc, char *argv[])
    int elements = n*n;
    int elements_per_rank = (elements + num_ranks - 1)/num_ranks;
 
-   // TODO: make it cheese instead of salami
    // initialize slicing setup
    int *in_counts = (int *)malloc(num_ranks*sizeof(int));
    int *in_displs = (int *)malloc(num_ranks*sizeof(int));
