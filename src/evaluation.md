@@ -13,9 +13,9 @@ Iteration: 1
 
 
 Iteration 1:
-|algorithm |num cores |size=256|size=512|size=1024|size=2048|size=4096|size=8192|size=16384|size=32768
+| |num cores |size=256|size=512|size=1024|size=2048|size=4096|size=8192|size=16384|size=32768
 |---|---|---|---|---|---|---|---|---|---|
-| size in MB|         | 0MB     | 2MB   | 8 MB    | 32 MB   |  128 MB | 512 MB  | 2048 MB  | 8192 MB      
+| (size in MB)|         | 0MB     | 2MB   | 8 MB    | 32 MB   |  128 MB | 512 MB  | 2048 MB  | 8192 MB      
 |  seq     | 1        | 1ms     | 4ms   | 9ms     | 39 ms   |  159 ms | 633 ms  | 2580 ms  | 10322 ms
 
 Iteration: 1-1000 100
