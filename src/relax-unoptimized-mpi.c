@@ -152,7 +152,7 @@ int main (int argc, char *argv[])
               n, (int)(n*n/1000000), (int)(n*n*sizeof(double) / (1024*1024)));
       printf("iter   : %d\n", max_iter);
 
-      print(amaster, n);
+      print(b, n);
    }
 
    // start time measurement
