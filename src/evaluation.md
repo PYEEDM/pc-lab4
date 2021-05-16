@@ -21,4 +21,4 @@ Iteration 1:
 Size: 1024 (8MB)
 |algorithm| num cores | iter=1 | iter=100 | iter=200|iter=300|iter=400|iter=500|iter=600|iter=700|iter=800|iter=900|iter=1000|
 |---|---|---|---|---|---|---|---|---|---|---|---|---|   
-|seq| 1 |             |9 ms     | 987ms    | 2003 ms| 2950 ms|3930 ms |4981 ms | 5912 ms|6940 ms |8064 ms | 9350 ms| 10642 ma |
+|seq| 1 |             9 ms     | 987ms    | 2003 ms| 2950 ms|3930 ms |4981 ms | 5912 ms|6940 ms |8064 ms | 9350 ms| 10642 ma |
