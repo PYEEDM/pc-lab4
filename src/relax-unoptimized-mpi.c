@@ -7,55 +7,54 @@
 #include <time.h>
 #include "job-time.h"
 
-// TODO: revert functions to be matrix-based
-
 //
-// allocate an array of n elements
+// allocate a a flattened matrix of "nxn" elements
 //
-double *allocArray( size_t n)
+double *allocMatrix(size_t n)
 {
    double *m;
-   m = (double *)malloc( n*sizeof(double));
-   if( m==NULL) {
-      perror( "failed to allocate matrix; ");
+   m = (double *)malloc(n*n*sizeof(double));
+   if(m==NULL) {
+      perror("failed to allocate matrix; ");
    }
    return m;
 }
 
 //
-// initialise the values of the given array "out" of length n with 0s
+// initialise the values of the given matrix "out" of size "nxn" with 0s
 //
-void init( double *out, size_t n)
+void init(double *out, size_t n)
 {
    size_t i,j;
 
-   for( i=0; i<n; i++) {
-      out[i] = 0;
+   for(i=0; i<n; i++) {
+      for(j=0; j<n; j++) {
+         out[i*n+j] = 0;
+      }
    }
-
 }
 
 //
 // print the values of a given matrix "out" of size "nxn"
 //
-void print( double *out, size_t n)
+void print(double *out, size_t n)
 {
    size_t i,j,maxn;
 
    maxn = (n < 20 ? n : 20);
-   for( i=0; i<maxn; i++) {
-      printf( "|");
-      for( j=0; j<maxn; j++) {
-         printf( " %7.2f", out[i*n+j]);
+   for(i=0; i<maxn; i++) {
+      printf("|");
+      for(j=0; j<maxn; j++) {
+         printf(" %7.2f", out[i*n+j]);
       }
-      if( maxn < n) {
-         printf( "...|\n");
+      if(maxn < n) {
+         printf("...|\n");
       } else {
-         printf( "|\n");
+         printf("|\n");
       }
    }
-   if( maxn < n) {
-         printf( "...\n");
+   if(maxn < n) {
+         printf("...\n");
       }
 }
 
@@ -64,17 +63,18 @@ void print( double *out, size_t n)
 // computes values in matrix "out" from those in matrix "in"
 // assuming both are of size "nxn"
 //
-void relax( double *in, double *out, size_t n, int start_index, int length)
+void relax( double *in, double *out, size_t n, int displ, int count)
 {
    size_t i,j;
-   //TODO: if this ain't the messiest possible code to do this then I don't know what is
-   size_t init_i = start_index/n, last_i = (start_index+length+n-1)/n, init_j = start_index%n, last_j = n-1;
+   // TODO: if this ain't the messiest possible code to do this then I don't know what is
+   // TODO: fix it while making it cheese
+   size_t init_i = displ/n, last_i = (displ+count+n-1)/n, init_j = displ%n, last_j = n-1;
    init_i = init_i > 0 ? init_i : 1;
    last_i = last_i < n-1 ? last_i : n-1;
    for( i=init_i; i<last_i; i++) {
       init_j = i == init_i && init_j > 0 ? init_j : 1;
-      last_j = i < last_i ? last_j : (start_index+length)%n;
-      //TODO: until here ^
+      last_j = i < last_i ? last_j : (displ+count)%n;
+      // TODO: until here ^
       for( j=init_j; j<last_j; j++) {
          out[i*n+j] = 0.25*in[(i-1)*n+j]      // upper neighbour
                       + 0.25*in[i*n+j]        // center
@@ -87,8 +87,10 @@ void relax( double *in, double *out, size_t n, int start_index, int length)
 
 int main (int argc, char *argv[])
 {
+   struct timespec start, finish;
    int my_rank, num_ranks;
 
+   // MPI initialization
    MPI_Init(&argc, &argv);
    MPI_Comm_rank(MPI_COMM_WORLD, &my_rank);
    MPI_Comm_size(MPI_COMM_WORLD, &num_ranks);
@@ -100,83 +102,92 @@ int main (int argc, char *argv[])
 
    if (my_rank == 0)
    {
-      if( argc < 3) {
+      if(argc < 3) {
          printf("call should have two arguments \"%s <n> <iter>\"\n", argv[0]);
          exit(1);
       }
-      if( sscanf( argv[1], "%zu", &n) != 1) {
+      if(sscanf(argv[1], "%zu", &n) != 1) {
          printf("non size_t value for matrix size\n");
          exit(1);
       }
   
-      if( sscanf( argv[2], "%d", &max_iter) != 1) {
+      if(sscanf(argv[2], "%d", &max_iter) != 1) {
          printf("non int value for # iterations\n");
          exit(1);
       }
    }
 
+   // broadcast arguments
    MPI_Bcast(&n, 1, MPI_UINT64_T, 0, MPI_COMM_WORLD);
    MPI_Bcast(&max_iter, 1, MPI_INT, 0, MPI_COMM_WORLD);
 
    int elements = n*n;
    int elements_per_rank = (elements + num_ranks - 1)/num_ranks;
-   int my_start = my_rank * elements_per_rank;
 
-   int *lengths = (int *)malloc( num_ranks*sizeof(int));
-   int *displs = (int *)malloc( num_ranks*sizeof(int));
-   int *send_lengths = (int *)malloc( num_ranks*sizeof(int));
-   int *send_displs = (int *)malloc( num_ranks*sizeof(int));
+   // TODO: make it cheese instead of salami
+   // initialize slicing setup
+   int *in_counts = (int *)malloc(num_ranks*sizeof(int));
+   int *in_displs = (int *)malloc(num_ranks*sizeof(int));
+   int *out_counts = (int *)malloc(num_ranks*sizeof(int));
+   int *out_displs = (int *)malloc(num_ranks*sizeof(int));
    for (int j = 0; j < num_ranks; j++)
    {
-      lengths[j] = (j < num_ranks-1 || (elements % elements_per_rank) == 0) ? elements_per_rank : elements % elements_per_rank;
-      displs[j] = j*elements_per_rank;
-
-      send_lengths[j] = j < num_ranks-1 ? elements_per_rank + n : elements_per_rank;
-      send_displs[j] = j > 0 ? j*elements_per_rank - n : j*elements_per_rank;   
+      in_displs[j] = j > 0 ? j*elements_per_rank - n : j*elements_per_rank;   
+      in_counts[j] = j < num_ranks-1 ? elements_per_rank + (j > 0 ? 2 : 1) * n : elements_per_rank;
+      out_displs[j] = j*elements_per_rank;
+      out_counts[j] = (j < num_ranks-1 || (elements % elements_per_rank) == 0) ? elements_per_rank : elements % elements_per_rank;
    }
 
-   int my_length = lengths[my_rank];
-
-   amaster = allocArray( elements);
-   a = allocArray( elements);
-   b = allocArray( elements);
-
-   init( amaster, elements);
-   init( a, elements);
-   init( b, elements);
-
-   amaster[n/4] = 100.0;
-   amaster[(n*3)/4] = 1000.0;
-
+   // allocate and initialize matrices
    if (my_rank == 0)
    {
-      printf( "size   : n = %zu => %d M elements (%d MB)\n",
-              n, (int)(n*n/1000000), (int)(n*n*sizeof(double) / (1024*1024)));
-      printf( "iter   : %d\n", max_iter);
+      amaster = allocMatrix(n);
+      init(amaster, n);
 
-      print(a, n);
-   }
-
-   struct timespec start, finish;
-   start = time_gettime();
-
-   for( i=0; i<max_iter; i++) {  
-
-      MPI_Scatterv(amaster, send_lengths, send_displs, MPI_DOUBLE, a+send_displs[my_rank], send_lengths[my_rank], MPI_DOUBLE, 0, MPI_COMM_WORLD);
-
-      relax( a, b, n, my_start, my_length);
-
-      MPI_Gatherv(b+my_start, my_length, MPI_DOUBLE, amaster, lengths, displs, MPI_DOUBLE, 0, MPI_COMM_WORLD);
-
+      // add initial data
       amaster[n/4] = 100.0;
       amaster[(n*3)/4] = 1000.0;
+      
+      printf("size   : n = %zu => %d M elements (%d MB)\n",
+              n, (int)(n*n/1000000), (int)(n*n*sizeof(double) / (1024*1024)));
+      printf("iter   : %d\n", max_iter);
+
+      print(amaster, n);
+   }
+
+   a = allocMatrix(n);
+   b = allocMatrix(n);
+
+   init(a, n);
+   init(b, n);
+
+   // start time measurement
+   start = time_gettime();
+
+   // execute the algorithm
+   for(i=0; i<max_iter; i++) {  
+      MPI_Scatterv(amaster, in_counts, in_displs, MPI_DOUBLE, a + in_displs[my_rank], in_counts[my_rank], MPI_DOUBLE, 0, MPI_COMM_WORLD);
+
+      relax(a, b, n, in_displs[my_rank], in_counts[my_rank]);
+
+      MPI_Gatherv(b + out_displs[my_rank], out_counts[my_rank], MPI_DOUBLE, amaster, out_counts, out_displs, MPI_DOUBLE, 0, MPI_COMM_WORLD);
+
+      //TODO: shouldn't be needed after cheese
+      if (my_rank == 0)
+      {
+         amaster[n/4] = 100.0;
+         amaster[(n*3)/4] = 1000.0;
+      }
    }
 
    if (my_rank == 0)
    {
+      // end time measurement
       finish = time_gettime();
-      printf( "Matrix after %d iterations:\n", i);
-      print( amaster, n); 
+
+      printf("Matrix after %d iterations:\n", i);
+      print(amaster, n); 
+
       time_print_elapsed(__FILE__, start, finish);
    }
  
