@@ -6,21 +6,30 @@ gcc -fopenmp relax-unoptimized_omp.c job-time.c -o openmp.o #openmp
 mpicc -DMPI -o mpi.o relax-unoptimized_mpi.c job-time.c
 
 
-
-for i in $(seq 1 10 20) #size
+#!/bin/bash
+n=1
+while (( $n <= 350 ))
 do
-    for j in $(seq 0 10 20) #iter nr
-    do 
-        for t in $(seq 1 2)#threads nr
-        do
-        echo "size: $i, iter: $j  , thread= $t "
-        ./original.o $i $j
-        ./openmp.o $i $j $t
-        mpirun -N $t ./mpi.o $i $j
-        
-        done
-    done
+	echo "matrix $n * $n."
+    ./a.out $n 1
+	n=$(( 2*n ))	
 done
+
+
+# for i in $(seq 1 10 20) #size
+# do
+#     for j in $(seq 0 10 20) #iter nr
+#     do 
+#         for t in $(seq 1 2)#threads nr
+#         do
+#         echo "size: $i, iter: $j  , thread= $t "
+#         ./original.o $i $j
+#         ./openmp.o $i $j $t
+#         mpirun -N $t ./mpi.o $i $j
+        
+#         done
+#     done
+# done
 
 
 
