@@ -65,15 +65,17 @@ void print(double *out, size_t n)
 //
 void relax(double *in, double *out, size_t n, int displ, int count)
 {
-   size_t i,j, init_j;
-   for(i=displ/n > 0 ? displ/n : 1; i<n-1; i++) {
+   size_t i,j,init_i,init_j;
+   init_i = displ/n > 0 ? displ/n : 1;
+   for(i = init_i; i<n-1; i++) {
       init_j = i == 0 && displ%n > 0 ? displ%n : 1; 
       for(j=init_j; j<n-1; j++) {
-         if (i >= (displ+count)/n && j >= (displ+count)%n || i >= (displ+count+n)/n)
+         int this_index = i*n+j;
+         if (this_index >= displ + count)
          {
             return;
          }
-         out[i*n+j] = 0.25*in[(i-1)*n+j]      // upper neighbour
+         out[this_index] = 0.25*in[(i-1)*n+j]      // upper neighbour
                       + 0.25*in[i*n+j]        // center
                       + 0.125*in[(i+1)*n+j]   // lower neighbour
                       + 0.175*in[i*n+(j-1)]   // left neighbour
