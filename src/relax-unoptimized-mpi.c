@@ -93,7 +93,7 @@ int main (int argc, char *argv[])
    MPI_Comm_rank(MPI_COMM_WORLD, &my_rank);
    MPI_Comm_size(MPI_COMM_WORLD, &num_ranks);
 
-   double *a,*b;
+   double *amaster,*a,*b;
    size_t n=0;
    int i;
    int max_iter;
@@ -124,22 +124,29 @@ int main (int argc, char *argv[])
 
    int *lengths = (int *)malloc( num_ranks*sizeof(int));
    int *displs = (int *)malloc( num_ranks*sizeof(int));
+   int *send_lengths = (int *)malloc( num_ranks*sizeof(int));
+   int *send_displs = (int *)malloc( num_ranks*sizeof(int));
    for (int j = 0; j < num_ranks; j++)
    {
       lengths[j] = (j < num_ranks-1 || (elements % elements_per_rank) == 0) ? elements_per_rank : elements % elements_per_rank;
       displs[j] = j*elements_per_rank;
+
+      send_lengths[j] = j < num_ranks-1 ? elements_per_rank + n : elements_per_rank;
+      send_displs[j] = j > 0 ? j*elements_per_rank - n : j*elements_per_rank;   
    }
 
    int my_length = lengths[my_rank];
 
+   amaster = allocArray( elements);
    a = allocArray( elements);
    b = allocArray( elements);
 
+   init( amaster, elements);
    init( a, elements);
    init( b, elements);
 
-   a[n/4] = 100.0;
-   a[(n*3)/4] = 1000.0;
+   amaster[n/4] = 100.0;
+   amaster[(n*3)/4] = 1000.0;
 
    if (my_rank == 0)
    {
@@ -155,19 +162,21 @@ int main (int argc, char *argv[])
 
    for( i=0; i<max_iter; i++) {  
 
+      MPI_Scatterv(amaster, send_lengths, send_displs, MPI_DOUBLE, a+send_displs[my_rank], send_lengths[my_rank], MPI_DOUBLE, 0, MPI_COMM_WORLD);
+
       relax( a, b, n, my_start, my_length);
 
-      MPI_Allgatherv(b+my_start, my_length, MPI_DOUBLE, a, lengths, displs, MPI_DOUBLE, MPI_COMM_WORLD);
+      MPI_Gatherv(b+my_start, my_length, MPI_DOUBLE, amaster, lengths, displs, MPI_DOUBLE, 0, MPI_COMM_WORLD);
 
-      a[n/4] = 100.0;
-      a[(n*3)/4] = 1000.0;
+      amaster[n/4] = 100.0;
+      amaster[(n*3)/4] = 1000.0;
    }
 
    if (my_rank == 0)
    {
       finish = time_gettime();
       printf( "Matrix after %d iterations:\n", i);
-      print( a, n); 
+      print( amaster, n); 
       time_print_elapsed(__FILE__, start, finish);
    }
  
