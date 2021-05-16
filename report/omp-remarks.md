@@ -1,4 +1,5 @@
 ## About the Implementation
+### Choices
 The only part of the algorithm that can be parallelized is the `relax` method, which is why I added a 
 `#pragma omp parallel for collapse(2)` line there. It obviously parallelizes the for loop. The `collapse(2)` 
 clause is used in order to parallelize both levels (the outer and the inner loop), since parallelizing all levels
@@ -7,6 +8,13 @@ times slower when using a single thread and a full 2.5 times slower when using 2
 
 The call to `omp_set_num_threads()` is passed the variable `num_threads`, the value of which is given as a 
 mandatory third argument, when the code is run.
+
+### Programming and Debugging Effort
+Working with OpenMP is quite fast and easy once you know what part of the code you need to parallelize. I had
+no issues that needed debugging (when it comes to OpenMP; I did have typos in the other code I introduced that
+needed debugging but I don't think that is relevant), but the programming did require some effort, especially
+since at the beginning I mistakingly also tried to parallelize the `init` function, and wasn't aware of the 
+`collapse` clause.
 
 ## About the Performance
 The difference in execution time between the code run with 1 thread, 4, 8, 16 and 32 varies. Most of the time 
