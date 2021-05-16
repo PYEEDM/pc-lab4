@@ -63,19 +63,16 @@ void print(double *out, size_t n)
 // computes values in matrix "out" from those in matrix "in"
 // assuming both are of size "nxn"
 //
-void relax( double *in, double *out, size_t n, int displ, int count)
+void relax(double *in, double *out, size_t n, int displ, int count)
 {
-   size_t i,j;
-   // TODO: if this ain't the messiest possible code to do this then I don't know what is
-   // TODO: fix it while making it cheese
-   size_t init_i = displ/n, last_i = (displ+count+n-1)/n, init_j = displ%n, last_j = n-1;
-   init_i = init_i > 0 ? init_i : 1;
-   last_i = last_i < n-1 ? last_i : n-1;
-   for( i=init_i; i<last_i; i++) {
-      init_j = i == init_i && init_j > 0 ? init_j : 1;
-      last_j = i < last_i ? last_j : (displ+count)%n;
-      // TODO: until here ^
-      for( j=init_j; j<last_j; j++) {
+   size_t i,j, init_j;
+   for(i=displ/n > 0 ? displ/n : 1; i<n-1; i++) {
+      init_j = i == 0 && displ%n > 0 ? displ%n : 1; 
+      for(j=init_j; j<n-1; j++) {
+         if (i >= (displ+count)/n && j >= (displ+count)%n || i >= (displ+count+n)/n)
+         {
+            return;
+         }
          out[i*n+j] = 0.25*in[(i-1)*n+j]      // upper neighbour
                       + 0.25*in[i*n+j]        // center
                       + 0.125*in[(i+1)*n+j]   // lower neighbour
@@ -95,7 +92,7 @@ int main (int argc, char *argv[])
    MPI_Comm_rank(MPI_COMM_WORLD, &my_rank);
    MPI_Comm_size(MPI_COMM_WORLD, &num_ranks);
 
-   double *amaster,*a,*b;
+   double *a,*b;
    size_t n=0;
    int i;
    int max_iter;
@@ -139,15 +136,18 @@ int main (int argc, char *argv[])
    }
 
    // allocate and initialize matrices
-   if (my_rank == 0)
-   {
-      amaster = allocMatrix(n);
-      init(amaster, n);
+   a = allocMatrix(n);
+   b = allocMatrix(n);
 
-      // add initial data
-      amaster[n/4] = 100.0;
-      amaster[(n*3)/4] = 1000.0;
-      
+   init(a, n);
+   init(b, n);
+
+   // add initial data
+   b[n/4] = 100.0;
+   b[(n*3)/4] = 1000.0;
+
+   if (my_rank == 0)
+   {  
       printf("size   : n = %zu => %d M elements (%d MB)\n",
               n, (int)(n*n/1000000), (int)(n*n*sizeof(double) / (1024*1024)));
       printf("iter   : %d\n", max_iter);
@@ -155,29 +155,16 @@ int main (int argc, char *argv[])
       print(amaster, n);
    }
 
-   a = allocMatrix(n);
-   b = allocMatrix(n);
-
-   init(a, n);
-   init(b, n);
-
    // start time measurement
    start = time_gettime();
 
    // execute the algorithm
    for(i=0; i<max_iter; i++) {  
-      MPI_Scatterv(amaster, in_counts, in_displs, MPI_DOUBLE, a + in_displs[my_rank], in_counts[my_rank], MPI_DOUBLE, 0, MPI_COMM_WORLD);
+      MPI_Scatterv(b, in_counts, in_displs, MPI_DOUBLE, a + in_displs[my_rank], in_counts[my_rank], MPI_DOUBLE, 0, MPI_COMM_WORLD);
 
-      relax(a, b, n, in_displs[my_rank], in_counts[my_rank]);
+      relax(a, b, n, out_displs[my_rank], out_counts[my_rank]);
 
-      MPI_Gatherv(b + out_displs[my_rank], out_counts[my_rank], MPI_DOUBLE, amaster, out_counts, out_displs, MPI_DOUBLE, 0, MPI_COMM_WORLD);
-
-      //TODO: shouldn't be needed after cheese
-      if (my_rank == 0)
-      {
-         amaster[n/4] = 100.0;
-         amaster[(n*3)/4] = 1000.0;
-      }
+      MPI_Gatherv(b + out_displs[my_rank], out_counts[my_rank], MPI_DOUBLE, b, out_counts, out_displs, MPI_DOUBLE, 0, MPI_COMM_WORLD);
    }
 
    if (my_rank == 0)
@@ -186,7 +173,7 @@ int main (int argc, char *argv[])
       finish = time_gettime();
 
       printf("Matrix after %d iterations:\n", i);
-      print(amaster, n); 
+      print(b, n); 
 
       time_print_elapsed(__FILE__, start, finish);
    }
