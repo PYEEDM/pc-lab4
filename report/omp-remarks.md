@@ -19,8 +19,10 @@ since at the beginning I mistakingly also tried to parallelize the `init` functi
 ## About the Performance
 The difference in execution time between the code run with 1 thread, 4, 8, 16 and 32 varies. Most of the time 
 doubling the number of threads means more or less halving the execution time (with the matrix size being kept
-constant). To be precise, when the number of threads doubles, the performance is increased between 1.3 and 
-2.8 times.
+constant). That's when the code is run locally/on the main node. On the cluster, there is almost no 
+difference between the performance of 1 thread and 2 threads.
+
+For tests made on the main node:   
 
 "Strong scaling is tested by running the code with different number of threads while keeping the [size of the
 matrix constant]" -> since the time is more or less halved, this somehow potentially has strong scaling, I think.
