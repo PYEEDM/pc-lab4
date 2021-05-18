@@ -34,5 +34,5 @@ results as a scatter plot shows that it has more or less weak scaling, but not p
 ## GFLOPS/s
 Since we are only asked to present the absolute performance in terms of the size of the matrix (and not the number
 of iterations), I am taking into account only the `relax` method. It has two nested for-loops with a single statement
-in the center, which does 9 floating point operations. This makes the performance `((n-2)*(n-2)*9)/num_threads` 
-GFLOPS/s.
+in the center, which does 9 floating point operations. This means that `((n-2)*(n-2)*9)/num_threads` many GFLOPS are
+executed in total. And to find the GFLOPS/s, we need to divide that number by the wall-clock time.
