@@ -16,8 +16,8 @@ Iteration 1:
 | |num cores            |size=256|size=512|size=1024|size=2048|size=4096|size=8192|size=16384|size=32768|
 |---|---|---|---|---|---|---|---|---|---|
 | (size in MB)|         | 0MB     | 2MB   | 8 MB    | 32 MB   |  128 MB | 512 MB  | 2048 MB  | 8192 MB|      
-|  seq     | 1        | 1 ms     | 4 ms   | 9 ms    | 39 ms   |  159 ms | 633 ms  | 2580 ms  | 10322 ms|
-| compiler optimization|1| 0 ms  | 0 ms   | 2 ms    | 9 ms    |   39 ms |  154 ms | 635 ms   | 2537 ms |
+|  seq  without compiler optimization   | 1        | 1 ms     | 4 ms   | 9 ms    | 39 ms   |  159 ms | 633 ms  | 2580 ms  | 10322 ms|
+| seq with compiler optimization|1| 0 ms  | 0 ms   | 2 ms    | 9 ms    |   39 ms |  154 ms | 635 ms   | 2537 ms |
 
 Size: 1024 (8MB)
 |algorithm| num cores | iter=1 | iter=100 | iter=200|iter=300|iter=400|iter=500|iter=600|iter=700|iter=800|iter=900|iter=1000|
