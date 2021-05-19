@@ -131,7 +131,6 @@ int main (int argc, char *argv[])
    printf( "Matrix after %d iterations:\n", i);
    print( b, n);
 
-
    time_print_elapsed(__FILE__, start, finish);
 
    return 0;
