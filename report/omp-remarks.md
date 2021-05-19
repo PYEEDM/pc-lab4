@@ -23,13 +23,12 @@ constant). That's when the code is run locally/on the main node. On the cluster,
 difference between the performance of 1 thread and 2 threads.
 
 For tests made on the main node:   
+Since the time is more or less halved with the doubling of number of threads, it theoretically does scale well
+when it comes to strong scaling. 
 
-"Strong scaling is tested by running the code with different number of threads while keeping the [size of the
-matrix constant]" -> since the time is more or less halved, this somehow potentially has strong scaling, I think.
-
-"Weak scaling is tested by running the code with different number of threads and with correspondingly scaled 
-[size of the matrix]" -> running it in this way (n=1000, threads=1; n=2000, threads=2, etc.) and plotting the 
-results as a scatter plot shows that it has more or less weak scaling, but not perfect.
+Testing it for weak scaling (so ./omp 1000 1 1, then ./omp 2000 1 2, then ./omp 4000 1 4, etc.) shows that 
+the time doesn't stay more or less constant (so the workload per processor isn't constant as well) and weak
+scaling isn't achieved.
 
 ## GFLOPS/s
 Since we are only asked to present the absolute performance in terms of the size of the matrix (and not the number
