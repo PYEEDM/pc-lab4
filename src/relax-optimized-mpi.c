@@ -65,16 +65,10 @@ void print( double **out, size_t n)
 //
 void relax(double **in, double **out, size_t n, int displ, int count)
 {
-   size_t i,j,init_i,init_j;
-   init_i = displ/n > 0 ? displ/n : 1;
-   for(i = init_i; i<n-1; i++) {
-      init_j = i == 0 && displ%n > 0 ? displ%n : 1; 
-      for(j=init_j; j<n-1; j++) {
-         int this_index = i*n+j;
-         if (this_index >= displ + count)
-         {
-            return;
-         }
+   size_t i = displ/n > 0 ? displ/n : 1,j;
+   //TODO: i<lastrow, change up the whole code to make this work (gotta divide whole rows for each process)
+   for(i; i<n-1; i++) {
+      for(j=1; j<n-1; j++) {
             out[i][j] = 0.25*in[(i-1)][j]      // upper neighbour
             + 0.25*in[i][j]        // center
             + 0.125*in[(i+1)][j]   // lower neighbour
