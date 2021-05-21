@@ -66,8 +66,8 @@ void print( double **out, size_t n)
 void relax(double **in, double **out, size_t n, int displ, int count)
 {
    size_t i = displ/n > 0 ? displ/n : 1,j;
-   //TODO: i<lastrow, change up the whole code to make this work (gotta divide whole rows for each process)
-   for(i; i<n-1; i++) {
+   size_t last_i = (displ+count)/n < n-1 ? (displ+count)/n : n-1;
+   for(i; i<last_i; i++) {
       for(j=1; j<n-1; j++) {
             out[i][j] = 0.25*in[(i-1)][j]      // upper neighbour
             + 0.25*in[i][j]        // center
@@ -115,7 +115,8 @@ int main (int argc, char *argv[])
    MPI_Bcast(&max_iter, 1, MPI_INT, 0, MPI_COMM_WORLD);
 
    int elements = n*n;
-   int elements_per_rank = (elements + num_ranks - 1)/num_ranks;
+   int rows_per_rank = (n + num_ranks - 1)/num_ranks;
+   int elements_per_rank = rows_per_rank * n;
 
    // initialize slicing setup
    int *in_counts = (int *)malloc(num_ranks*sizeof(int));
@@ -124,10 +125,10 @@ int main (int argc, char *argv[])
    int *out_displs = (int *)malloc(num_ranks*sizeof(int));
    for (int j = 0; j < num_ranks; j++)
    {
-      in_displs[j] = j > 0 ? j*elements_per_rank - n : j*elements_per_rank;   
-      in_counts[j] = j < num_ranks-1 ? elements_per_rank + (j > 0 ? 2 : 1) * n : elements_per_rank;
+      in_displs[j] = j > 0 ? j*elements_per_rank - n : 0;   
+      in_counts[j] = j < num_ranks-1 ? elements_per_rank + (j > 0 ? 2 : 1) * n : elements - in_displs[j];
       out_displs[j] = j*elements_per_rank;
-      out_counts[j] = (j < num_ranks-1 || (elements % elements_per_rank) == 0) ? elements_per_rank : elements % elements_per_rank;
+      out_counts[j] = j < num_ranks-1 ? elements_per_rank : elements - out_displs[j];
    }
 
    // allocate and initialize matrices
