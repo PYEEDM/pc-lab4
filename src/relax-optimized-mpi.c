@@ -66,19 +66,15 @@ void print( double **out, size_t n)
 //
 void relax(double **in, double **out, size_t n, int displ, int count)
 {
-
-    int my_rank;
-    
-   MPI_Comm_rank(MPI_COMM_WORLD, &my_rank);
    size_t i,j;
-   size_t last_i = count/n < n-2 ? count/n : n-2;
-   for(i=0; i<last_i; i++) {
+   size_t last_i = count/n < n-1 ? count/n : n-1;
+   for(i=1; i<=last_i; i++) {
       for(j=1; j<n-1; j++) {
-            out[i][j] = 0.25*in[i][j]      // upper neighbour
-            + 0.25*in[i+1][j]        // center
-            + 0.125*in[(i+2)][j]   // lower neighbour
-            + 0.175*in[i+1][(j-1)]   // left neighbour
-            + 0.2*in[i+1][(j+1)];    // right neighbour
+            out[i][j] = 0.25*in[i-1][j]      // upper neighbour
+            + 0.25*in[i][j]        // center
+            + 0.125*in[(i+1)][j]   // lower neighbour
+            + 0.175*in[i][(j-1)]   // left neighbour
+            + 0.2*in[i][(j+1)];    // right neighbour
       }
    }
 }
@@ -93,7 +89,7 @@ int main (int argc, char *argv[])
    MPI_Comm_rank(MPI_COMM_WORLD, &my_rank);
    MPI_Comm_size(MPI_COMM_WORLD, &num_ranks);
 
-   double **a,**b;
+   double **master, **in,**out, **tmp;
    size_t n=0;
    int i;
    int max_iter;
@@ -124,34 +120,34 @@ int main (int argc, char *argv[])
    int elements_per_rank = rows_per_rank * n;
 
    // initialize slicing setup
-   int *in_counts = (int *)malloc(num_ranks*sizeof(int));
-   int *in_displs = (int *)malloc(num_ranks*sizeof(int));
    int *out_counts = (int *)malloc(num_ranks*sizeof(int));
    int *out_displs = (int *)malloc(num_ranks*sizeof(int));
    for (int j = 0; j < num_ranks; j++)
    {
        out_displs[j] = j*elements_per_rank+n;
        out_counts[j] = j < num_ranks - 1 ? elements_per_rank : elements - n - out_displs[j];
-       in_displs[j] = out_displs[j] - n;
-       in_counts[j] = out_counts[j] + 2*n; 
    }
 
-    b = allocMatrixVectorized(n, rows_per_rank);
-    init(b,n,rows_per_rank);
+    in = allocMatrixVectorized(n, rows_per_rank+2);
+    out = allocMatrixVectorized(n, rows_per_rank+2);
+    init(in,n,rows_per_rank+2);
+    init(out,n,rows_per_rank+2);
     if (my_rank == 0)
     {
-        a = allocMatrixVectorized(n, n);
-        init(a,n,n);
+        master = allocMatrixVectorized(n, n);
+        init(master,n,n);
+        master[0][n/4] = 100.0;
+        master[0][(n*3)/4] = 1000.0;
+        in[0][n/4] = 100.0;
+        in[0][(n*3)/4] = 1000.0;
+        out[0][n/4] = 100.0;
+        out[0][(n*3)/4] = 1000.0;
     }
     else
     {
-        a = allocMatrixVectorized(n, rows_per_rank + 2);
-        init(a,n,rows_per_rank + 2);
+        //TODO: is this really the way to work around this....
+        master = (double**) malloc(1 * sizeof(double*));
     }
-
-   // add initial data
-   a[0][n/4] = 100.0;
-   a[0][(n*3)/4] = 1000.0;
 
    if (my_rank == 0)
    {  
@@ -159,20 +155,36 @@ int main (int argc, char *argv[])
               n, (int)(n*n/1000000), (int)(n*n*sizeof(double) / (1024*1024)));
       printf("iter   : %d\n", max_iter);
 
-      print(a, n);
+      print(master, n);
    }
 
    // start time measurement
    start = time_gettime();
 
    // execute the algorithm
-   for(i=0; i<max_iter; i++) {  
-      MPI_Scatterv(&(a[0][0]), in_counts, in_displs, MPI_DOUBLE, &(a[0][0])/* + in_displs[my_rank]*/, in_counts[my_rank], MPI_DOUBLE, 0, MPI_COMM_WORLD);
+   for(i=0; i<max_iter; i++) { 
 
-      relax(a, b, n, out_displs[my_rank], out_counts[my_rank]);
+      relax(in, out, n, out_displs[my_rank], out_counts[my_rank]);
 
-      MPI_Gatherv(&(b[0][0])/*+ out_displs[my_rank]*/, out_counts[my_rank], MPI_DOUBLE, &(a[0][0]), out_counts, out_displs, MPI_DOUBLE, 0, MPI_COMM_WORLD);
+      tmp = in;
+      in = out;
+      out = tmp;
+
+      if (i < max_iter - 1)
+      {
+          if (my_rank > 0)
+          {
+              MPI_Recv(&(in[0][0]), n, MPI_DOUBLE, my_rank-1, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+              MPI_Send(&(in[0][0])+n, n, MPI_DOUBLE, my_rank-1, 0, MPI_COMM_WORLD);
+          }
+          if (my_rank < num_ranks - 1)
+          {
+              MPI_Send(&(in[0][0])+elements_per_rank, n, MPI_DOUBLE, my_rank + 1, 0, MPI_COMM_WORLD);
+              MPI_Recv(&(in[0][0])+elements_per_rank+n, n, MPI_DOUBLE, my_rank + 1, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+          }
+      }
    }
+   MPI_Gatherv(&(in[0][0])+n, out_counts[my_rank], MPI_DOUBLE, &(master[0][0]), out_counts, out_displs,MPI_DOUBLE, 0, MPI_COMM_WORLD);
 
    if (my_rank == 0)
    {
@@ -180,7 +192,7 @@ int main (int argc, char *argv[])
       finish = time_gettime();
 
       printf("Matrix after %d iterations:\n", i);
-      print(a, n); 
+      print(master, n); 
 
       time_print_elapsed(__FILE__, start, finish);
    }
