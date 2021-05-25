@@ -76,7 +76,7 @@ void relax(double **in, double **out, size_t n)
 {
 	size_t i,j;
 
-	#pragma omp parallel for collapse(2)
+	#pragma omp parallel for schedule(guided,1) collapse(2)
 	for(i=1; i<n-1; i++) {
 		for(j=1; j<n-1; j++) {
 			out[i][j] = 0.25*in[(i-1)][j]      // upper neighbour
