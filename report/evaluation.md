@@ -28,7 +28,7 @@ Size: 512 (2MB)
 |algorithm| num cores | iter=1 | iter=100 | iter=200|iter=300|iter=400|iter=500|iter=600|iter=700|iter=800|iter=900|iter=1000|
 |---|---|---|---|---|---|---|---|---|---|---|---|---|   
 |seq| 1 |               5 ms     | 251 ms    | 508 ms| 767 ms|980 ms |1268 ms | 1471 ms|1716 ms |1961 ms | 2206 ms| 2445 ma |
-
+```
 not formated yet...
 !!!!!!!size of matrix!!!!!!!!
 matrix 256 * 256.
@@ -104,3 +104,4 @@ iterations: 1000
 --- [relax-sequential-vec.c] time elapsed 1550 ms
 --- [relax-omp-vec.c] time elapsed 2673 ms
 --- [relax-mpi-vec.c] time elapsed 1531 ms
+```
