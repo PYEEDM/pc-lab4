@@ -7,6 +7,7 @@ gcc relax-optimized-sequential.c job-time.c -O3 -march=native -fopt-info-vec -o 
 gcc -fopenmp relax-optimized-omp.c job-time.c -O3 -march=native -fopt-info-vec -o relax-omp-op.o
 mpicc -DMPI relax-optimized-mpi.c job-time.c -O3 -march=native -fopt-info-vec -o relax-mpi-op.o 
 
+echo "!!!!!!!size of matrix!!!!!!!!"
 
 n=100
 while (( $n <= 35000 ))
@@ -18,7 +19,7 @@ do
 	n=$(( 2*n ))	
 done
 
-
+echo "!!!!!!!iteration number!!!!!!!!"
 itr=100
 while (( $itr <= 35000 ))
 do
