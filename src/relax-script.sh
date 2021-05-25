@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 #SBATCH -p csedu
-
+#SBATCH --cpus-per-task 32
 echo "compiling..."
 
 make
@@ -10,7 +10,7 @@ echo "!!!!!!!size of matrix!!!!!!!!"
 
 n=256
 m=1
-while (( $n <= 350 ))
+while (( $n <= 35000 ))
 do
 	echo "matrix $n * $n."
 	while (($m <= 2))
@@ -38,7 +38,7 @@ done
 echo "!!!!!!!iteration number!!!!!!!!"
 itr=100
 m=1
-while (( $itr <= 100 ))
+while (( $itr <= 1000 ))
 do	
 	echo "iterations: $itr"
 	while (($m <= 2))
