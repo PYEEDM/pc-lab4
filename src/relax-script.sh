@@ -8,10 +8,10 @@ make
 
 echo "Running experiment for variable matrix size..."
 n=256
-c=1
 while (( $n <= 32768 ))
 do
 	echo "Matrix size: $n * $n."
+    c=1
 	while (( $c <= 32 ))
 	do
 		echo "Number of cores: $c"
@@ -36,10 +36,10 @@ done
 
 echo "Running experiment for variable number of iterations..."
 itr=100
-c=1
 while (( $itr <= 1000 ))
 do	
 	echo "Iterations: $itr"
+    c=1
 	while (( $c <= 2 ))
 	do
 		echo "Number of cores: $c"
