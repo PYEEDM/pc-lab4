@@ -64,7 +64,6 @@ void print(double *out, size_t n)
 //
 // individual step of the 5-point stencil
 // computes values in matrix "out" from those in matrix "in"
-// assuming both are of size "nxn"
 //
 void relax(double *in, double *out, size_t n, int displ, int count)
 {
