@@ -28,3 +28,79 @@ Size: 512 (2MB)
 |algorithm| num cores | iter=1 | iter=100 | iter=200|iter=300|iter=400|iter=500|iter=600|iter=700|iter=800|iter=900|iter=1000|
 |---|---|---|---|---|---|---|---|---|---|---|---|---|   
 |seq| 1 |               5 ms     | 251 ms    | 508 ms| 767 ms|980 ms |1268 ms | 1471 ms|1716 ms |1961 ms | 2206 ms| 2445 ma |
+
+not formated yet...
+!!!!!!!size of matrix!!!!!!!!
+matrix 256 * 256.
+--- [relax-sequential-vec.c] time elapsed 000 ms
+--- [relax-omp-vec.c] time elapsed 000 ms
+--- [relax-mpi-vec.c] time elapsed 000 ms
+matrix 512 * 512.
+--- [relax-sequential-vec.c] time elapsed 000 ms
+--- [relax-omp-vec.c] time elapsed 000 ms
+--- [relax-mpi-vec.c] time elapsed 000 ms
+matrix 1024 * 1024.
+--- [relax-sequential-vec.c] time elapsed 001 ms
+--- [relax-omp-vec.c] time elapsed 002 ms
+--- [relax-mpi-vec.c] time elapsed 003 ms
+matrix 2048 * 2048.
+--- [relax-sequential-vec.c] time elapsed 007 ms
+--- [relax-omp-vec.c] time elapsed 009 ms
+--- [relax-mpi-vec.c] time elapsed 014 ms
+matrix 4096 * 4096.
+--- [relax-sequential-vec.c] time elapsed 028 ms
+--- [relax-omp-vec.c] time elapsed 038 ms
+--- [relax-mpi-vec.c] time elapsed 056 ms
+matrix 8192 * 8192.
+--- [relax-sequential-vec.c] time elapsed 113 ms
+--- [relax-omp-vec.c] time elapsed 125 ms
+--- [relax-mpi-vec.c] time elapsed 219 ms
+matrix 16384 * 16384.
+--- [relax-sequential-vec.c] time elapsed 459 ms
+--- [relax-omp-vec.c] time elapsed 529 ms
+--- [relax-mpi-vec.c] time elapsed 2296 ms
+matrix 32768 * 32768.
+--- [relax-sequential-vec.c] time elapsed 2124 ms
+--- [relax-omp-vec.c] time elapsed 2420 ms
+--- [relax-mpi-vec.c] time elapsed 10235 ms
+!!!!!!!iteration number!!!!!!!!
+iterations: 100
+--- [relax-sequential-vec.c] time elapsed 143 ms
+--- [relax-omp-vec.c] time elapsed 192 ms
+--- [relax-mpi-vec.c] time elapsed 140 ms
+iterations: 200
+--- [relax-sequential-vec.c] time elapsed 275 ms
+--- [relax-omp-vec.c] time elapsed 375 ms
+--- [relax-mpi-vec.c] time elapsed 272 ms
+iterations: 300
+--- [relax-sequential-vec.c] time elapsed 402 ms
+--- [relax-omp-vec.c] time elapsed 560 ms
+--- [relax-mpi-vec.c] time elapsed 415 ms
+iterations: 400
+--- [relax-sequential-vec.c] time elapsed 547 ms
+--- [relax-omp-vec.c] time elapsed 748 ms
+--- [relax-mpi-vec.c] time elapsed 547 ms
+iterations: 500
+--- [relax-sequential-vec.c] time elapsed 682 ms
+--- [relax-omp-vec.c] time elapsed 934 ms
+--- [relax-mpi-vec.c] time elapsed 683 ms
+iterations: 600
+--- [relax-sequential-vec.c] time elapsed 820 ms
+--- [relax-omp-vec.c] time elapsed 1124 ms
+--- [relax-mpi-vec.c] time elapsed 813 ms
+iterations: 700
+--- [relax-sequential-vec.c] time elapsed 971 ms
+--- [relax-omp-vec.c] time elapsed 1373 ms
+--- [relax-mpi-vec.c] time elapsed 985 ms
+iterations: 800
+--- [relax-sequential-vec.c] time elapsed 1153 ms
+--- [relax-omp-vec.c] time elapsed 1708 ms
+--- [relax-mpi-vec.c] time elapsed 1127 ms
+iterations: 900
+--- [relax-sequential-vec.c] time elapsed 1320 ms
+--- [relax-omp-vec.c] time elapsed 2124 ms
+--- [relax-mpi-vec.c] time elapsed 1341 ms
+iterations: 1000
+--- [relax-sequential-vec.c] time elapsed 1550 ms
+--- [relax-omp-vec.c] time elapsed 2673 ms
+--- [relax-mpi-vec.c] time elapsed 1531 ms
