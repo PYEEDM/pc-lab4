@@ -29,7 +29,7 @@ do
 			mpirun -n $c ./relax-mpi-vec.o $n 1 
 				
 		done
-		m=$(( 2*c ))
+		c=$(( 2*c ))
 	done	
 	n=$(( 2*n ))
 done
@@ -56,7 +56,7 @@ do
             mpirun -n $c relax-mpi.o 2048 $itr
             mpirun -n $c relax-mpi-vec.o 2048 $itr 
 		done
-		m=$(( 2*c ))
+		c=$(( 2*c ))
 	done
 	itr=$(( 100+itr ))	
 done
