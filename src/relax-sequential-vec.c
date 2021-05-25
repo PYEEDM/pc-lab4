@@ -6,7 +6,7 @@
 #include <time.h>
 #include "job-time.h"
 
-#define PRINT_EXTRA_INFO true
+#define PRINT_EXTRA_INFO false
 
 //
 // allocate a vectorized matrix of "nxn" elements
