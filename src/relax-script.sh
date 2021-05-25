@@ -15,7 +15,7 @@ do
 	echo "matrix $n * $n."
     ./relax-seq-op.o $n 1
 	./relax-omp-op.o $n 1 1
-	relax-mpi-op.o $n 1 
+	mpirun relax-mpi-op.o $n 1 
 	n=$(( 2*n ))	
 done
 
@@ -26,6 +26,6 @@ do
 	echo "iterations: $itr"
     ./relax-seq-op.o 64 $itr
 	./relax-omp-op.o 64 $itr 1
-	relax-mpi-op.o 64 $utr 
+	mpirun relax-mpi-op.o 64 $utr 
 	itr=$(( 2*itr ))	
 done
