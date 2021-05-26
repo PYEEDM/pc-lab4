@@ -1,0 +1,2784 @@
+Compiling...
+gcc relax-sequential.c job-time.c -fopt-info-vec -o relax-seq.o 
+gcc -fopenmp relax-omp.c job-time.c -fopt-info-vec -o relax-omp.o
+mpicc -DMPI relax-mpi.c job-time.c -fopt-info-vec -o relax-mpi.o 
+gcc relax-sequential-vec.c job-time.c -O3 -march=native -fopt-info-vec -o relax-seq-vec.o
+relax-sequential-vec.c:20:2: note: loop vectorized
+relax-sequential-vec.c:77:3: note: loop vectorized
+relax-sequential-vec.c:77:3: note: loop versioned for vectorization because of possible aliasing
+relax-sequential-vec.c:77:3: note: loop vectorized
+relax-sequential-vec.c:77:3: note: loop versioned for vectorization because of possible aliasing
+gcc -fopenmp relax-omp-vec.c job-time.c -O3 -march=native -fopt-info-vec -o relax-omp-vec.o
+relax-omp-vec.c:22:2: note: loop vectorized
+relax-omp-vec.c:89:1: note: basic block vectorized
+relax-omp-vec.c:143:2: note: basic block vectorized
+mpicc -DMPI relax-mpi-vec.c job-time.c -O3 -march=native -fopt-info-vec -o relax-mpi-vec.o 
+relax-mpi-vec.c:22:2: note: loop vectorized
+relax-mpi-vec.c:79:3: note: loop vectorized
+relax-mpi-vec.c:79:3: note: loop versioned for vectorization because of possible aliasing
+relax-mpi-vec.c:79:3: note: loop vectorized
+relax-mpi-vec.c:79:3: note: loop versioned for vectorization because of possible aliasing
+relax-mpi-vec.c:132:2: note: loop vectorized
+relax-mpi-vec.c:132:2: note: loop vectorized
+Running experiment for variable matrix size...
+Matrix size: 256 * 256.
+Number of cores: 1
+Measurement: 1
+--- [relax-sequential.c] time elapsed 005 ms
+--- [relax-sequential-vec.c] time elapsed 000 ms
+--- [relax-omp.c] time elapsed 004 ms
+--- [relax-omp-vec.c] time elapsed 001 ms
+--- [relax-mpi.c] time elapsed 003 ms
+--- [relax-mpi-vec.c] time elapsed 000 ms
+Measurement: 2
+--- [relax-sequential.c] time elapsed 006 ms
+--- [relax-sequential-vec.c] time elapsed 000 ms
+--- [relax-omp.c] time elapsed 003 ms
+--- [relax-omp-vec.c] time elapsed 001 ms
+--- [relax-mpi.c] time elapsed 004 ms
+--- [relax-mpi-vec.c] time elapsed 000 ms
+Measurement: 3
+--- [relax-sequential.c] time elapsed 007 ms
+--- [relax-sequential-vec.c] time elapsed 000 ms
+--- [relax-omp.c] time elapsed 003 ms
+--- [relax-omp-vec.c] time elapsed 001 ms
+--- [relax-mpi.c] time elapsed 004 ms
+--- [relax-mpi-vec.c] time elapsed 000 ms
+Measurement: 4
+--- [relax-sequential.c] time elapsed 007 ms
+--- [relax-sequential-vec.c] time elapsed 000 ms
+--- [relax-omp.c] time elapsed 003 ms
+--- [relax-omp-vec.c] time elapsed 001 ms
+--- [relax-mpi.c] time elapsed 003 ms
+--- [relax-mpi-vec.c] time elapsed 000 ms
+Measurement: 5
+--- [relax-sequential.c] time elapsed 006 ms
+--- [relax-sequential-vec.c] time elapsed 000 ms
+--- [relax-omp.c] time elapsed 003 ms
+--- [relax-omp-vec.c] time elapsed 001 ms
+--- [relax-mpi.c] time elapsed 004 ms
+--- [relax-mpi-vec.c] time elapsed 000 ms
+Number of cores: 2
+Measurement: 1
+--- [relax-omp.c] time elapsed 003 ms
+--- [relax-omp-vec.c] time elapsed 000 ms
+--- [relax-mpi.c] time elapsed 002 ms
+--- [relax-mpi-vec.c] time elapsed 000 ms
+Measurement: 2
+--- [relax-omp.c] time elapsed 003 ms
+--- [relax-omp-vec.c] time elapsed 000 ms
+--- [relax-mpi.c] time elapsed 002 ms
+--- [relax-mpi-vec.c] time elapsed 000 ms
+Measurement: 3
+--- [relax-omp.c] time elapsed 003 ms
+--- [relax-omp-vec.c] time elapsed 000 ms
+--- [relax-mpi.c] time elapsed 002 ms
+--- [relax-mpi-vec.c] time elapsed 000 ms
+Measurement: 4
+--- [relax-omp.c] time elapsed 003 ms
+--- [relax-omp-vec.c] time elapsed 000 ms
+--- [relax-mpi.c] time elapsed 002 ms
+--- [relax-mpi-vec.c] time elapsed 000 ms
+Measurement: 5
+--- [relax-omp.c] time elapsed 003 ms
+--- [relax-omp-vec.c] time elapsed 000 ms
+--- [relax-mpi.c] time elapsed 002 ms
+--- [relax-mpi-vec.c] time elapsed 000 ms
+Number of cores: 4
+Measurement: 1
+--- [relax-omp.c] time elapsed 002 ms
+--- [relax-omp-vec.c] time elapsed 000 ms
+--- [relax-mpi.c] time elapsed 001 ms
+--- [relax-mpi-vec.c] time elapsed 000 ms
+Measurement: 2
+--- [relax-omp.c] time elapsed 001 ms
+--- [relax-omp-vec.c] time elapsed 000 ms
+--- [relax-mpi.c] time elapsed 001 ms
+--- [relax-mpi-vec.c] time elapsed 000 ms
+Measurement: 3
+--- [relax-omp.c] time elapsed 002 ms
+--- [relax-omp-vec.c] time elapsed 000 ms
+--- [relax-mpi.c] time elapsed 001 ms
+--- [relax-mpi-vec.c] time elapsed 000 ms
+Measurement: 4
+--- [relax-omp.c] time elapsed 002 ms
+--- [relax-omp-vec.c] time elapsed 000 ms
+--- [relax-mpi.c] time elapsed 002 ms
+--- [relax-mpi-vec.c] time elapsed 000 ms
+Measurement: 5
+--- [relax-omp.c] time elapsed 001 ms
+--- [relax-omp-vec.c] time elapsed 000 ms
+--- [relax-mpi.c] time elapsed 001 ms
+--- [relax-mpi-vec.c] time elapsed 000 ms
+Number of cores: 8
+Measurement: 1
+--- [relax-omp.c] time elapsed 001 ms
+--- [relax-omp-vec.c] time elapsed 000 ms
+--- [relax-mpi.c] time elapsed 001 ms
+--- [relax-mpi-vec.c] time elapsed 000 ms
+Measurement: 2
+--- [relax-omp.c] time elapsed 001 ms
+--- [relax-omp-vec.c] time elapsed 009 ms
+--- [relax-mpi.c] time elapsed 001 ms
+--- [relax-mpi-vec.c] time elapsed 000 ms
+Measurement: 3
+--- [relax-omp.c] time elapsed 001 ms
+--- [relax-omp-vec.c] time elapsed 000 ms
+--- [relax-mpi.c] time elapsed 001 ms
+--- [relax-mpi-vec.c] time elapsed 000 ms
+Measurement: 4
+--- [relax-omp.c] time elapsed 001 ms
+--- [relax-omp-vec.c] time elapsed 010 ms
+--- [relax-mpi.c] time elapsed 001 ms
+--- [relax-mpi-vec.c] time elapsed 000 ms
+Measurement: 5
+--- [relax-omp.c] time elapsed 001 ms
+--- [relax-omp-vec.c] time elapsed 000 ms
+--- [relax-mpi.c] time elapsed 001 ms
+--- [relax-mpi-vec.c] time elapsed 000 ms
+Number of cores: 16
+Measurement: 1
+--- [relax-omp.c] time elapsed 015 ms
+--- [relax-omp-vec.c] time elapsed 015 ms
+--- [relax-mpi.c] time elapsed 000 ms
+--- [relax-mpi-vec.c] time elapsed 000 ms
+Measurement: 2
+--- [relax-omp.c] time elapsed 013 ms
+--- [relax-omp-vec.c] time elapsed 010 ms
+--- [relax-mpi.c] time elapsed 000 ms
+--- [relax-mpi-vec.c] time elapsed 000 ms
+Measurement: 3
+--- [relax-omp.c] time elapsed 016 ms
+--- [relax-omp-vec.c] time elapsed 013 ms
+--- [relax-mpi.c] time elapsed 000 ms
+--- [relax-mpi-vec.c] time elapsed 000 ms
+Measurement: 4
+--- [relax-omp.c] time elapsed 010 ms
+--- [relax-omp-vec.c] time elapsed 013 ms
+--- [relax-mpi.c] time elapsed 000 ms
+--- [relax-mpi-vec.c] time elapsed 000 ms
+Measurement: 5
+--- [relax-omp.c] time elapsed 010 ms
+--- [relax-omp-vec.c] time elapsed 010 ms
+--- [relax-mpi.c] time elapsed 000 ms
+--- [relax-mpi-vec.c] time elapsed 000 ms
+Number of cores: 32
+Measurement: 1
+--- [relax-omp.c] time elapsed 085 ms
+--- [relax-omp-vec.c] time elapsed 092 ms
+--- [relax-mpi.c] time elapsed 015 ms
+--- [relax-mpi-vec.c] time elapsed 018 ms
+Measurement: 2
+--- [relax-omp.c] time elapsed 093 ms
+--- [relax-omp-vec.c] time elapsed 117 ms
+--- [relax-mpi.c] time elapsed 002 ms
+--- [relax-mpi-vec.c] time elapsed 007 ms
+Measurement: 3
+--- [relax-omp.c] time elapsed 091 ms
+--- [relax-omp-vec.c] time elapsed 098 ms
+--- [relax-mpi.c] time elapsed 001 ms
+--- [relax-mpi-vec.c] time elapsed 001 ms
+Measurement: 4
+--- [relax-omp.c] time elapsed 090 ms
+--- [relax-omp-vec.c] time elapsed 077 ms
+--- [relax-mpi.c] time elapsed 118 ms
+--- [relax-mpi-vec.c] time elapsed 080 ms
+Measurement: 5
+--- [relax-omp.c] time elapsed 050 ms
+--- [relax-omp-vec.c] time elapsed 079 ms
+--- [relax-mpi.c] time elapsed 022 ms
+--- [relax-mpi-vec.c] time elapsed 001 ms
+Matrix size: 512 * 512.
+Number of cores: 1
+Measurement: 1
+--- [relax-sequential.c] time elapsed 017 ms
+--- [relax-sequential-vec.c] time elapsed 001 ms
+--- [relax-omp.c] time elapsed 013 ms
+--- [relax-omp-vec.c] time elapsed 003 ms
+--- [relax-mpi.c] time elapsed 014 ms
+--- [relax-mpi-vec.c] time elapsed 001 ms
+Measurement: 2
+--- [relax-sequential.c] time elapsed 016 ms
+--- [relax-sequential-vec.c] time elapsed 001 ms
+--- [relax-omp.c] time elapsed 016 ms
+--- [relax-omp-vec.c] time elapsed 003 ms
+--- [relax-mpi.c] time elapsed 014 ms
+--- [relax-mpi-vec.c] time elapsed 001 ms
+Measurement: 3
+--- [relax-sequential.c] time elapsed 016 ms
+--- [relax-sequential-vec.c] time elapsed 001 ms
+--- [relax-omp.c] time elapsed 015 ms
+--- [relax-omp-vec.c] time elapsed 006 ms
+--- [relax-mpi.c] time elapsed 014 ms
+--- [relax-mpi-vec.c] time elapsed 001 ms
+Measurement: 4
+--- [relax-sequential.c] time elapsed 017 ms
+--- [relax-sequential-vec.c] time elapsed 001 ms
+--- [relax-omp.c] time elapsed 015 ms
+--- [relax-omp-vec.c] time elapsed 006 ms
+--- [relax-mpi.c] time elapsed 014 ms
+--- [relax-mpi-vec.c] time elapsed 001 ms
+Measurement: 5
+--- [relax-sequential.c] time elapsed 016 ms
+--- [relax-sequential-vec.c] time elapsed 001 ms
+--- [relax-omp.c] time elapsed 015 ms
+--- [relax-omp-vec.c] time elapsed 006 ms
+--- [relax-mpi.c] time elapsed 014 ms
+--- [relax-mpi-vec.c] time elapsed 001 ms
+Number of cores: 2
+Measurement: 1
+--- [relax-omp.c] time elapsed 012 ms
+--- [relax-omp-vec.c] time elapsed 002 ms
+--- [relax-mpi.c] time elapsed 007 ms
+--- [relax-mpi-vec.c] time elapsed 000 ms
+Measurement: 2
+--- [relax-omp.c] time elapsed 011 ms
+--- [relax-omp-vec.c] time elapsed 003 ms
+--- [relax-mpi.c] time elapsed 008 ms
+--- [relax-mpi-vec.c] time elapsed 000 ms
+Measurement: 3
+--- [relax-omp.c] time elapsed 012 ms
+--- [relax-omp-vec.c] time elapsed 003 ms
+--- [relax-mpi.c] time elapsed 008 ms
+--- [relax-mpi-vec.c] time elapsed 000 ms
+Measurement: 4
+--- [relax-omp.c] time elapsed 011 ms
+--- [relax-omp-vec.c] time elapsed 003 ms
+--- [relax-mpi.c] time elapsed 007 ms
+--- [relax-mpi-vec.c] time elapsed 000 ms
+Measurement: 5
+--- [relax-omp.c] time elapsed 011 ms
+--- [relax-omp-vec.c] time elapsed 003 ms
+--- [relax-mpi.c] time elapsed 008 ms
+--- [relax-mpi-vec.c] time elapsed 000 ms
+Number of cores: 4
+Measurement: 1
+--- [relax-omp.c] time elapsed 007 ms
+--- [relax-omp-vec.c] time elapsed 001 ms
+--- [relax-mpi.c] time elapsed 005 ms
+--- [relax-mpi-vec.c] time elapsed 001 ms
+Measurement: 2
+--- [relax-omp.c] time elapsed 007 ms
+--- [relax-omp-vec.c] time elapsed 001 ms
+--- [relax-mpi.c] time elapsed 006 ms
+--- [relax-mpi-vec.c] time elapsed 001 ms
+Measurement: 3
+--- [relax-omp.c] time elapsed 006 ms
+--- [relax-omp-vec.c] time elapsed 001 ms
+--- [relax-mpi.c] time elapsed 006 ms
+--- [relax-mpi-vec.c] time elapsed 001 ms
+Measurement: 4
+--- [relax-omp.c] time elapsed 007 ms
+--- [relax-omp-vec.c] time elapsed 001 ms
+--- [relax-mpi.c] time elapsed 006 ms
+--- [relax-mpi-vec.c] time elapsed 001 ms
+Measurement: 5
+--- [relax-omp.c] time elapsed 007 ms
+--- [relax-omp-vec.c] time elapsed 001 ms
+--- [relax-mpi.c] time elapsed 007 ms
+--- [relax-mpi-vec.c] time elapsed 000 ms
+Number of cores: 8
+Measurement: 1
+--- [relax-omp.c] time elapsed 005 ms
+--- [relax-omp-vec.c] time elapsed 001 ms
+--- [relax-mpi.c] time elapsed 004 ms
+--- [relax-mpi-vec.c] time elapsed 001 ms
+Measurement: 2
+--- [relax-omp.c] time elapsed 004 ms
+--- [relax-omp-vec.c] time elapsed 001 ms
+--- [relax-mpi.c] time elapsed 003 ms
+--- [relax-mpi-vec.c] time elapsed 001 ms
+Measurement: 3
+--- [relax-omp.c] time elapsed 003 ms
+--- [relax-omp-vec.c] time elapsed 001 ms
+--- [relax-mpi.c] time elapsed 003 ms
+--- [relax-mpi-vec.c] time elapsed 001 ms
+Measurement: 4
+--- [relax-omp.c] time elapsed 003 ms
+--- [relax-omp-vec.c] time elapsed 007 ms
+--- [relax-mpi.c] time elapsed 003 ms
+--- [relax-mpi-vec.c] time elapsed 001 ms
+Measurement: 5
+--- [relax-omp.c] time elapsed 003 ms
+--- [relax-omp-vec.c] time elapsed 004 ms
+--- [relax-mpi.c] time elapsed 003 ms
+--- [relax-mpi-vec.c] time elapsed 001 ms
+Number of cores: 16
+Measurement: 1
+--- [relax-omp.c] time elapsed 014 ms
+--- [relax-omp-vec.c] time elapsed 012 ms
+--- [relax-mpi.c] time elapsed 002 ms
+--- [relax-mpi-vec.c] time elapsed 001 ms
+Measurement: 2
+--- [relax-omp.c] time elapsed 015 ms
+--- [relax-omp-vec.c] time elapsed 007 ms
+--- [relax-mpi.c] time elapsed 002 ms
+--- [relax-mpi-vec.c] time elapsed 001 ms
+Measurement: 3
+--- [relax-omp.c] time elapsed 012 ms
+--- [relax-omp-vec.c] time elapsed 007 ms
+--- [relax-mpi.c] time elapsed 002 ms
+--- [relax-mpi-vec.c] time elapsed 001 ms
+Measurement: 4
+--- [relax-omp.c] time elapsed 012 ms
+--- [relax-omp-vec.c] time elapsed 007 ms
+--- [relax-mpi.c] time elapsed 002 ms
+--- [relax-mpi-vec.c] time elapsed 001 ms
+Measurement: 5
+--- [relax-omp.c] time elapsed 015 ms
+--- [relax-omp-vec.c] time elapsed 007 ms
+--- [relax-mpi.c] time elapsed 002 ms
+--- [relax-mpi-vec.c] time elapsed 001 ms
+Number of cores: 32
+Measurement: 1
+--- [relax-omp.c] time elapsed 089 ms
+--- [relax-omp-vec.c] time elapsed 077 ms
+--- [relax-mpi.c] time elapsed 019 ms
+--- [relax-mpi-vec.c] time elapsed 002 ms
+Measurement: 2
+--- [relax-omp.c] time elapsed 099 ms
+--- [relax-omp-vec.c] time elapsed 085 ms
+--- [relax-mpi.c] time elapsed 018 ms
+--- [relax-mpi-vec.c] time elapsed 002 ms
+Measurement: 3
+--- [relax-omp.c] time elapsed 094 ms
+--- [relax-omp-vec.c] time elapsed 079 ms
+--- [relax-mpi.c] time elapsed 007 ms
+--- [relax-mpi-vec.c] time elapsed 014 ms
+Measurement: 4
+--- [relax-omp.c] time elapsed 069 ms
+--- [relax-omp-vec.c] time elapsed 104 ms
+--- [relax-mpi.c] time elapsed 003 ms
+--- [relax-mpi-vec.c] time elapsed 031 ms
+Measurement: 5
+--- [relax-omp.c] time elapsed 089 ms
+--- [relax-omp-vec.c] time elapsed 074 ms
+--- [relax-mpi.c] time elapsed 020 ms
+--- [relax-mpi-vec.c] time elapsed 002 ms
+Matrix size: 1024 * 1024.
+Number of cores: 1
+Measurement: 1
+--- [relax-sequential.c] time elapsed 055 ms
+--- [relax-sequential-vec.c] time elapsed 006 ms
+--- [relax-omp.c] time elapsed 053 ms
+--- [relax-omp-vec.c] time elapsed 011 ms
+--- [relax-mpi.c] time elapsed 056 ms
+--- [relax-mpi-vec.c] time elapsed 009 ms
+Measurement: 2
+--- [relax-sequential.c] time elapsed 055 ms
+--- [relax-sequential-vec.c] time elapsed 006 ms
+--- [relax-omp.c] time elapsed 053 ms
+--- [relax-omp-vec.c] time elapsed 011 ms
+--- [relax-mpi.c] time elapsed 056 ms
+--- [relax-mpi-vec.c] time elapsed 009 ms
+Measurement: 3
+--- [relax-sequential.c] time elapsed 055 ms
+--- [relax-sequential-vec.c] time elapsed 006 ms
+--- [relax-omp.c] time elapsed 053 ms
+--- [relax-omp-vec.c] time elapsed 011 ms
+--- [relax-mpi.c] time elapsed 056 ms
+--- [relax-mpi-vec.c] time elapsed 008 ms
+Measurement: 4
+--- [relax-sequential.c] time elapsed 055 ms
+--- [relax-sequential-vec.c] time elapsed 006 ms
+--- [relax-omp.c] time elapsed 053 ms
+--- [relax-omp-vec.c] time elapsed 011 ms
+--- [relax-mpi.c] time elapsed 056 ms
+--- [relax-mpi-vec.c] time elapsed 008 ms
+Measurement: 5
+--- [relax-sequential.c] time elapsed 055 ms
+--- [relax-sequential-vec.c] time elapsed 006 ms
+--- [relax-omp.c] time elapsed 053 ms
+--- [relax-omp-vec.c] time elapsed 011 ms
+--- [relax-mpi.c] time elapsed 056 ms
+--- [relax-mpi-vec.c] time elapsed 008 ms
+Number of cores: 2
+Measurement: 1
+--- [relax-omp.c] time elapsed 031 ms
+--- [relax-omp-vec.c] time elapsed 007 ms
+--- [relax-mpi.c] time elapsed 029 ms
+--- [relax-mpi-vec.c] time elapsed 005 ms
+Measurement: 2
+--- [relax-omp.c] time elapsed 031 ms
+--- [relax-omp-vec.c] time elapsed 008 ms
+--- [relax-mpi.c] time elapsed 029 ms
+--- [relax-mpi-vec.c] time elapsed 005 ms
+Measurement: 3
+--- [relax-omp.c] time elapsed 031 ms
+--- [relax-omp-vec.c] time elapsed 008 ms
+--- [relax-mpi.c] time elapsed 029 ms
+--- [relax-mpi-vec.c] time elapsed 005 ms
+Measurement: 4
+--- [relax-omp.c] time elapsed 032 ms
+--- [relax-omp-vec.c] time elapsed 007 ms
+--- [relax-mpi.c] time elapsed 029 ms
+--- [relax-mpi-vec.c] time elapsed 005 ms
+Measurement: 5
+--- [relax-omp.c] time elapsed 033 ms
+--- [relax-omp-vec.c] time elapsed 007 ms
+--- [relax-mpi.c] time elapsed 029 ms
+--- [relax-mpi-vec.c] time elapsed 005 ms
+Number of cores: 4
+Measurement: 1
+--- [relax-omp.c] time elapsed 019 ms
+--- [relax-omp-vec.c] time elapsed 004 ms
+--- [relax-mpi.c] time elapsed 024 ms
+--- [relax-mpi-vec.c] time elapsed 005 ms
+Measurement: 2
+--- [relax-omp.c] time elapsed 019 ms
+--- [relax-omp-vec.c] time elapsed 005 ms
+--- [relax-mpi.c] time elapsed 016 ms
+--- [relax-mpi-vec.c] time elapsed 004 ms
+Measurement: 3
+--- [relax-omp.c] time elapsed 021 ms
+--- [relax-omp-vec.c] time elapsed 004 ms
+--- [relax-mpi.c] time elapsed 016 ms
+--- [relax-mpi-vec.c] time elapsed 003 ms
+Measurement: 4
+--- [relax-omp.c] time elapsed 019 ms
+--- [relax-omp-vec.c] time elapsed 004 ms
+--- [relax-mpi.c] time elapsed 024 ms
+--- [relax-mpi-vec.c] time elapsed 004 ms
+Measurement: 5
+--- [relax-omp.c] time elapsed 019 ms
+--- [relax-omp-vec.c] time elapsed 004 ms
+--- [relax-mpi.c] time elapsed 016 ms
+--- [relax-mpi-vec.c] time elapsed 004 ms
+Number of cores: 8
+Measurement: 1
+--- [relax-omp.c] time elapsed 016 ms
+--- [relax-omp-vec.c] time elapsed 003 ms
+--- [relax-mpi.c] time elapsed 014 ms
+--- [relax-mpi-vec.c] time elapsed 003 ms
+Measurement: 2
+--- [relax-omp.c] time elapsed 014 ms
+--- [relax-omp-vec.c] time elapsed 003 ms
+--- [relax-mpi.c] time elapsed 013 ms
+--- [relax-mpi-vec.c] time elapsed 003 ms
+Measurement: 3
+--- [relax-omp.c] time elapsed 014 ms
+--- [relax-omp-vec.c] time elapsed 002 ms
+--- [relax-mpi.c] time elapsed 014 ms
+--- [relax-mpi-vec.c] time elapsed 003 ms
+Measurement: 4
+--- [relax-omp.c] time elapsed 014 ms
+--- [relax-omp-vec.c] time elapsed 003 ms
+--- [relax-mpi.c] time elapsed 012 ms
+--- [relax-mpi-vec.c] time elapsed 004 ms
+Measurement: 5
+--- [relax-omp.c] time elapsed 013 ms
+--- [relax-omp-vec.c] time elapsed 002 ms
+--- [relax-mpi.c] time elapsed 012 ms
+--- [relax-mpi-vec.c] time elapsed 003 ms
+Number of cores: 16
+Measurement: 1
+--- [relax-omp.c] time elapsed 023 ms
+--- [relax-omp-vec.c] time elapsed 009 ms
+--- [relax-mpi.c] time elapsed 008 ms
+--- [relax-mpi-vec.c] time elapsed 003 ms
+Measurement: 2
+--- [relax-omp.c] time elapsed 021 ms
+--- [relax-omp-vec.c] time elapsed 014 ms
+--- [relax-mpi.c] time elapsed 008 ms
+--- [relax-mpi-vec.c] time elapsed 003 ms
+Measurement: 3
+--- [relax-omp.c] time elapsed 020 ms
+--- [relax-omp-vec.c] time elapsed 010 ms
+--- [relax-mpi.c] time elapsed 009 ms
+--- [relax-mpi-vec.c] time elapsed 003 ms
+Measurement: 4
+--- [relax-omp.c] time elapsed 027 ms
+--- [relax-omp-vec.c] time elapsed 010 ms
+--- [relax-mpi.c] time elapsed 008 ms
+--- [relax-mpi-vec.c] time elapsed 003 ms
+Measurement: 5
+--- [relax-omp.c] time elapsed 017 ms
+--- [relax-omp-vec.c] time elapsed 006 ms
+--- [relax-mpi.c] time elapsed 008 ms
+--- [relax-mpi-vec.c] time elapsed 003 ms
+Number of cores: 32
+Measurement: 1
+--- [relax-omp.c] time elapsed 103 ms
+--- [relax-omp-vec.c] time elapsed 109 ms
+--- [relax-mpi.c] time elapsed 009 ms
+--- [relax-mpi-vec.c] time elapsed 004 ms
+Measurement: 2
+--- [relax-omp.c] time elapsed 057 ms
+--- [relax-omp-vec.c] time elapsed 076 ms
+--- [relax-mpi.c] time elapsed 009 ms
+--- [relax-mpi-vec.c] time elapsed 004 ms
+Measurement: 3
+--- [relax-omp.c] time elapsed 080 ms
+--- [relax-omp-vec.c] time elapsed 115 ms
+--- [relax-mpi.c] time elapsed 010 ms
+--- [relax-mpi-vec.c] time elapsed 053 ms
+Measurement: 4
+--- [relax-omp.c] time elapsed 087 ms
+--- [relax-omp-vec.c] time elapsed 097 ms
+--- [relax-mpi.c] time elapsed 009 ms
+--- [relax-mpi-vec.c] time elapsed 004 ms
+Measurement: 5
+--- [relax-omp.c] time elapsed 079 ms
+--- [relax-omp-vec.c] time elapsed 059 ms
+--- [relax-mpi.c] time elapsed 014 ms
+--- [relax-mpi-vec.c] time elapsed 012 ms
+Matrix size: 2048 * 2048.
+Number of cores: 1
+Measurement: 1
+--- [relax-sequential.c] time elapsed 221 ms
+--- [relax-sequential-vec.c] time elapsed 032 ms
+--- [relax-omp.c] time elapsed 214 ms
+--- [relax-omp-vec.c] time elapsed 046 ms
+--- [relax-mpi.c] time elapsed 207 ms
+--- [relax-mpi-vec.c] time elapsed 041 ms
+Measurement: 2
+--- [relax-sequential.c] time elapsed 185 ms
+--- [relax-sequential-vec.c] time elapsed 033 ms
+--- [relax-omp.c] time elapsed 149 ms
+--- [relax-omp-vec.c] time elapsed 036 ms
+--- [relax-mpi.c] time elapsed 203 ms
+--- [relax-mpi-vec.c] time elapsed 040 ms
+Measurement: 3
+--- [relax-sequential.c] time elapsed 156 ms
+--- [relax-sequential-vec.c] time elapsed 032 ms
+--- [relax-omp.c] time elapsed 150 ms
+--- [relax-omp-vec.c] time elapsed 046 ms
+--- [relax-mpi.c] time elapsed 201 ms
+--- [relax-mpi-vec.c] time elapsed 041 ms
+Measurement: 4
+--- [relax-sequential.c] time elapsed 153 ms
+--- [relax-sequential-vec.c] time elapsed 033 ms
+--- [relax-omp.c] time elapsed 151 ms
+--- [relax-omp-vec.c] time elapsed 046 ms
+--- [relax-mpi.c] time elapsed 202 ms
+--- [relax-mpi-vec.c] time elapsed 040 ms
+Measurement: 5
+--- [relax-sequential.c] time elapsed 153 ms
+--- [relax-sequential-vec.c] time elapsed 033 ms
+--- [relax-omp.c] time elapsed 149 ms
+--- [relax-omp-vec.c] time elapsed 046 ms
+--- [relax-mpi.c] time elapsed 203 ms
+--- [relax-mpi-vec.c] time elapsed 040 ms
+Number of cores: 2
+Measurement: 1
+--- [relax-omp.c] time elapsed 105 ms
+--- [relax-omp-vec.c] time elapsed 023 ms
+--- [relax-mpi.c] time elapsed 109 ms
+--- [relax-mpi-vec.c] time elapsed 026 ms
+Measurement: 2
+--- [relax-omp.c] time elapsed 099 ms
+--- [relax-omp-vec.c] time elapsed 029 ms
+--- [relax-mpi.c] time elapsed 109 ms
+--- [relax-mpi-vec.c] time elapsed 026 ms
+Measurement: 3
+--- [relax-omp.c] time elapsed 100 ms
+--- [relax-omp-vec.c] time elapsed 027 ms
+--- [relax-mpi.c] time elapsed 109 ms
+--- [relax-mpi-vec.c] time elapsed 025 ms
+Measurement: 4
+--- [relax-omp.c] time elapsed 104 ms
+--- [relax-omp-vec.c] time elapsed 028 ms
+--- [relax-mpi.c] time elapsed 109 ms
+--- [relax-mpi-vec.c] time elapsed 025 ms
+Measurement: 5
+--- [relax-omp.c] time elapsed 092 ms
+--- [relax-omp-vec.c] time elapsed 029 ms
+--- [relax-mpi.c] time elapsed 109 ms
+--- [relax-mpi-vec.c] time elapsed 025 ms
+Number of cores: 4
+Measurement: 1
+--- [relax-omp.c] time elapsed 060 ms
+--- [relax-omp-vec.c] time elapsed 018 ms
+--- [relax-mpi.c] time elapsed 065 ms
+--- [relax-mpi-vec.c] time elapsed 023 ms
+Measurement: 2
+--- [relax-omp.c] time elapsed 058 ms
+--- [relax-omp-vec.c] time elapsed 018 ms
+--- [relax-mpi.c] time elapsed 065 ms
+--- [relax-mpi-vec.c] time elapsed 018 ms
+Measurement: 3
+--- [relax-omp.c] time elapsed 059 ms
+--- [relax-omp-vec.c] time elapsed 017 ms
+--- [relax-mpi.c] time elapsed 065 ms
+--- [relax-mpi-vec.c] time elapsed 018 ms
+Measurement: 4
+--- [relax-omp.c] time elapsed 057 ms
+--- [relax-omp-vec.c] time elapsed 016 ms
+--- [relax-mpi.c] time elapsed 065 ms
+--- [relax-mpi-vec.c] time elapsed 018 ms
+Measurement: 5
+--- [relax-omp.c] time elapsed 059 ms
+--- [relax-omp-vec.c] time elapsed 017 ms
+--- [relax-mpi.c] time elapsed 070 ms
+--- [relax-mpi-vec.c] time elapsed 018 ms
+Number of cores: 8
+Measurement: 1
+--- [relax-omp.c] time elapsed 043 ms
+--- [relax-omp-vec.c] time elapsed 014 ms
+--- [relax-mpi.c] time elapsed 058 ms
+--- [relax-mpi-vec.c] time elapsed 016 ms
+Measurement: 2
+--- [relax-omp.c] time elapsed 037 ms
+--- [relax-omp-vec.c] time elapsed 015 ms
+--- [relax-mpi.c] time elapsed 053 ms
+--- [relax-mpi-vec.c] time elapsed 014 ms
+Measurement: 3
+--- [relax-omp.c] time elapsed 033 ms
+--- [relax-omp-vec.c] time elapsed 016 ms
+--- [relax-mpi.c] time elapsed 055 ms
+--- [relax-mpi-vec.c] time elapsed 016 ms
+Measurement: 4
+--- [relax-omp.c] time elapsed 042 ms
+--- [relax-omp-vec.c] time elapsed 013 ms
+--- [relax-mpi.c] time elapsed 055 ms
+--- [relax-mpi-vec.c] time elapsed 016 ms
+Measurement: 5
+--- [relax-omp.c] time elapsed 043 ms
+--- [relax-omp-vec.c] time elapsed 013 ms
+--- [relax-mpi.c] time elapsed 055 ms
+--- [relax-mpi-vec.c] time elapsed 015 ms
+Number of cores: 16
+Measurement: 1
+--- [relax-omp.c] time elapsed 038 ms
+--- [relax-omp-vec.c] time elapsed 020 ms
+--- [relax-mpi.c] time elapsed 030 ms
+--- [relax-mpi-vec.c] time elapsed 012 ms
+Measurement: 2
+--- [relax-omp.c] time elapsed 036 ms
+--- [relax-omp-vec.c] time elapsed 022 ms
+--- [relax-mpi.c] time elapsed 034 ms
+--- [relax-mpi-vec.c] time elapsed 013 ms
+Measurement: 3
+--- [relax-omp.c] time elapsed 031 ms
+--- [relax-omp-vec.c] time elapsed 027 ms
+--- [relax-mpi.c] time elapsed 030 ms
+--- [relax-mpi-vec.c] time elapsed 015 ms
+Measurement: 4
+--- [relax-omp.c] time elapsed 037 ms
+--- [relax-omp-vec.c] time elapsed 020 ms
+--- [relax-mpi.c] time elapsed 030 ms
+--- [relax-mpi-vec.c] time elapsed 013 ms
+Measurement: 5
+--- [relax-omp.c] time elapsed 036 ms
+--- [relax-omp-vec.c] time elapsed 019 ms
+--- [relax-mpi.c] time elapsed 033 ms
+--- [relax-mpi-vec.c] time elapsed 012 ms
+Number of cores: 32
+Measurement: 1
+--- [relax-omp.c] time elapsed 074 ms
+--- [relax-omp-vec.c] time elapsed 094 ms
+--- [relax-mpi.c] time elapsed 027 ms
+--- [relax-mpi-vec.c] time elapsed 015 ms
+Measurement: 2
+--- [relax-omp.c] time elapsed 093 ms
+--- [relax-omp-vec.c] time elapsed 094 ms
+--- [relax-mpi.c] time elapsed 026 ms
+--- [relax-mpi-vec.c] time elapsed 029 ms
+Measurement: 3
+--- [relax-omp.c] time elapsed 133 ms
+--- [relax-omp-vec.c] time elapsed 064 ms
+--- [relax-mpi.c] time elapsed 025 ms
+--- [relax-mpi-vec.c] time elapsed 013 ms
+Measurement: 4
+--- [relax-omp.c] time elapsed 102 ms
+--- [relax-omp-vec.c] time elapsed 099 ms
+--- [relax-mpi.c] time elapsed 030 ms
+--- [relax-mpi-vec.c] time elapsed 013 ms
+Measurement: 5
+--- [relax-omp.c] time elapsed 139 ms
+--- [relax-omp-vec.c] time elapsed 054 ms
+--- [relax-mpi.c] time elapsed 043 ms
+--- [relax-mpi-vec.c] time elapsed 013 ms
+Matrix size: 4096 * 4096.
+Number of cores: 1
+Measurement: 1
+--- [relax-sequential.c] time elapsed 681 ms
+--- [relax-sequential-vec.c] time elapsed 135 ms
+--- [relax-omp.c] time elapsed 594 ms
+--- [relax-omp-vec.c] time elapsed 143 ms
+--- [relax-mpi.c] time elapsed 712 ms
+--- [relax-mpi-vec.c] time elapsed 162 ms
+Measurement: 2
+--- [relax-sequential.c] time elapsed 615 ms
+--- [relax-sequential-vec.c] time elapsed 134 ms
+--- [relax-omp.c] time elapsed 593 ms
+--- [relax-omp-vec.c] time elapsed 144 ms
+--- [relax-mpi.c] time elapsed 710 ms
+--- [relax-mpi-vec.c] time elapsed 161 ms
+Measurement: 3
+--- [relax-sequential.c] time elapsed 614 ms
+--- [relax-sequential-vec.c] time elapsed 133 ms
+--- [relax-omp.c] time elapsed 593 ms
+--- [relax-omp-vec.c] time elapsed 143 ms
+--- [relax-mpi.c] time elapsed 715 ms
+--- [relax-mpi-vec.c] time elapsed 162 ms
+Measurement: 4
+--- [relax-sequential.c] time elapsed 615 ms
+--- [relax-sequential-vec.c] time elapsed 134 ms
+--- [relax-omp.c] time elapsed 598 ms
+--- [relax-omp-vec.c] time elapsed 142 ms
+--- [relax-mpi.c] time elapsed 712 ms
+--- [relax-mpi-vec.c] time elapsed 161 ms
+Measurement: 5
+--- [relax-sequential.c] time elapsed 615 ms
+--- [relax-sequential-vec.c] time elapsed 133 ms
+--- [relax-omp.c] time elapsed 593 ms
+--- [relax-omp-vec.c] time elapsed 142 ms
+--- [relax-mpi.c] time elapsed 712 ms
+--- [relax-mpi-vec.c] time elapsed 161 ms
+Number of cores: 2
+Measurement: 1
+--- [relax-omp.c] time elapsed 350 ms
+--- [relax-omp-vec.c] time elapsed 079 ms
+--- [relax-mpi.c] time elapsed 355 ms
+--- [relax-mpi-vec.c] time elapsed 101 ms
+Measurement: 2
+--- [relax-omp.c] time elapsed 323 ms
+--- [relax-omp-vec.c] time elapsed 089 ms
+--- [relax-mpi.c] time elapsed 358 ms
+--- [relax-mpi-vec.c] time elapsed 101 ms
+Measurement: 3
+--- [relax-omp.c] time elapsed 322 ms
+--- [relax-omp-vec.c] time elapsed 091 ms
+--- [relax-mpi.c] time elapsed 359 ms
+--- [relax-mpi-vec.c] time elapsed 101 ms
+Measurement: 4
+--- [relax-omp.c] time elapsed 323 ms
+--- [relax-omp-vec.c] time elapsed 096 ms
+--- [relax-mpi.c] time elapsed 357 ms
+--- [relax-mpi-vec.c] time elapsed 102 ms
+Measurement: 5
+--- [relax-omp.c] time elapsed 324 ms
+--- [relax-omp-vec.c] time elapsed 091 ms
+--- [relax-mpi.c] time elapsed 359 ms
+--- [relax-mpi-vec.c] time elapsed 102 ms
+Number of cores: 4
+Measurement: 1
+--- [relax-omp.c] time elapsed 194 ms
+--- [relax-omp-vec.c] time elapsed 050 ms
+--- [relax-mpi.c] time elapsed 208 ms
+--- [relax-mpi-vec.c] time elapsed 071 ms
+Measurement: 2
+--- [relax-omp.c] time elapsed 183 ms
+--- [relax-omp-vec.c] time elapsed 052 ms
+--- [relax-mpi.c] time elapsed 215 ms
+--- [relax-mpi-vec.c] time elapsed 073 ms
+Measurement: 3
+--- [relax-omp.c] time elapsed 187 ms
+--- [relax-omp-vec.c] time elapsed 052 ms
+--- [relax-mpi.c] time elapsed 202 ms
+--- [relax-mpi-vec.c] time elapsed 071 ms
+Measurement: 4
+--- [relax-omp.c] time elapsed 187 ms
+--- [relax-omp-vec.c] time elapsed 051 ms
+--- [relax-mpi.c] time elapsed 202 ms
+--- [relax-mpi-vec.c] time elapsed 071 ms
+Measurement: 5
+--- [relax-omp.c] time elapsed 196 ms
+--- [relax-omp-vec.c] time elapsed 052 ms
+--- [relax-mpi.c] time elapsed 210 ms
+--- [relax-mpi-vec.c] time elapsed 074 ms
+Number of cores: 8
+Measurement: 1
+--- [relax-omp.c] time elapsed 122 ms
+--- [relax-omp-vec.c] time elapsed 042 ms
+--- [relax-mpi.c] time elapsed 146 ms
+--- [relax-mpi-vec.c] time elapsed 058 ms
+Measurement: 2
+--- [relax-omp.c] time elapsed 101 ms
+--- [relax-omp-vec.c] time elapsed 041 ms
+--- [relax-mpi.c] time elapsed 148 ms
+--- [relax-mpi-vec.c] time elapsed 058 ms
+Measurement: 3
+--- [relax-omp.c] time elapsed 107 ms
+--- [relax-omp-vec.c] time elapsed 039 ms
+--- [relax-mpi.c] time elapsed 134 ms
+--- [relax-mpi-vec.c] time elapsed 058 ms
+Measurement: 4
+--- [relax-omp.c] time elapsed 104 ms
+--- [relax-omp-vec.c] time elapsed 043 ms
+--- [relax-mpi.c] time elapsed 139 ms
+--- [relax-mpi-vec.c] time elapsed 059 ms
+Measurement: 5
+--- [relax-omp.c] time elapsed 108 ms
+--- [relax-omp-vec.c] time elapsed 044 ms
+--- [relax-mpi.c] time elapsed 133 ms
+--- [relax-mpi-vec.c] time elapsed 057 ms
+Number of cores: 16
+Measurement: 1
+--- [relax-omp.c] time elapsed 099 ms
+--- [relax-omp-vec.c] time elapsed 054 ms
+--- [relax-mpi.c] time elapsed 089 ms
+--- [relax-mpi-vec.c] time elapsed 052 ms
+Measurement: 2
+--- [relax-omp.c] time elapsed 094 ms
+--- [relax-omp-vec.c] time elapsed 066 ms
+--- [relax-mpi.c] time elapsed 087 ms
+--- [relax-mpi-vec.c] time elapsed 053 ms
+Measurement: 3
+--- [relax-omp.c] time elapsed 104 ms
+--- [relax-omp-vec.c] time elapsed 065 ms
+--- [relax-mpi.c] time elapsed 089 ms
+--- [relax-mpi-vec.c] time elapsed 056 ms
+Measurement: 4
+--- [relax-omp.c] time elapsed 098 ms
+--- [relax-omp-vec.c] time elapsed 055 ms
+--- [relax-mpi.c] time elapsed 098 ms
+--- [relax-mpi-vec.c] time elapsed 055 ms
+Measurement: 5
+--- [relax-omp.c] time elapsed 100 ms
+--- [relax-omp-vec.c] time elapsed 060 ms
+--- [relax-mpi.c] time elapsed 090 ms
+--- [relax-mpi-vec.c] time elapsed 052 ms
+Number of cores: 32
+Measurement: 1
+--- [relax-omp.c] time elapsed 175 ms
+--- [relax-omp-vec.c] time elapsed 123 ms
+--- [relax-mpi.c] time elapsed 080 ms
+--- [relax-mpi-vec.c] time elapsed 067 ms
+Measurement: 2
+--- [relax-omp.c] time elapsed 119 ms
+--- [relax-omp-vec.c] time elapsed 127 ms
+--- [relax-mpi.c] time elapsed 084 ms
+--- [relax-mpi-vec.c] time elapsed 055 ms
+Measurement: 3
+--- [relax-omp.c] time elapsed 122 ms
+--- [relax-omp-vec.c] time elapsed 125 ms
+--- [relax-mpi.c] time elapsed 089 ms
+--- [relax-mpi-vec.c] time elapsed 053 ms
+Measurement: 4
+--- [relax-omp.c] time elapsed 095 ms
+--- [relax-omp-vec.c] time elapsed 122 ms
+--- [relax-mpi.c] time elapsed 095 ms
+--- [relax-mpi-vec.c] time elapsed 055 ms
+Measurement: 5
+--- [relax-omp.c] time elapsed 135 ms
+--- [relax-omp-vec.c] time elapsed 101 ms
+--- [relax-mpi.c] time elapsed 086 ms
+--- [relax-mpi-vec.c] time elapsed 055 ms
+Matrix size: 8192 * 8192.
+Number of cores: 1
+Measurement: 1
+--- [relax-sequential.c] time elapsed 2631 ms
+--- [relax-sequential-vec.c] time elapsed 538 ms
+--- [relax-omp.c] time elapsed 2455 ms
+--- [relax-omp-vec.c] time elapsed 597 ms
+--- [relax-mpi.c] time elapsed 3156 ms
+--- [relax-mpi-vec.c] time elapsed 769 ms
+Measurement: 2
+--- [relax-sequential.c] time elapsed 2538 ms
+--- [relax-sequential-vec.c] time elapsed 541 ms
+--- [relax-omp.c] time elapsed 2458 ms
+--- [relax-omp-vec.c] time elapsed 592 ms
+--- [relax-mpi.c] time elapsed 3191 ms
+--- [relax-mpi-vec.c] time elapsed 888 ms
+Measurement: 3
+--- [relax-sequential.c] time elapsed 2702 ms
+--- [relax-sequential-vec.c] time elapsed 540 ms
+--- [relax-omp.c] time elapsed 2451 ms
+--- [relax-omp-vec.c] time elapsed 594 ms
+--- [relax-mpi.c] time elapsed 3212 ms
+--- [relax-mpi-vec.c] time elapsed 872 ms
+Measurement: 4
+--- [relax-sequential.c] time elapsed 2547 ms
+--- [relax-sequential-vec.c] time elapsed 542 ms
+--- [relax-omp.c] time elapsed 2458 ms
+--- [relax-omp-vec.c] time elapsed 605 ms
+--- [relax-mpi.c] time elapsed 3193 ms
+--- [relax-mpi-vec.c] time elapsed 809 ms
+Measurement: 5
+--- [relax-sequential.c] time elapsed 2536 ms
+--- [relax-sequential-vec.c] time elapsed 532 ms
+--- [relax-omp.c] time elapsed 2467 ms
+--- [relax-omp-vec.c] time elapsed 604 ms
+--- [relax-mpi.c] time elapsed 3180 ms
+--- [relax-mpi-vec.c] time elapsed 879 ms
+Number of cores: 2
+Measurement: 1
+--- [relax-omp.c] time elapsed 1391 ms
+--- [relax-omp-vec.c] time elapsed 312 ms
+--- [relax-mpi.c] time elapsed 1706 ms
+--- [relax-mpi-vec.c] time elapsed 410 ms
+Measurement: 2
+--- [relax-omp.c] time elapsed 1346 ms
+--- [relax-omp-vec.c] time elapsed 313 ms
+--- [relax-mpi.c] time elapsed 1696 ms
+--- [relax-mpi-vec.c] time elapsed 402 ms
+Measurement: 3
+--- [relax-omp.c] time elapsed 1348 ms
+--- [relax-omp-vec.c] time elapsed 328 ms
+--- [relax-mpi.c] time elapsed 1704 ms
+--- [relax-mpi-vec.c] time elapsed 405 ms
+Measurement: 4
+--- [relax-omp.c] time elapsed 1368 ms
+--- [relax-omp-vec.c] time elapsed 331 ms
+--- [relax-mpi.c] time elapsed 1721 ms
+--- [relax-mpi-vec.c] time elapsed 402 ms
+Measurement: 5
+--- [relax-omp.c] time elapsed 1353 ms
+--- [relax-omp-vec.c] time elapsed 310 ms
+--- [relax-mpi.c] time elapsed 1709 ms
+--- [relax-mpi-vec.c] time elapsed 418 ms
+Number of cores: 4
+Measurement: 1
+--- [relax-omp.c] time elapsed 685 ms
+--- [relax-omp-vec.c] time elapsed 194 ms
+--- [relax-mpi.c] time elapsed 938 ms
+--- [relax-mpi-vec.c] time elapsed 283 ms
+Measurement: 2
+--- [relax-omp.c] time elapsed 677 ms
+--- [relax-omp-vec.c] time elapsed 192 ms
+--- [relax-mpi.c] time elapsed 942 ms
+--- [relax-mpi-vec.c] time elapsed 282 ms
+Measurement: 3
+--- [relax-omp.c] time elapsed 686 ms
+--- [relax-omp-vec.c] time elapsed 193 ms
+--- [relax-mpi.c] time elapsed 939 ms
+--- [relax-mpi-vec.c] time elapsed 282 ms
+Measurement: 4
+--- [relax-omp.c] time elapsed 684 ms
+--- [relax-omp-vec.c] time elapsed 195 ms
+--- [relax-mpi.c] time elapsed 935 ms
+--- [relax-mpi-vec.c] time elapsed 282 ms
+Measurement: 5
+--- [relax-omp.c] time elapsed 680 ms
+--- [relax-omp-vec.c] time elapsed 190 ms
+--- [relax-mpi.c] time elapsed 947 ms
+--- [relax-mpi-vec.c] time elapsed 285 ms
+Number of cores: 8
+Measurement: 1
+--- [relax-omp.c] time elapsed 533 ms
+--- [relax-omp-vec.c] time elapsed 172 ms
+--- [relax-mpi.c] time elapsed 787 ms
+--- [relax-mpi-vec.c] time elapsed 230 ms
+Measurement: 2
+--- [relax-omp.c] time elapsed 369 ms
+--- [relax-omp-vec.c] time elapsed 163 ms
+--- [relax-mpi.c] time elapsed 760 ms
+--- [relax-mpi-vec.c] time elapsed 230 ms
+Measurement: 3
+--- [relax-omp.c] time elapsed 368 ms
+--- [relax-omp-vec.c] time elapsed 162 ms
+--- [relax-mpi.c] time elapsed 762 ms
+--- [relax-mpi-vec.c] time elapsed 237 ms
+Measurement: 4
+--- [relax-omp.c] time elapsed 385 ms
+--- [relax-omp-vec.c] time elapsed 164 ms
+--- [relax-mpi.c] time elapsed 845 ms
+--- [relax-mpi-vec.c] time elapsed 228 ms
+Measurement: 5
+--- [relax-omp.c] time elapsed 482 ms
+--- [relax-omp-vec.c] time elapsed 163 ms
+--- [relax-mpi.c] time elapsed 759 ms
+--- [relax-mpi-vec.c] time elapsed 230 ms
+Number of cores: 16
+Measurement: 1
+--- [relax-omp.c] time elapsed 337 ms
+--- [relax-omp-vec.c] time elapsed 156 ms
+--- [relax-mpi.c] time elapsed 328 ms
+--- [relax-mpi-vec.c] time elapsed 218 ms
+Measurement: 2
+--- [relax-omp.c] time elapsed 329 ms
+--- [relax-omp-vec.c] time elapsed 158 ms
+--- [relax-mpi.c] time elapsed 331 ms
+--- [relax-mpi-vec.c] time elapsed 215 ms
+Measurement: 3
+--- [relax-omp.c] time elapsed 342 ms
+--- [relax-omp-vec.c] time elapsed 165 ms
+--- [relax-mpi.c] time elapsed 332 ms
+--- [relax-mpi-vec.c] time elapsed 222 ms
+Measurement: 4
+--- [relax-omp.c] time elapsed 335 ms
+--- [relax-omp-vec.c] time elapsed 172 ms
+--- [relax-mpi.c] time elapsed 327 ms
+--- [relax-mpi-vec.c] time elapsed 222 ms
+Measurement: 5
+--- [relax-omp.c] time elapsed 335 ms
+--- [relax-omp-vec.c] time elapsed 161 ms
+--- [relax-mpi.c] time elapsed 328 ms
+--- [relax-mpi-vec.c] time elapsed 213 ms
+Number of cores: 32
+Measurement: 1
+--- [relax-omp.c] time elapsed 328 ms
+--- [relax-omp-vec.c] time elapsed 232 ms
+--- [relax-mpi.c] time elapsed 479 ms
+--- [relax-mpi-vec.c] time elapsed 210 ms
+Measurement: 2
+--- [relax-omp.c] time elapsed 304 ms
+--- [relax-omp-vec.c] time elapsed 241 ms
+--- [relax-mpi.c] time elapsed 311 ms
+--- [relax-mpi-vec.c] time elapsed 217 ms
+Measurement: 3
+--- [relax-omp.c] time elapsed 318 ms
+--- [relax-omp-vec.c] time elapsed 261 ms
+--- [relax-mpi.c] time elapsed 403 ms
+--- [relax-mpi-vec.c] time elapsed 279 ms
+Measurement: 4
+--- [relax-omp.c] time elapsed 308 ms
+--- [relax-omp-vec.c] time elapsed 263 ms
+--- [relax-mpi.c] time elapsed 320 ms
+--- [relax-mpi-vec.c] time elapsed 204 ms
+Measurement: 5
+--- [relax-omp.c] time elapsed 333 ms
+--- [relax-omp-vec.c] time elapsed 251 ms
+--- [relax-mpi.c] time elapsed 303 ms
+--- [relax-mpi-vec.c] time elapsed 198 ms
+Matrix size: 16384 * 16384.
+Number of cores: 1
+Measurement: 1
+--- [relax-sequential.c] time elapsed 11091 ms
+--- [relax-sequential-vec.c] time elapsed 2308 ms
+--- [relax-omp.c] time elapsed 11283 ms
+--- [relax-omp-vec.c] time elapsed 5916 ms
+--- [relax-mpi.c] time elapsed 13665 ms
+--- [relax-mpi-vec.c] time elapsed 4848 ms
+Measurement: 2
+--- [relax-sequential.c] time elapsed 10742 ms
+--- [relax-sequential-vec.c] time elapsed 2255 ms
+--- [relax-omp.c] time elapsed 10350 ms
+--- [relax-omp-vec.c] time elapsed 2606 ms
+--- [relax-mpi.c] time elapsed 13687 ms
+--- [relax-mpi-vec.c] time elapsed 4879 ms
+Measurement: 3
+--- [relax-sequential.c] time elapsed 10645 ms
+--- [relax-sequential-vec.c] time elapsed 2273 ms
+--- [relax-omp.c] time elapsed 10462 ms
+--- [relax-omp-vec.c] time elapsed 4651 ms
+--- [relax-mpi.c] time elapsed 13515 ms
+--- [relax-mpi-vec.c] time elapsed 4856 ms
+Measurement: 4
+--- [relax-sequential.c] time elapsed 10894 ms
+--- [relax-sequential-vec.c] time elapsed 2345 ms
+--- [relax-omp.c] time elapsed 12616 ms
+--- [relax-omp-vec.c] time elapsed 2663 ms
+--- [relax-mpi.c] time elapsed 13534 ms
+--- [relax-mpi-vec.c] time elapsed 4867 ms
+Measurement: 5
+--- [relax-sequential.c] time elapsed 10881 ms
+--- [relax-sequential-vec.c] time elapsed 2248 ms
+--- [relax-omp.c] time elapsed 10534 ms
+--- [relax-omp-vec.c] time elapsed 2581 ms
+--- [relax-mpi.c] time elapsed 13091 ms
+--- [relax-mpi-vec.c] time elapsed 4244 ms
+Number of cores: 2
+Measurement: 1
+--- [relax-omp.c] time elapsed 5399 ms
+--- [relax-omp-vec.c] time elapsed 1485 ms
+--- [relax-mpi.c] time elapsed 7610 ms
+--- [relax-mpi-vec.c] time elapsed 3769 ms
+Measurement: 2
+--- [relax-omp.c] time elapsed 5605 ms
+--- [relax-omp-vec.c] time elapsed 1545 ms
+--- [relax-mpi.c] time elapsed 7582 ms
+--- [relax-mpi-vec.c] time elapsed 3539 ms
+Measurement: 3
+--- [relax-omp.c] time elapsed 8048 ms
+--- [relax-omp-vec.c] time elapsed 1366 ms
+--- [relax-mpi.c] time elapsed 7531 ms
+--- [relax-mpi-vec.c] time elapsed 3936 ms
+Measurement: 4
+--- [relax-omp.c] time elapsed 5432 ms
+--- [relax-omp-vec.c] time elapsed 1402 ms
+--- [relax-mpi.c] time elapsed 7507 ms
+--- [relax-mpi-vec.c] time elapsed 3706 ms
+Measurement: 5
+--- [relax-omp.c] time elapsed 5386 ms
+--- [relax-omp-vec.c] time elapsed 1458 ms
+--- [relax-mpi.c] time elapsed 7493 ms
+--- [relax-mpi-vec.c] time elapsed 3587 ms
+Number of cores: 4
+Measurement: 1
+--- [relax-omp.c] time elapsed 2796 ms
+--- [relax-omp-vec.c] time elapsed 767 ms
+--- [relax-mpi.c] time elapsed 3944 ms
+--- [relax-mpi-vec.c] time elapsed 2046 ms
+Measurement: 2
+--- [relax-omp.c] time elapsed 2769 ms
+--- [relax-omp-vec.c] time elapsed 783 ms
+--- [relax-mpi.c] time elapsed 3944 ms
+--- [relax-mpi-vec.c] time elapsed 2009 ms
+Measurement: 3
+--- [relax-omp.c] time elapsed 2771 ms
+--- [relax-omp-vec.c] time elapsed 779 ms
+--- [relax-mpi.c] time elapsed 3928 ms
+--- [relax-mpi-vec.c] time elapsed 1941 ms
+Measurement: 4
+--- [relax-omp.c] time elapsed 2844 ms
+--- [relax-omp-vec.c] time elapsed 769 ms
+--- [relax-mpi.c] time elapsed 3945 ms
+--- [relax-mpi-vec.c] time elapsed 1861 ms
+Measurement: 5
+--- [relax-omp.c] time elapsed 2765 ms
+--- [relax-omp-vec.c] time elapsed 781 ms
+--- [relax-mpi.c] time elapsed 3969 ms
+--- [relax-mpi-vec.c] time elapsed 2048 ms
+Number of cores: 8
+Measurement: 1
+--- [relax-omp.c] time elapsed 1508 ms
+--- [relax-omp-vec.c] time elapsed 599 ms
+--- [relax-mpi.c] time elapsed 2425 ms
+--- [relax-mpi-vec.c] time elapsed 1390 ms
+Measurement: 2
+--- [relax-omp.c] time elapsed 1513 ms
+--- [relax-omp-vec.c] time elapsed 618 ms
+--- [relax-mpi.c] time elapsed 2414 ms
+--- [relax-mpi-vec.c] time elapsed 1388 ms
+Measurement: 3
+--- [relax-omp.c] time elapsed 1488 ms
+--- [relax-omp-vec.c] time elapsed 600 ms
+--- [relax-mpi.c] time elapsed 2422 ms
+--- [relax-mpi-vec.c] time elapsed 1396 ms
+Measurement: 4
+--- [relax-omp.c] time elapsed 1516 ms
+--- [relax-omp-vec.c] time elapsed 587 ms
+--- [relax-mpi.c] time elapsed 2410 ms
+--- [relax-mpi-vec.c] time elapsed 1390 ms
+Measurement: 5
+--- [relax-omp.c] time elapsed 1502 ms
+--- [relax-omp-vec.c] time elapsed 596 ms
+--- [relax-mpi.c] time elapsed 2400 ms
+--- [relax-mpi-vec.c] time elapsed 1405 ms
+Number of cores: 16
+Measurement: 1
+--- [relax-omp.c] time elapsed 1198 ms
+--- [relax-omp-vec.c] time elapsed 868 ms
+--- [relax-mpi.c] time elapsed 2184 ms
+--- [relax-mpi-vec.c] time elapsed 1282 ms
+Measurement: 2
+--- [relax-omp.c] time elapsed 1421 ms
+--- [relax-omp-vec.c] time elapsed 747 ms
+--- [relax-mpi.c] time elapsed 2114 ms
+--- [relax-mpi-vec.c] time elapsed 1245 ms
+Measurement: 3
+--- [relax-omp.c] time elapsed 1395 ms
+--- [relax-omp-vec.c] time elapsed 759 ms
+--- [relax-mpi.c] time elapsed 1739 ms
+--- [relax-mpi-vec.c] time elapsed 1211 ms
+Measurement: 4
+--- [relax-omp.c] time elapsed 1323 ms
+--- [relax-omp-vec.c] time elapsed 639 ms
+--- [relax-mpi.c] time elapsed 1782 ms
+--- [relax-mpi-vec.c] time elapsed 1143 ms
+Measurement: 5
+--- [relax-omp.c] time elapsed 1288 ms
+--- [relax-omp-vec.c] time elapsed 704 ms
+--- [relax-mpi.c] time elapsed 2165 ms
+--- [relax-mpi-vec.c] time elapsed 1320 ms
+Number of cores: 32
+Measurement: 1
+--- [relax-omp.c] time elapsed 1154 ms
+--- [relax-omp-vec.c] time elapsed 935 ms
+--- [relax-mpi.c] time elapsed 1679 ms
+--- [relax-mpi-vec.c] time elapsed 1093 ms
+Measurement: 2
+--- [relax-omp.c] time elapsed 969 ms
+--- [relax-omp-vec.c] time elapsed 895 ms
+--- [relax-mpi.c] time elapsed 1692 ms
+--- [relax-mpi-vec.c] time elapsed 1317 ms
+Measurement: 3
+--- [relax-omp.c] time elapsed 977 ms
+--- [relax-omp-vec.c] time elapsed 864 ms
+--- [relax-mpi.c] time elapsed 3287 ms
+--- [relax-mpi-vec.c] time elapsed 962 ms
+Measurement: 4
+--- [relax-omp.c] time elapsed 946 ms
+--- [relax-omp-vec.c] time elapsed 886 ms
+--- [relax-mpi.c] time elapsed 1705 ms
+--- [relax-mpi-vec.c] time elapsed 1005 ms
+Measurement: 5
+--- [relax-omp.c] time elapsed 1172 ms
+--- [relax-omp-vec.c] time elapsed 931 ms
+--- [relax-mpi.c] time elapsed 1678 ms
+--- [relax-mpi-vec.c] time elapsed 997 ms
+Matrix size: 32768 * 32768.
+Number of cores: 1
+Measurement: 1
+--- [relax-sequential.c] time elapsed 45392 ms
+--- [relax-sequential-vec.c] time elapsed 10224 ms
+--- [relax-omp.c] time elapsed 42468 ms
+--- [relax-omp-vec.c] time elapsed 11976 ms
+--- [relax-mpi.c] time elapsed 54403 ms
+--- [relax-mpi-vec.c] time elapsed 20160 ms
+Measurement: 2
+--- [relax-sequential.c] time elapsed 43735 ms
+--- [relax-sequential-vec.c] time elapsed 11865 ms
+--- [relax-omp.c] time elapsed 42746 ms
+--- [relax-omp-vec.c] time elapsed 26545 ms
+--- [relax-mpi.c] time elapsed 54754 ms
+--- [relax-mpi-vec.c] time elapsed 20475 ms
+Measurement: 3
+--- [relax-sequential.c] time elapsed 45804 ms
+--- [relax-sequential-vec.c] time elapsed 10497 ms
+--- [relax-omp.c] time elapsed 44809 ms
+--- [relax-omp-vec.c] time elapsed 12403 ms
+--- [relax-mpi.c] time elapsed 54791 ms
+--- [relax-mpi-vec.c] time elapsed 20535 ms
+Measurement: 4
+--- [relax-sequential.c] time elapsed 46114 ms
+--- [relax-sequential-vec.c] time elapsed 10580 ms
+--- [relax-omp.c] time elapsed 49285 ms
+--- [relax-omp-vec.c] time elapsed 12546 ms
+--- [relax-mpi.c] time elapsed 54600 ms
+--- [relax-mpi-vec.c] time elapsed 20746 ms
+Measurement: 5
+--- [relax-sequential.c] time elapsed 46156 ms
+--- [relax-sequential-vec.c] time elapsed 10662 ms
+--- [relax-omp.c] time elapsed 58006 ms
+--- [relax-omp-vec.c] time elapsed 12612 ms
+--- [relax-mpi.c] time elapsed 54399 ms
+--- [relax-mpi-vec.c] time elapsed 20394 ms
+Number of cores: 2
+Measurement: 1
+--- [relax-omp.c] time elapsed 23916 ms
+--- [relax-omp-vec.c] time elapsed 7094 ms
+[cn47:49040] Read 2147479552, expected 4294705152, errno = 12
+--- [relax-mpi.c] time elapsed 30800 ms
+[cn47:00579] Read 2147479552, expected 4294705152, errno = 12
+--- [relax-mpi-vec.c] time elapsed 15419 ms
+Measurement: 2
+--- [relax-omp.c] time elapsed 24090 ms
+--- [relax-omp-vec.c] time elapsed 6828 ms
+[cn47:00887] Read 2147479552, expected 4294705152, errno = 12
+--- [relax-mpi.c] time elapsed 30820 ms
+[cn47:00987] Read 2147479552, expected 4294705152, errno = 12
+--- [relax-mpi-vec.c] time elapsed 16474 ms
+Measurement: 3
+--- [relax-omp.c] time elapsed 25421 ms
+--- [relax-omp-vec.c] time elapsed 6605 ms
+[cn47:01239] Read 2147479552, expected 4294705152, errno = 12
+--- [relax-mpi.c] time elapsed 30762 ms
+[cn47:01334] Read 2147479552, expected 4294705152, errno = 12
+--- [relax-mpi-vec.c] time elapsed 16371 ms
+Measurement: 4
+--- [relax-omp.c] time elapsed 24186 ms
+--- [relax-omp-vec.c] time elapsed 19349 ms
+[cn47:02665] Read 2147479552, expected 4294705152, errno = 12
+--- [relax-mpi.c] time elapsed 30773 ms
+[cn47:02723] Read 2147479552, expected 4294705152, errno = 12
+--- [relax-mpi-vec.c] time elapsed 16385 ms
+Measurement: 5
+--- [relax-omp.c] time elapsed 34381 ms
+--- [relax-omp-vec.c] time elapsed 9151 ms
+[cn47:03053] Read 2147479552, expected 4294705152, errno = 12
+--- [relax-mpi.c] time elapsed 30848 ms
+[cn47:03166] Read 2147479552, expected 4294705152, errno = 12
+--- [relax-mpi-vec.c] time elapsed 16562 ms
+Number of cores: 4
+Measurement: 1
+--- [relax-omp.c] time elapsed 16012 ms
+--- [relax-omp-vec.c] time elapsed 3803 ms
+[cn47:03302] Read 2147479552, expected 2147483648, errno = 12
+[cn47:03302] Read 2147479552, expected 2147483648, errno = 12
+--- [relax-mpi.c] time elapsed 18070 ms
+[cn47:03626] Read 2147479552, expected 2147483648, errno = 12
+[cn47:03626] Read 2147479552, expected 2147483648, errno = 12
+--- [relax-mpi-vec.c] time elapsed 10090 ms
+Measurement: 2
+--- [relax-omp.c] time elapsed 11999 ms
+--- [relax-omp-vec.c] time elapsed 3847 ms
+[cn47:03739] Read 2147479552, expected 2147483648, errno = 12
+[cn47:03739] Read 2147479552, expected 2147483648, errno = 12
+--- [relax-mpi.c] time elapsed 18140 ms
+[cn47:03832] Read 2147479552, expected 2147483648, errno = 12
+[cn47:03832] Read 2147479552, expected 2147483648, errno = 12
+--- [relax-mpi-vec.c] time elapsed 9991 ms
+Measurement: 3
+--- [relax-omp.c] time elapsed 11727 ms
+--- [relax-omp-vec.c] time elapsed 4217 ms
+[cn47:04073] Read 2147479552, expected 2147483648, errno = 12
+[cn47:04073] Read 2147479552, expected 2147483648, errno = 12
+--- [relax-mpi.c] time elapsed 18069 ms
+[cn47:04116] Read 2147479552, expected 2147483648, errno = 12
+[cn47:04116] Read 2147479552, expected 2147483648, errno = 12
+--- [relax-mpi-vec.c] time elapsed 10123 ms
+Measurement: 4
+--- [relax-omp.c] time elapsed 11164 ms
+--- [relax-omp-vec.c] time elapsed 3815 ms
+[cn47:04318] Read 2147479552, expected 2147483648, errno = 12
+[cn47:04318] Read 2147479552, expected 2147483648, errno = 12
+--- [relax-mpi.c] time elapsed 18144 ms
+[cn47:04447] Read 2147479552, expected 2147483648, errno = 12
+[cn47:04447] Read 2147479552, expected 2147483648, errno = 12
+--- [relax-mpi-vec.c] time elapsed 9899 ms
+Measurement: 5
+--- [relax-omp.c] time elapsed 11440 ms
+--- [relax-omp-vec.c] time elapsed 3920 ms
+[cn47:04804] Read 2147479552, expected 2147483648, errno = 12
+[cn47:04804] Read 2147479552, expected 2147483648, errno = 12
+--- [relax-mpi.c] time elapsed 18128 ms
+[cn47:04889] Read 2147479552, expected 2147483648, errno = 12
+[cn47:04889] Read 2147479552, expected 2147483648, errno = 12
+--- [relax-mpi-vec.c] time elapsed 10200 ms
+Number of cores: 8
+Measurement: 1
+--- [relax-omp.c] time elapsed 6295 ms
+--- [relax-omp-vec.c] time elapsed 3840 ms
+--- [relax-mpi.c] time elapsed 9882 ms
+--- [relax-mpi-vec.c] time elapsed 6237 ms
+Measurement: 2
+--- [relax-omp.c] time elapsed 7664 ms
+--- [relax-omp-vec.c] time elapsed 3945 ms
+--- [relax-mpi.c] time elapsed 9904 ms
+--- [relax-mpi-vec.c] time elapsed 6135 ms
+Measurement: 3
+--- [relax-omp.c] time elapsed 6186 ms
+--- [relax-omp-vec.c] time elapsed 2881 ms
+--- [relax-mpi.c] time elapsed 9945 ms
+--- [relax-mpi-vec.c] time elapsed 6240 ms
+Measurement: 4
+--- [relax-omp.c] time elapsed 7848 ms
+--- [relax-omp-vec.c] time elapsed 4195 ms
+--- [relax-mpi.c] time elapsed 9988 ms
+--- [relax-mpi-vec.c] time elapsed 6459 ms
+Measurement: 5
+--- [relax-omp.c] time elapsed 6158 ms
+--- [relax-omp-vec.c] time elapsed 4517 ms
+--- [relax-mpi.c] time elapsed 10014 ms
+--- [relax-mpi-vec.c] time elapsed 5841 ms
+Number of cores: 16
+Measurement: 1
+--- [relax-omp.c] time elapsed 5066 ms
+--- [relax-omp-vec.c] time elapsed 3503 ms
+--- [relax-mpi.c] time elapsed 6627 ms
+--- [relax-mpi-vec.c] time elapsed 4905 ms
+Measurement: 2
+--- [relax-omp.c] time elapsed 5709 ms
+--- [relax-omp-vec.c] time elapsed 3236 ms
+--- [relax-mpi.c] time elapsed 6581 ms
+--- [relax-mpi-vec.c] time elapsed 4986 ms
+Measurement: 3
+--- [relax-omp.c] time elapsed 5703 ms
+--- [relax-omp-vec.c] time elapsed 3519 ms
+--- [relax-mpi.c] time elapsed 7052 ms
+--- [relax-mpi-vec.c] time elapsed 4921 ms
+Measurement: 4
+--- [relax-omp.c] time elapsed 4655 ms
+--- [relax-omp-vec.c] time elapsed 4343 ms
+--- [relax-mpi.c] time elapsed 6543 ms
+--- [relax-mpi-vec.c] time elapsed 5063 ms
+Measurement: 5
+--- [relax-omp.c] time elapsed 6574 ms
+--- [relax-omp-vec.c] time elapsed 4022 ms
+--- [relax-mpi.c] time elapsed 8936 ms
+--- [relax-mpi-vec.c] time elapsed 5102 ms
+Number of cores: 32
+Measurement: 1
+--- [relax-omp.c] time elapsed 4627 ms
+--- [relax-omp-vec.c] time elapsed 4181 ms
+--- [relax-mpi.c] time elapsed 6712 ms
+--- [relax-mpi-vec.c] time elapsed 4813 ms
+Measurement: 2
+--- [relax-omp.c] time elapsed 4618 ms
+--- [relax-omp-vec.c] time elapsed 4320 ms
+--- [relax-mpi.c] time elapsed 6811 ms
+--- [relax-mpi-vec.c] time elapsed 5015 ms
+Measurement: 3
+--- [relax-omp.c] time elapsed 4418 ms
+--- [relax-omp-vec.c] time elapsed 4345 ms
+--- [relax-mpi.c] time elapsed 6881 ms
+--- [relax-mpi-vec.c] time elapsed 5040 ms
+Measurement: 4
+--- [relax-omp.c] time elapsed 4298 ms
+--- [relax-omp-vec.c] time elapsed 4131 ms
+--- [relax-mpi.c] time elapsed 6723 ms
+--- [relax-mpi-vec.c] time elapsed 4907 ms
+Measurement: 5
+--- [relax-omp.c] time elapsed 4241 ms
+--- [relax-omp-vec.c] time elapsed 4580 ms
+--- [relax-mpi.c] time elapsed 6818 ms
+--- [relax-mpi-vec.c] time elapsed 4957 ms
+Running experiment for variable number of iterations...
+Iterations: 100
+Number of cores: 1
+Measurement: 1
+--- [relax-sequential.c] time elapsed 3412 ms
+--- [relax-sequential-vec.c] time elapsed 789 ms
+--- [relax-omp.c] time elapsed 3303 ms
+--- [relax-omp-vec.c] time elapsed 782 ms
+--- [relax-mpi.c] time elapsed 3425 ms
+--- [relax-mpi-vec.c] time elapsed 698 ms
+Measurement: 2
+--- [relax-sequential.c] time elapsed 3440 ms
+--- [relax-sequential-vec.c] time elapsed 807 ms
+--- [relax-omp.c] time elapsed 3296 ms
+--- [relax-omp-vec.c] time elapsed 800 ms
+--- [relax-mpi.c] time elapsed 3409 ms
+--- [relax-mpi-vec.c] time elapsed 679 ms
+Measurement: 3
+--- [relax-sequential.c] time elapsed 3399 ms
+--- [relax-sequential-vec.c] time elapsed 774 ms
+--- [relax-omp.c] time elapsed 3332 ms
+--- [relax-omp-vec.c] time elapsed 817 ms
+--- [relax-mpi.c] time elapsed 3409 ms
+--- [relax-mpi-vec.c] time elapsed 685 ms
+Measurement: 4
+--- [relax-sequential.c] time elapsed 3391 ms
+--- [relax-sequential-vec.c] time elapsed 775 ms
+--- [relax-omp.c] time elapsed 3280 ms
+--- [relax-omp-vec.c] time elapsed 818 ms
+--- [relax-mpi.c] time elapsed 3417 ms
+--- [relax-mpi-vec.c] time elapsed 684 ms
+Measurement: 5
+--- [relax-sequential.c] time elapsed 3420 ms
+--- [relax-sequential-vec.c] time elapsed 800 ms
+--- [relax-omp.c] time elapsed 3338 ms
+--- [relax-omp-vec.c] time elapsed 805 ms
+--- [relax-mpi.c] time elapsed 3429 ms
+--- [relax-mpi-vec.c] time elapsed 686 ms
+Number of cores: 2
+Measurement: 1
+--- [relax-omp.c] time elapsed 1687 ms
+--- [relax-omp-vec.c] time elapsed 433 ms
+--- [relax-mpi.c] time elapsed 1745 ms
+--- [relax-mpi-vec.c] time elapsed 363 ms
+Measurement: 2
+--- [relax-omp.c] time elapsed 1686 ms
+--- [relax-omp-vec.c] time elapsed 447 ms
+--- [relax-mpi.c] time elapsed 1759 ms
+--- [relax-mpi-vec.c] time elapsed 367 ms
+Measurement: 3
+--- [relax-omp.c] time elapsed 1685 ms
+--- [relax-omp-vec.c] time elapsed 450 ms
+--- [relax-mpi.c] time elapsed 1745 ms
+--- [relax-mpi-vec.c] time elapsed 363 ms
+Measurement: 4
+--- [relax-omp.c] time elapsed 1688 ms
+--- [relax-omp-vec.c] time elapsed 438 ms
+--- [relax-mpi.c] time elapsed 1755 ms
+--- [relax-mpi-vec.c] time elapsed 362 ms
+Measurement: 5
+--- [relax-omp.c] time elapsed 1688 ms
+--- [relax-omp-vec.c] time elapsed 460 ms
+--- [relax-mpi.c] time elapsed 1754 ms
+--- [relax-mpi-vec.c] time elapsed 365 ms
+Number of cores: 4
+Measurement: 1
+--- [relax-omp.c] time elapsed 892 ms
+--- [relax-omp-vec.c] time elapsed 285 ms
+--- [relax-mpi.c] time elapsed 936 ms
+--- [relax-mpi-vec.c] time elapsed 228 ms
+Measurement: 2
+--- [relax-omp.c] time elapsed 872 ms
+--- [relax-omp-vec.c] time elapsed 330 ms
+--- [relax-mpi.c] time elapsed 938 ms
+--- [relax-mpi-vec.c] time elapsed 221 ms
+Measurement: 3
+--- [relax-omp.c] time elapsed 876 ms
+--- [relax-omp-vec.c] time elapsed 270 ms
+--- [relax-mpi.c] time elapsed 945 ms
+--- [relax-mpi-vec.c] time elapsed 368 ms
+Measurement: 4
+--- [relax-omp.c] time elapsed 889 ms
+--- [relax-omp-vec.c] time elapsed 297 ms
+--- [relax-mpi.c] time elapsed 932 ms
+--- [relax-mpi-vec.c] time elapsed 232 ms
+Measurement: 5
+--- [relax-omp.c] time elapsed 875 ms
+--- [relax-omp-vec.c] time elapsed 270 ms
+--- [relax-mpi.c] time elapsed 942 ms
+--- [relax-mpi-vec.c] time elapsed 208 ms
+Number of cores: 8
+Measurement: 1
+--- [relax-omp.c] time elapsed 610 ms
+--- [relax-omp-vec.c] time elapsed 231 ms
+--- [relax-mpi.c] time elapsed 530 ms
+--- [relax-mpi-vec.c] time elapsed 196 ms
+Measurement: 2
+--- [relax-omp.c] time elapsed 618 ms
+--- [relax-omp-vec.c] time elapsed 219 ms
+--- [relax-mpi.c] time elapsed 518 ms
+--- [relax-mpi-vec.c] time elapsed 142 ms
+Measurement: 3
+--- [relax-omp.c] time elapsed 634 ms
+--- [relax-omp-vec.c] time elapsed 228 ms
+--- [relax-mpi.c] time elapsed 512 ms
+--- [relax-mpi-vec.c] time elapsed 136 ms
+Measurement: 4
+--- [relax-omp.c] time elapsed 600 ms
+--- [relax-omp-vec.c] time elapsed 242 ms
+--- [relax-mpi.c] time elapsed 774 ms
+--- [relax-mpi-vec.c] time elapsed 141 ms
+Measurement: 5
+--- [relax-omp.c] time elapsed 726 ms
+--- [relax-omp-vec.c] time elapsed 244 ms
+--- [relax-mpi.c] time elapsed 750 ms
+--- [relax-mpi-vec.c] time elapsed 126 ms
+Number of cores: 16
+Measurement: 1
+--- [relax-omp.c] time elapsed 365 ms
+--- [relax-omp-vec.c] time elapsed 253 ms
+--- [relax-mpi.c] time elapsed 389 ms
+--- [relax-mpi-vec.c] time elapsed 119 ms
+Measurement: 2
+--- [relax-omp.c] time elapsed 386 ms
+--- [relax-omp-vec.c] time elapsed 246 ms
+--- [relax-mpi.c] time elapsed 411 ms
+--- [relax-mpi-vec.c] time elapsed 120 ms
+Measurement: 3
+--- [relax-omp.c] time elapsed 398 ms
+--- [relax-omp-vec.c] time elapsed 216 ms
+--- [relax-mpi.c] time elapsed 414 ms
+--- [relax-mpi-vec.c] time elapsed 116 ms
+Measurement: 4
+--- [relax-omp.c] time elapsed 407 ms
+--- [relax-omp-vec.c] time elapsed 233 ms
+--- [relax-mpi.c] time elapsed 420 ms
+--- [relax-mpi-vec.c] time elapsed 117 ms
+Measurement: 5
+--- [relax-omp.c] time elapsed 413 ms
+--- [relax-omp-vec.c] time elapsed 207 ms
+--- [relax-mpi.c] time elapsed 429 ms
+--- [relax-mpi-vec.c] time elapsed 128 ms
+Number of cores: 32
+Measurement: 1
+--- [relax-omp.c] time elapsed 307 ms
+--- [relax-omp-vec.c] time elapsed 277 ms
+--- [relax-mpi.c] time elapsed 270 ms
+--- [relax-mpi-vec.c] time elapsed 121 ms
+Measurement: 2
+--- [relax-omp.c] time elapsed 303 ms
+--- [relax-omp-vec.c] time elapsed 273 ms
+--- [relax-mpi.c] time elapsed 378 ms
+--- [relax-mpi-vec.c] time elapsed 149 ms
+Measurement: 3
+--- [relax-omp.c] time elapsed 297 ms
+--- [relax-omp-vec.c] time elapsed 271 ms
+--- [relax-mpi.c] time elapsed 1033 ms
+--- [relax-mpi-vec.c] time elapsed 577 ms
+Measurement: 4
+--- [relax-omp.c] time elapsed 296 ms
+--- [relax-omp-vec.c] time elapsed 346 ms
+--- [relax-mpi.c] time elapsed 220 ms
+--- [relax-mpi-vec.c] time elapsed 090 ms
+Measurement: 5
+--- [relax-omp.c] time elapsed 324 ms
+--- [relax-omp-vec.c] time elapsed 307 ms
+--- [relax-mpi.c] time elapsed 270 ms
+--- [relax-mpi-vec.c] time elapsed 312 ms
+Iterations: 200
+Number of cores: 1
+Measurement: 1
+--- [relax-sequential.c] time elapsed 6774 ms
+--- [relax-sequential-vec.c] time elapsed 1518 ms
+--- [relax-omp.c] time elapsed 6639 ms
+--- [relax-omp-vec.c] time elapsed 1590 ms
+--- [relax-mpi.c] time elapsed 6746 ms
+--- [relax-mpi-vec.c] time elapsed 1375 ms
+Measurement: 2
+--- [relax-sequential.c] time elapsed 6940 ms
+--- [relax-sequential-vec.c] time elapsed 1587 ms
+--- [relax-omp.c] time elapsed 6563 ms
+--- [relax-omp-vec.c] time elapsed 1649 ms
+--- [relax-mpi.c] time elapsed 6800 ms
+--- [relax-mpi-vec.c] time elapsed 1390 ms
+Measurement: 3
+--- [relax-sequential.c] time elapsed 6928 ms
+--- [relax-sequential-vec.c] time elapsed 1545 ms
+--- [relax-omp.c] time elapsed 6664 ms
+--- [relax-omp-vec.c] time elapsed 1597 ms
+--- [relax-mpi.c] time elapsed 6764 ms
+--- [relax-mpi-vec.c] time elapsed 1375 ms
+Measurement: 4
+--- [relax-sequential.c] time elapsed 6813 ms
+--- [relax-sequential-vec.c] time elapsed 1529 ms
+--- [relax-omp.c] time elapsed 6702 ms
+--- [relax-omp-vec.c] time elapsed 1591 ms
+--- [relax-mpi.c] time elapsed 6733 ms
+--- [relax-mpi-vec.c] time elapsed 1392 ms
+Measurement: 5
+--- [relax-sequential.c] time elapsed 6925 ms
+--- [relax-sequential-vec.c] time elapsed 1615 ms
+--- [relax-omp.c] time elapsed 6622 ms
+--- [relax-omp-vec.c] time elapsed 1646 ms
+--- [relax-mpi.c] time elapsed 6771 ms
+--- [relax-mpi-vec.c] time elapsed 1405 ms
+Number of cores: 2
+Measurement: 1
+--- [relax-omp.c] time elapsed 3350 ms
+--- [relax-omp-vec.c] time elapsed 854 ms
+--- [relax-mpi.c] time elapsed 3441 ms
+--- [relax-mpi-vec.c] time elapsed 727 ms
+Measurement: 2
+--- [relax-omp.c] time elapsed 3363 ms
+--- [relax-omp-vec.c] time elapsed 868 ms
+--- [relax-mpi.c] time elapsed 3449 ms
+--- [relax-mpi-vec.c] time elapsed 703 ms
+Measurement: 3
+--- [relax-omp.c] time elapsed 3354 ms
+--- [relax-omp-vec.c] time elapsed 877 ms
+--- [relax-mpi.c] time elapsed 3417 ms
+--- [relax-mpi-vec.c] time elapsed 703 ms
+Measurement: 4
+--- [relax-omp.c] time elapsed 3355 ms
+--- [relax-omp-vec.c] time elapsed 879 ms
+--- [relax-mpi.c] time elapsed 3442 ms
+--- [relax-mpi-vec.c] time elapsed 700 ms
+Measurement: 5
+--- [relax-omp.c] time elapsed 3367 ms
+--- [relax-omp-vec.c] time elapsed 868 ms
+--- [relax-mpi.c] time elapsed 3442 ms
+--- [relax-mpi-vec.c] time elapsed 704 ms
+Number of cores: 4
+Measurement: 1
+--- [relax-omp.c] time elapsed 1762 ms
+--- [relax-omp-vec.c] time elapsed 545 ms
+--- [relax-mpi.c] time elapsed 1791 ms
+--- [relax-mpi-vec.c] time elapsed 442 ms
+Measurement: 2
+--- [relax-omp.c] time elapsed 1757 ms
+--- [relax-omp-vec.c] time elapsed 542 ms
+--- [relax-mpi.c] time elapsed 1792 ms
+--- [relax-mpi-vec.c] time elapsed 445 ms
+Measurement: 3
+--- [relax-omp.c] time elapsed 1734 ms
+--- [relax-omp-vec.c] time elapsed 556 ms
+--- [relax-mpi.c] time elapsed 1845 ms
+--- [relax-mpi-vec.c] time elapsed 430 ms
+Measurement: 4
+--- [relax-omp.c] time elapsed 1753 ms
+--- [relax-omp-vec.c] time elapsed 548 ms
+--- [relax-mpi.c] time elapsed 1793 ms
+--- [relax-mpi-vec.c] time elapsed 440 ms
+Measurement: 5
+--- [relax-omp.c] time elapsed 1746 ms
+--- [relax-omp-vec.c] time elapsed 508 ms
+--- [relax-mpi.c] time elapsed 1805 ms
+--- [relax-mpi-vec.c] time elapsed 723 ms
+Number of cores: 8
+Measurement: 1
+--- [relax-omp.c] time elapsed 1247 ms
+--- [relax-omp-vec.c] time elapsed 498 ms
+--- [relax-mpi.c] time elapsed 966 ms
+--- [relax-mpi-vec.c] time elapsed 372 ms
+Measurement: 2
+--- [relax-omp.c] time elapsed 1403 ms
+--- [relax-omp-vec.c] time elapsed 471 ms
+--- [relax-mpi.c] time elapsed 969 ms
+--- [relax-mpi-vec.c] time elapsed 236 ms
+Measurement: 3
+--- [relax-omp.c] time elapsed 978 ms
+--- [relax-omp-vec.c] time elapsed 493 ms
+--- [relax-mpi.c] time elapsed 996 ms
+--- [relax-mpi-vec.c] time elapsed 288 ms
+Measurement: 4
+--- [relax-omp.c] time elapsed 1207 ms
+--- [relax-omp-vec.c] time elapsed 483 ms
+--- [relax-mpi.c] time elapsed 1506 ms
+--- [relax-mpi-vec.c] time elapsed 374 ms
+Measurement: 5
+--- [relax-omp.c] time elapsed 1412 ms
+--- [relax-omp-vec.c] time elapsed 510 ms
+--- [relax-mpi.c] time elapsed 1499 ms
+--- [relax-mpi-vec.c] time elapsed 273 ms
+Number of cores: 16
+Measurement: 1
+--- [relax-omp.c] time elapsed 858 ms
+--- [relax-omp-vec.c] time elapsed 479 ms
+--- [relax-mpi.c] time elapsed 819 ms
+--- [relax-mpi-vec.c] time elapsed 222 ms
+Measurement: 2
+--- [relax-omp.c] time elapsed 859 ms
+--- [relax-omp-vec.c] time elapsed 471 ms
+--- [relax-mpi.c] time elapsed 839 ms
+--- [relax-mpi-vec.c] time elapsed 219 ms
+Measurement: 3
+--- [relax-omp.c] time elapsed 736 ms
+--- [relax-omp-vec.c] time elapsed 449 ms
+--- [relax-mpi.c] time elapsed 832 ms
+--- [relax-mpi-vec.c] time elapsed 221 ms
+Measurement: 4
+--- [relax-omp.c] time elapsed 871 ms
+--- [relax-omp-vec.c] time elapsed 401 ms
+--- [relax-mpi.c] time elapsed 828 ms
+--- [relax-mpi-vec.c] time elapsed 217 ms
+Measurement: 5
+--- [relax-omp.c] time elapsed 813 ms
+--- [relax-omp-vec.c] time elapsed 444 ms
+--- [relax-mpi.c] time elapsed 835 ms
+--- [relax-mpi-vec.c] time elapsed 233 ms
+Number of cores: 32
+Measurement: 1
+--- [relax-omp.c] time elapsed 559 ms
+--- [relax-omp-vec.c] time elapsed 517 ms
+--- [relax-mpi.c] time elapsed 473 ms
+--- [relax-mpi-vec.c] time elapsed 528 ms
+Measurement: 2
+--- [relax-omp.c] time elapsed 576 ms
+--- [relax-omp-vec.c] time elapsed 530 ms
+--- [relax-mpi.c] time elapsed 511 ms
+--- [relax-mpi-vec.c] time elapsed 180 ms
+Measurement: 3
+--- [relax-omp.c] time elapsed 559 ms
+--- [relax-omp-vec.c] time elapsed 536 ms
+--- [relax-mpi.c] time elapsed 456 ms
+--- [relax-mpi-vec.c] time elapsed 257 ms
+Measurement: 4
+--- [relax-omp.c] time elapsed 626 ms
+--- [relax-omp-vec.c] time elapsed 534 ms
+--- [relax-mpi.c] time elapsed 462 ms
+--- [relax-mpi-vec.c] time elapsed 307 ms
+Measurement: 5
+--- [relax-omp.c] time elapsed 576 ms
+--- [relax-omp-vec.c] time elapsed 545 ms
+--- [relax-mpi.c] time elapsed 1241 ms
+--- [relax-mpi-vec.c] time elapsed 174 ms
+Iterations: 300
+Number of cores: 1
+Measurement: 1
+--- [relax-sequential.c] time elapsed 10246 ms
+--- [relax-sequential-vec.c] time elapsed 2414 ms
+--- [relax-omp.c] time elapsed 9919 ms
+--- [relax-omp-vec.c] time elapsed 2373 ms
+--- [relax-mpi.c] time elapsed 10149 ms
+--- [relax-mpi-vec.c] time elapsed 2069 ms
+Measurement: 2
+--- [relax-sequential.c] time elapsed 10291 ms
+--- [relax-sequential-vec.c] time elapsed 2373 ms
+--- [relax-omp.c] time elapsed 9961 ms
+--- [relax-omp-vec.c] time elapsed 2423 ms
+--- [relax-mpi.c] time elapsed 10137 ms
+--- [relax-mpi-vec.c] time elapsed 2077 ms
+Measurement: 3
+--- [relax-sequential.c] time elapsed 10177 ms
+--- [relax-sequential-vec.c] time elapsed 2397 ms
+--- [relax-omp.c] time elapsed 9939 ms
+--- [relax-omp-vec.c] time elapsed 2363 ms
+--- [relax-mpi.c] time elapsed 10208 ms
+--- [relax-mpi-vec.c] time elapsed 2115 ms
+Measurement: 4
+--- [relax-sequential.c] time elapsed 10224 ms
+--- [relax-sequential-vec.c] time elapsed 2391 ms
+--- [relax-omp.c] time elapsed 9940 ms
+--- [relax-omp-vec.c] time elapsed 2385 ms
+--- [relax-mpi.c] time elapsed 10271 ms
+--- [relax-mpi-vec.c] time elapsed 2107 ms
+Measurement: 5
+--- [relax-sequential.c] time elapsed 10492 ms
+--- [relax-sequential-vec.c] time elapsed 2448 ms
+--- [relax-omp.c] time elapsed 10200 ms
+--- [relax-omp-vec.c] time elapsed 2417 ms
+--- [relax-mpi.c] time elapsed 10289 ms
+--- [relax-mpi-vec.c] time elapsed 2114 ms
+Number of cores: 2
+Measurement: 1
+--- [relax-omp.c] time elapsed 5168 ms
+--- [relax-omp-vec.c] time elapsed 1276 ms
+--- [relax-mpi.c] time elapsed 5237 ms
+--- [relax-mpi-vec.c] time elapsed 1124 ms
+Measurement: 2
+--- [relax-omp.c] time elapsed 5035 ms
+--- [relax-omp-vec.c] time elapsed 1357 ms
+--- [relax-mpi.c] time elapsed 5197 ms
+--- [relax-mpi-vec.c] time elapsed 1105 ms
+Measurement: 3
+--- [relax-omp.c] time elapsed 5089 ms
+--- [relax-omp-vec.c] time elapsed 1370 ms
+--- [relax-mpi.c] time elapsed 5268 ms
+--- [relax-mpi-vec.c] time elapsed 1127 ms
+Measurement: 4
+--- [relax-omp.c] time elapsed 5091 ms
+--- [relax-omp-vec.c] time elapsed 1346 ms
+--- [relax-mpi.c] time elapsed 5293 ms
+--- [relax-mpi-vec.c] time elapsed 1125 ms
+Measurement: 5
+--- [relax-omp.c] time elapsed 5079 ms
+--- [relax-omp-vec.c] time elapsed 1327 ms
+--- [relax-mpi.c] time elapsed 5207 ms
+--- [relax-mpi-vec.c] time elapsed 1123 ms
+Number of cores: 4
+Measurement: 1
+--- [relax-omp.c] time elapsed 2684 ms
+--- [relax-omp-vec.c] time elapsed 794 ms
+--- [relax-mpi.c] time elapsed 2760 ms
+--- [relax-mpi-vec.c] time elapsed 652 ms
+Measurement: 2
+--- [relax-omp.c] time elapsed 2671 ms
+--- [relax-omp-vec.c] time elapsed 822 ms
+--- [relax-mpi.c] time elapsed 2868 ms
+--- [relax-mpi-vec.c] time elapsed 656 ms
+Measurement: 3
+--- [relax-omp.c] time elapsed 2696 ms
+--- [relax-omp-vec.c] time elapsed 821 ms
+--- [relax-mpi.c] time elapsed 2727 ms
+--- [relax-mpi-vec.c] time elapsed 663 ms
+Measurement: 4
+--- [relax-omp.c] time elapsed 2677 ms
+--- [relax-omp-vec.c] time elapsed 835 ms
+--- [relax-mpi.c] time elapsed 2745 ms
+--- [relax-mpi-vec.c] time elapsed 658 ms
+Measurement: 5
+--- [relax-omp.c] time elapsed 2620 ms
+--- [relax-omp-vec.c] time elapsed 825 ms
+--- [relax-mpi.c] time elapsed 2690 ms
+--- [relax-mpi-vec.c] time elapsed 684 ms
+Number of cores: 8
+Measurement: 1
+--- [relax-omp.c] time elapsed 1695 ms
+--- [relax-omp-vec.c] time elapsed 682 ms
+--- [relax-mpi.c] time elapsed 1577 ms
+--- [relax-mpi-vec.c] time elapsed 527 ms
+Measurement: 2
+--- [relax-omp.c] time elapsed 1622 ms
+--- [relax-omp-vec.c] time elapsed 680 ms
+--- [relax-mpi.c] time elapsed 1489 ms
+--- [relax-mpi-vec.c] time elapsed 390 ms
+Measurement: 3
+--- [relax-omp.c] time elapsed 1737 ms
+--- [relax-omp-vec.c] time elapsed 720 ms
+--- [relax-mpi.c] time elapsed 1591 ms
+--- [relax-mpi-vec.c] time elapsed 366 ms
+Measurement: 4
+--- [relax-omp.c] time elapsed 1398 ms
+--- [relax-omp-vec.c] time elapsed 674 ms
+--- [relax-mpi.c] time elapsed 1460 ms
+--- [relax-mpi-vec.c] time elapsed 535 ms
+Measurement: 5
+--- [relax-omp.c] time elapsed 1837 ms
+--- [relax-omp-vec.c] time elapsed 676 ms
+--- [relax-mpi.c] time elapsed 2384 ms
+--- [relax-mpi-vec.c] time elapsed 551 ms
+Number of cores: 16
+Measurement: 1
+--- [relax-omp.c] time elapsed 1018 ms
+--- [relax-omp-vec.c] time elapsed 644 ms
+--- [relax-mpi.c] time elapsed 1250 ms
+--- [relax-mpi-vec.c] time elapsed 341 ms
+Measurement: 2
+--- [relax-omp.c] time elapsed 1170 ms
+--- [relax-omp-vec.c] time elapsed 671 ms
+--- [relax-mpi.c] time elapsed 1200 ms
+--- [relax-mpi-vec.c] time elapsed 322 ms
+Measurement: 3
+--- [relax-omp.c] time elapsed 1244 ms
+--- [relax-omp-vec.c] time elapsed 686 ms
+--- [relax-mpi.c] time elapsed 1251 ms
+--- [relax-mpi-vec.c] time elapsed 335 ms
+Measurement: 4
+--- [relax-omp.c] time elapsed 1107 ms
+--- [relax-omp-vec.c] time elapsed 696 ms
+--- [relax-mpi.c] time elapsed 986 ms
+--- [relax-mpi-vec.c] time elapsed 318 ms
+Measurement: 5
+--- [relax-omp.c] time elapsed 1298 ms
+--- [relax-omp-vec.c] time elapsed 608 ms
+--- [relax-mpi.c] time elapsed 1254 ms
+--- [relax-mpi-vec.c] time elapsed 341 ms
+Number of cores: 32
+Measurement: 1
+--- [relax-omp.c] time elapsed 867 ms
+--- [relax-omp-vec.c] time elapsed 749 ms
+--- [relax-mpi.c] time elapsed 1146 ms
+--- [relax-mpi-vec.c] time elapsed 1341 ms
+Measurement: 2
+--- [relax-omp.c] time elapsed 850 ms
+--- [relax-omp-vec.c] time elapsed 755 ms
+--- [relax-mpi.c] time elapsed 736 ms
+--- [relax-mpi-vec.c] time elapsed 526 ms
+Measurement: 3
+--- [relax-omp.c] time elapsed 830 ms
+--- [relax-omp-vec.c] time elapsed 774 ms
+--- [relax-mpi.c] time elapsed 687 ms
+--- [relax-mpi-vec.c] time elapsed 780 ms
+Measurement: 4
+--- [relax-omp.c] time elapsed 794 ms
+--- [relax-omp-vec.c] time elapsed 817 ms
+--- [relax-mpi.c] time elapsed 1585 ms
+--- [relax-mpi-vec.c] time elapsed 690 ms
+Measurement: 5
+--- [relax-omp.c] time elapsed 795 ms
+--- [relax-omp-vec.c] time elapsed 816 ms
+--- [relax-mpi.c] time elapsed 1545 ms
+--- [relax-mpi-vec.c] time elapsed 561 ms
+Iterations: 400
+Number of cores: 1
+Measurement: 1
+--- [relax-sequential.c] time elapsed 13711 ms
+--- [relax-sequential-vec.c] time elapsed 3116 ms
+--- [relax-omp.c] time elapsed 13481 ms
+--- [relax-omp-vec.c] time elapsed 3219 ms
+--- [relax-mpi.c] time elapsed 13750 ms
+--- [relax-mpi-vec.c] time elapsed 2808 ms
+Measurement: 2
+--- [relax-sequential.c] time elapsed 13713 ms
+--- [relax-sequential-vec.c] time elapsed 3066 ms
+--- [relax-omp.c] time elapsed 13338 ms
+--- [relax-omp-vec.c] time elapsed 3270 ms
+--- [relax-mpi.c] time elapsed 13818 ms
+--- [relax-mpi-vec.c] time elapsed 2796 ms
+Measurement: 3
+--- [relax-sequential.c] time elapsed 13656 ms
+--- [relax-sequential-vec.c] time elapsed 2908 ms
+--- [relax-omp.c] time elapsed 13098 ms
+--- [relax-omp-vec.c] time elapsed 3176 ms
+--- [relax-mpi.c] time elapsed 13733 ms
+--- [relax-mpi-vec.c] time elapsed 2788 ms
+Measurement: 4
+--- [relax-sequential.c] time elapsed 13594 ms
+--- [relax-sequential-vec.c] time elapsed 2886 ms
+--- [relax-omp.c] time elapsed 13039 ms
+--- [relax-omp-vec.c] time elapsed 3022 ms
+--- [relax-mpi.c] time elapsed 13769 ms
+--- [relax-mpi-vec.c] time elapsed 2747 ms
+Measurement: 5
+--- [relax-sequential.c] time elapsed 13525 ms
+--- [relax-sequential-vec.c] time elapsed 2968 ms
+--- [relax-omp.c] time elapsed 13193 ms
+--- [relax-omp-vec.c] time elapsed 3503 ms
+--- [relax-mpi.c] time elapsed 13739 ms
+--- [relax-mpi-vec.c] time elapsed 2770 ms
+Number of cores: 2
+Measurement: 1
+--- [relax-omp.c] time elapsed 6741 ms
+--- [relax-omp-vec.c] time elapsed 1776 ms
+--- [relax-mpi.c] time elapsed 6880 ms
+--- [relax-mpi-vec.c] time elapsed 1428 ms
+Measurement: 2
+--- [relax-omp.c] time elapsed 6687 ms
+--- [relax-omp-vec.c] time elapsed 1685 ms
+--- [relax-mpi.c] time elapsed 6904 ms
+--- [relax-mpi-vec.c] time elapsed 1454 ms
+Measurement: 3
+--- [relax-omp.c] time elapsed 6653 ms
+--- [relax-omp-vec.c] time elapsed 1701 ms
+--- [relax-mpi.c] time elapsed 6953 ms
+--- [relax-mpi-vec.c] time elapsed 1457 ms
+Measurement: 4
+--- [relax-omp.c] time elapsed 6646 ms
+--- [relax-omp-vec.c] time elapsed 1647 ms
+--- [relax-mpi.c] time elapsed 7096 ms
+--- [relax-mpi-vec.c] time elapsed 1451 ms
+Measurement: 5
+--- [relax-omp.c] time elapsed 6649 ms
+--- [relax-omp-vec.c] time elapsed 1672 ms
+--- [relax-mpi.c] time elapsed 6982 ms
+--- [relax-mpi-vec.c] time elapsed 1451 ms
+Number of cores: 4
+Measurement: 1
+--- [relax-omp.c] time elapsed 3548 ms
+--- [relax-omp-vec.c] time elapsed 1060 ms
+--- [relax-mpi.c] time elapsed 3549 ms
+--- [relax-mpi-vec.c] time elapsed 912 ms
+Measurement: 2
+--- [relax-omp.c] time elapsed 3368 ms
+--- [relax-omp-vec.c] time elapsed 969 ms
+--- [relax-mpi.c] time elapsed 3550 ms
+--- [relax-mpi-vec.c] time elapsed 754 ms
+Measurement: 3
+--- [relax-omp.c] time elapsed 3457 ms
+--- [relax-omp-vec.c] time elapsed 1066 ms
+--- [relax-mpi.c] time elapsed 3552 ms
+--- [relax-mpi-vec.c] time elapsed 824 ms
+Measurement: 4
+--- [relax-omp.c] time elapsed 3427 ms
+--- [relax-omp-vec.c] time elapsed 1009 ms
+--- [relax-mpi.c] time elapsed 3516 ms
+--- [relax-mpi-vec.c] time elapsed 825 ms
+Measurement: 5
+--- [relax-omp.c] time elapsed 3411 ms
+--- [relax-omp-vec.c] time elapsed 1030 ms
+--- [relax-mpi.c] time elapsed 3735 ms
+--- [relax-mpi-vec.c] time elapsed 794 ms
+Number of cores: 8
+Measurement: 1
+--- [relax-omp.c] time elapsed 2472 ms
+--- [relax-omp-vec.c] time elapsed 813 ms
+--- [relax-mpi.c] time elapsed 2438 ms
+--- [relax-mpi-vec.c] time elapsed 488 ms
+Measurement: 2
+--- [relax-omp.c] time elapsed 2397 ms
+--- [relax-omp-vec.c] time elapsed 842 ms
+--- [relax-mpi.c] time elapsed 3008 ms
+--- [relax-mpi-vec.c] time elapsed 518 ms
+Measurement: 3
+--- [relax-omp.c] time elapsed 2469 ms
+--- [relax-omp-vec.c] time elapsed 874 ms
+--- [relax-mpi.c] time elapsed 1857 ms
+--- [relax-mpi-vec.c] time elapsed 514 ms
+Measurement: 4
+--- [relax-omp.c] time elapsed 2364 ms
+--- [relax-omp-vec.c] time elapsed 846 ms
+--- [relax-mpi.c] time elapsed 2998 ms
+--- [relax-mpi-vec.c] time elapsed 471 ms
+Measurement: 5
+--- [relax-omp.c] time elapsed 2830 ms
+--- [relax-omp-vec.c] time elapsed 854 ms
+--- [relax-mpi.c] time elapsed 1908 ms
+--- [relax-mpi-vec.c] time elapsed 683 ms
+Number of cores: 16
+Measurement: 1
+--- [relax-omp.c] time elapsed 1446 ms
+--- [relax-omp-vec.c] time elapsed 986 ms
+--- [relax-mpi.c] time elapsed 1627 ms
+--- [relax-mpi-vec.c] time elapsed 426 ms
+Measurement: 2
+--- [relax-omp.c] time elapsed 1442 ms
+--- [relax-omp-vec.c] time elapsed 927 ms
+--- [relax-mpi.c] time elapsed 1610 ms
+--- [relax-mpi-vec.c] time elapsed 398 ms
+Measurement: 3
+--- [relax-omp.c] time elapsed 1710 ms
+--- [relax-omp-vec.c] time elapsed 749 ms
+--- [relax-mpi.c] time elapsed 1619 ms
+--- [relax-mpi-vec.c] time elapsed 423 ms
+Measurement: 4
+--- [relax-omp.c] time elapsed 1630 ms
+--- [relax-omp-vec.c] time elapsed 820 ms
+--- [relax-mpi.c] time elapsed 1408 ms
+--- [relax-mpi-vec.c] time elapsed 420 ms
+Measurement: 5
+--- [relax-omp.c] time elapsed 1702 ms
+--- [relax-omp-vec.c] time elapsed 870 ms
+--- [relax-mpi.c] time elapsed 1646 ms
+--- [relax-mpi-vec.c] time elapsed 425 ms
+Number of cores: 32
+Measurement: 1
+--- [relax-omp.c] time elapsed 1040 ms
+--- [relax-omp-vec.c] time elapsed 971 ms
+--- [relax-mpi.c] time elapsed 1393 ms
+--- [relax-mpi-vec.c] time elapsed 330 ms
+Measurement: 2
+--- [relax-omp.c] time elapsed 1098 ms
+--- [relax-omp-vec.c] time elapsed 967 ms
+--- [relax-mpi.c] time elapsed 902 ms
+--- [relax-mpi-vec.c] time elapsed 367 ms
+Measurement: 3
+--- [relax-omp.c] time elapsed 1141 ms
+--- [relax-omp-vec.c] time elapsed 979 ms
+--- [relax-mpi.c] time elapsed 1741 ms
+--- [relax-mpi-vec.c] time elapsed 377 ms
+Measurement: 4
+--- [relax-omp.c] time elapsed 1058 ms
+--- [relax-omp-vec.c] time elapsed 945 ms
+--- [relax-mpi.c] time elapsed 910 ms
+--- [relax-mpi-vec.c] time elapsed 330 ms
+Measurement: 5
+--- [relax-omp.c] time elapsed 1037 ms
+--- [relax-omp-vec.c] time elapsed 1004 ms
+--- [relax-mpi.c] time elapsed 898 ms
+--- [relax-mpi-vec.c] time elapsed 784 ms
+Iterations: 500
+Number of cores: 1
+Measurement: 1
+--- [relax-sequential.c] time elapsed 17044 ms
+--- [relax-sequential-vec.c] time elapsed 3732 ms
+--- [relax-omp.c] time elapsed 16629 ms
+--- [relax-omp-vec.c] time elapsed 3951 ms
+--- [relax-mpi.c] time elapsed 17215 ms
+--- [relax-mpi-vec.c] time elapsed 3544 ms
+Measurement: 2
+--- [relax-sequential.c] time elapsed 17257 ms
+--- [relax-sequential-vec.c] time elapsed 3853 ms
+--- [relax-omp.c] time elapsed 16885 ms
+--- [relax-omp-vec.c] time elapsed 3948 ms
+--- [relax-mpi.c] time elapsed 17298 ms
+--- [relax-mpi-vec.c] time elapsed 3436 ms
+Measurement: 3
+--- [relax-sequential.c] time elapsed 17530 ms
+--- [relax-sequential-vec.c] time elapsed 4012 ms
+--- [relax-omp.c] time elapsed 16762 ms
+--- [relax-omp-vec.c] time elapsed 4027 ms
+--- [relax-mpi.c] time elapsed 17085 ms
+--- [relax-mpi-vec.c] time elapsed 3458 ms
+Measurement: 4
+--- [relax-sequential.c] time elapsed 17466 ms
+--- [relax-sequential-vec.c] time elapsed 3917 ms
+--- [relax-omp.c] time elapsed 16793 ms
+--- [relax-omp-vec.c] time elapsed 4063 ms
+--- [relax-mpi.c] time elapsed 17011 ms
+--- [relax-mpi-vec.c] time elapsed 3494 ms
+Measurement: 5
+--- [relax-sequential.c] time elapsed 17404 ms
+--- [relax-sequential-vec.c] time elapsed 3904 ms
+--- [relax-omp.c] time elapsed 16784 ms
+--- [relax-omp-vec.c] time elapsed 4033 ms
+--- [relax-mpi.c] time elapsed 16995 ms
+--- [relax-mpi-vec.c] time elapsed 3500 ms
+Number of cores: 2
+Measurement: 1
+--- [relax-omp.c] time elapsed 8635 ms
+--- [relax-omp-vec.c] time elapsed 2164 ms
+--- [relax-mpi.c] time elapsed 8640 ms
+--- [relax-mpi-vec.c] time elapsed 1836 ms
+Measurement: 2
+--- [relax-omp.c] time elapsed 8467 ms
+--- [relax-omp-vec.c] time elapsed 2135 ms
+--- [relax-mpi.c] time elapsed 8715 ms
+--- [relax-mpi-vec.c] time elapsed 1819 ms
+Measurement: 3
+--- [relax-omp.c] time elapsed 8363 ms
+--- [relax-omp-vec.c] time elapsed 2177 ms
+--- [relax-mpi.c] time elapsed 8652 ms
+--- [relax-mpi-vec.c] time elapsed 1847 ms
+Measurement: 4
+--- [relax-omp.c] time elapsed 8575 ms
+--- [relax-omp-vec.c] time elapsed 2223 ms
+--- [relax-mpi.c] time elapsed 8539 ms
+--- [relax-mpi-vec.c] time elapsed 1791 ms
+Measurement: 5
+--- [relax-omp.c] time elapsed 8465 ms
+--- [relax-omp-vec.c] time elapsed 2285 ms
+--- [relax-mpi.c] time elapsed 8621 ms
+--- [relax-mpi-vec.c] time elapsed 1816 ms
+Number of cores: 4
+Measurement: 1
+--- [relax-omp.c] time elapsed 4368 ms
+--- [relax-omp-vec.c] time elapsed 1416 ms
+--- [relax-mpi.c] time elapsed 4516 ms
+--- [relax-mpi-vec.c] time elapsed 1099 ms
+Measurement: 2
+--- [relax-omp.c] time elapsed 4392 ms
+--- [relax-omp-vec.c] time elapsed 1376 ms
+--- [relax-mpi.c] time elapsed 4522 ms
+--- [relax-mpi-vec.c] time elapsed 1107 ms
+Measurement: 3
+--- [relax-omp.c] time elapsed 4454 ms
+--- [relax-omp-vec.c] time elapsed 1405 ms
+--- [relax-mpi.c] time elapsed 4494 ms
+--- [relax-mpi-vec.c] time elapsed 1092 ms
+Measurement: 4
+--- [relax-omp.c] time elapsed 4402 ms
+--- [relax-omp-vec.c] time elapsed 1393 ms
+--- [relax-mpi.c] time elapsed 4481 ms
+--- [relax-mpi-vec.c] time elapsed 1082 ms
+Measurement: 5
+--- [relax-omp.c] time elapsed 4442 ms
+--- [relax-omp-vec.c] time elapsed 1325 ms
+--- [relax-mpi.c] time elapsed 4849 ms
+--- [relax-mpi-vec.c] time elapsed 1137 ms
+Number of cores: 8
+Measurement: 1
+--- [relax-omp.c] time elapsed 3045 ms
+--- [relax-omp-vec.c] time elapsed 1217 ms
+--- [relax-mpi.c] time elapsed 3927 ms
+--- [relax-mpi-vec.c] time elapsed 837 ms
+Measurement: 2
+--- [relax-omp.c] time elapsed 2359 ms
+--- [relax-omp-vec.c] time elapsed 1130 ms
+--- [relax-mpi.c] time elapsed 2727 ms
+--- [relax-mpi-vec.c] time elapsed 972 ms
+Measurement: 3
+--- [relax-omp.c] time elapsed 2629 ms
+--- [relax-omp-vec.c] time elapsed 1152 ms
+--- [relax-mpi.c] time elapsed 3407 ms
+--- [relax-mpi-vec.c] time elapsed 585 ms
+Measurement: 4
+--- [relax-omp.c] time elapsed 2382 ms
+--- [relax-omp-vec.c] time elapsed 1075 ms
+--- [relax-mpi.c] time elapsed 2641 ms
+--- [relax-mpi-vec.c] time elapsed 582 ms
+Measurement: 5
+--- [relax-omp.c] time elapsed 3431 ms
+--- [relax-omp-vec.c] time elapsed 1131 ms
+--- [relax-mpi.c] time elapsed 3863 ms
+--- [relax-mpi-vec.c] time elapsed 590 ms
+Number of cores: 16
+Measurement: 1
+--- [relax-omp.c] time elapsed 1840 ms
+--- [relax-omp-vec.c] time elapsed 979 ms
+--- [relax-mpi.c] time elapsed 2083 ms
+--- [relax-mpi-vec.c] time elapsed 570 ms
+Measurement: 2
+--- [relax-omp.c] time elapsed 1875 ms
+--- [relax-omp-vec.c] time elapsed 947 ms
+--- [relax-mpi.c] time elapsed 2053 ms
+--- [relax-mpi-vec.c] time elapsed 527 ms
+Measurement: 3
+--- [relax-omp.c] time elapsed 2163 ms
+--- [relax-omp-vec.c] time elapsed 1096 ms
+--- [relax-mpi.c] time elapsed 2037 ms
+--- [relax-mpi-vec.c] time elapsed 555 ms
+Measurement: 4
+--- [relax-omp.c] time elapsed 1906 ms
+--- [relax-omp-vec.c] time elapsed 994 ms
+--- [relax-mpi.c] time elapsed 1715 ms
+--- [relax-mpi-vec.c] time elapsed 548 ms
+Measurement: 5
+--- [relax-omp.c] time elapsed 1981 ms
+--- [relax-omp-vec.c] time elapsed 1174 ms
+--- [relax-mpi.c] time elapsed 2113 ms
+--- [relax-mpi-vec.c] time elapsed 528 ms
+Number of cores: 32
+Measurement: 1
+--- [relax-omp.c] time elapsed 7370 ms
+--- [relax-omp-vec.c] time elapsed 6608 ms
+--- [relax-mpi.c] time elapsed 2188 ms
+--- [relax-mpi-vec.c] time elapsed 424 ms
+Measurement: 2
+--- [relax-omp.c] time elapsed 1309 ms
+--- [relax-omp-vec.c] time elapsed 1261 ms
+--- [relax-mpi.c] time elapsed 1183 ms
+--- [relax-mpi-vec.c] time elapsed 877 ms
+Measurement: 3
+--- [relax-omp.c] time elapsed 1322 ms
+--- [relax-omp-vec.c] time elapsed 1195 ms
+--- [relax-mpi.c] time elapsed 1582 ms
+--- [relax-mpi-vec.c] time elapsed 614 ms
+Measurement: 4
+--- [relax-omp.c] time elapsed 1341 ms
+--- [relax-omp-vec.c] time elapsed 1196 ms
+--- [relax-mpi.c] time elapsed 1188 ms
+--- [relax-mpi-vec.c] time elapsed 707 ms
+Measurement: 5
+--- [relax-omp.c] time elapsed 1295 ms
+--- [relax-omp-vec.c] time elapsed 1186 ms
+--- [relax-mpi.c] time elapsed 1568 ms
+--- [relax-mpi-vec.c] time elapsed 1307 ms
+Iterations: 600
+Number of cores: 1
+Measurement: 1
+--- [relax-sequential.c] time elapsed 20781 ms
+--- [relax-sequential-vec.c] time elapsed 4700 ms
+--- [relax-omp.c] time elapsed 20545 ms
+--- [relax-omp-vec.c] time elapsed 4854 ms
+--- [relax-mpi.c] time elapsed 20640 ms
+--- [relax-mpi-vec.c] time elapsed 4457 ms
+Measurement: 2
+--- [relax-sequential.c] time elapsed 20839 ms
+--- [relax-sequential-vec.c] time elapsed 4622 ms
+--- [relax-omp.c] time elapsed 20089 ms
+--- [relax-omp-vec.c] time elapsed 4929 ms
+--- [relax-mpi.c] time elapsed 20893 ms
+--- [relax-mpi-vec.c] time elapsed 4607 ms
+Measurement: 3
+--- [relax-sequential.c] time elapsed 20916 ms
+--- [relax-sequential-vec.c] time elapsed 4624 ms
+--- [relax-omp.c] time elapsed 20317 ms
+--- [relax-omp-vec.c] time elapsed 4942 ms
+--- [relax-mpi.c] time elapsed 20994 ms
+--- [relax-mpi-vec.c] time elapsed 4794 ms
+Measurement: 4
+--- [relax-sequential.c] time elapsed 20734 ms
+--- [relax-sequential-vec.c] time elapsed 4721 ms
+--- [relax-omp.c] time elapsed 20012 ms
+--- [relax-omp-vec.c] time elapsed 4960 ms
+--- [relax-mpi.c] time elapsed 20763 ms
+--- [relax-mpi-vec.c] time elapsed 4730 ms
+Measurement: 5
+--- [relax-sequential.c] time elapsed 21526 ms
+--- [relax-sequential-vec.c] time elapsed 4795 ms
+--- [relax-omp.c] time elapsed 20473 ms
+--- [relax-omp-vec.c] time elapsed 5170 ms
+--- [relax-mpi.c] time elapsed 20729 ms
+--- [relax-mpi-vec.c] time elapsed 4402 ms
+Number of cores: 2
+Measurement: 1
+--- [relax-omp.c] time elapsed 10879 ms
+--- [relax-omp-vec.c] time elapsed 2838 ms
+--- [relax-mpi.c] time elapsed 11004 ms
+--- [relax-mpi-vec.c] time elapsed 2365 ms
+Measurement: 2
+--- [relax-omp.c] time elapsed 10831 ms
+--- [relax-omp-vec.c] time elapsed 3292 ms
+--- [relax-mpi.c] time elapsed 11314 ms
+--- [relax-mpi-vec.c] time elapsed 2248 ms
+Measurement: 3
+--- [relax-omp.c] time elapsed 10663 ms
+--- [relax-omp-vec.c] time elapsed 2756 ms
+--- [relax-mpi.c] time elapsed 10462 ms
+--- [relax-mpi-vec.c] time elapsed 2134 ms
+Measurement: 4
+--- [relax-omp.c] time elapsed 9901 ms
+--- [relax-omp-vec.c] time elapsed 2389 ms
+--- [relax-mpi.c] time elapsed 10430 ms
+--- [relax-mpi-vec.c] time elapsed 2194 ms
+Measurement: 5
+--- [relax-omp.c] time elapsed 10033 ms
+--- [relax-omp-vec.c] time elapsed 2373 ms
+--- [relax-mpi.c] time elapsed 10232 ms
+--- [relax-mpi-vec.c] time elapsed 2343 ms
+Number of cores: 4
+Measurement: 1
+--- [relax-omp.c] time elapsed 5083 ms
+--- [relax-omp-vec.c] time elapsed 1492 ms
+--- [relax-mpi.c] time elapsed 5264 ms
+--- [relax-mpi-vec.c] time elapsed 1367 ms
+Measurement: 2
+--- [relax-omp.c] time elapsed 5074 ms
+--- [relax-omp-vec.c] time elapsed 1742 ms
+--- [relax-mpi.c] time elapsed 5271 ms
+--- [relax-mpi-vec.c] time elapsed 2126 ms
+Measurement: 3
+--- [relax-omp.c] time elapsed 4990 ms
+--- [relax-omp-vec.c] time elapsed 1323 ms
+--- [relax-mpi.c] time elapsed 5244 ms
+--- [relax-mpi-vec.c] time elapsed 1320 ms
+Measurement: 4
+--- [relax-omp.c] time elapsed 5001 ms
+--- [relax-omp-vec.c] time elapsed 1317 ms
+--- [relax-mpi.c] time elapsed 5300 ms
+--- [relax-mpi-vec.c] time elapsed 2111 ms
+Measurement: 5
+--- [relax-omp.c] time elapsed 4986 ms
+--- [relax-omp-vec.c] time elapsed 1338 ms
+--- [relax-mpi.c] time elapsed 5267 ms
+--- [relax-mpi-vec.c] time elapsed 1306 ms
+Number of cores: 8
+Measurement: 1
+--- [relax-omp.c] time elapsed 2713 ms
+--- [relax-omp-vec.c] time elapsed 981 ms
+--- [relax-mpi.c] time elapsed 2756 ms
+--- [relax-mpi-vec.c] time elapsed 775 ms
+Measurement: 2
+--- [relax-omp.c] time elapsed 2738 ms
+--- [relax-omp-vec.c] time elapsed 988 ms
+--- [relax-mpi.c] time elapsed 4541 ms
+--- [relax-mpi-vec.c] time elapsed 813 ms
+Measurement: 3
+--- [relax-omp.c] time elapsed 4479 ms
+--- [relax-omp-vec.c] time elapsed 1394 ms
+--- [relax-mpi.c] time elapsed 2800 ms
+--- [relax-mpi-vec.c] time elapsed 1171 ms
+Measurement: 4
+--- [relax-omp.c] time elapsed 3653 ms
+--- [relax-omp-vec.c] time elapsed 1488 ms
+--- [relax-mpi.c] time elapsed 4582 ms
+--- [relax-mpi-vec.c] time elapsed 795 ms
+Measurement: 5
+--- [relax-omp.c] time elapsed 3404 ms
+--- [relax-omp-vec.c] time elapsed 1418 ms
+--- [relax-mpi.c] time elapsed 2821 ms
+--- [relax-mpi-vec.c] time elapsed 1062 ms
+Number of cores: 16
+Measurement: 1
+--- [relax-omp.c] time elapsed 2665 ms
+--- [relax-omp-vec.c] time elapsed 1215 ms
+--- [relax-mpi.c] time elapsed 2441 ms
+--- [relax-mpi-vec.c] time elapsed 646 ms
+Measurement: 2
+--- [relax-omp.c] time elapsed 2669 ms
+--- [relax-omp-vec.c] time elapsed 1260 ms
+--- [relax-mpi.c] time elapsed 2451 ms
+--- [relax-mpi-vec.c] time elapsed 686 ms
+Measurement: 3
+--- [relax-omp.c] time elapsed 2681 ms
+--- [relax-omp-vec.c] time elapsed 1239 ms
+--- [relax-mpi.c] time elapsed 2449 ms
+--- [relax-mpi-vec.c] time elapsed 656 ms
+Measurement: 4
+--- [relax-omp.c] time elapsed 2511 ms
+--- [relax-omp-vec.c] time elapsed 1357 ms
+--- [relax-mpi.c] time elapsed 2488 ms
+--- [relax-mpi-vec.c] time elapsed 683 ms
+Measurement: 5
+--- [relax-omp.c] time elapsed 2391 ms
+--- [relax-omp-vec.c] time elapsed 1350 ms
+--- [relax-mpi.c] time elapsed 2435 ms
+--- [relax-mpi-vec.c] time elapsed 702 ms
+Number of cores: 32
+Measurement: 1
+--- [relax-omp.c] time elapsed 1585 ms
+--- [relax-omp-vec.c] time elapsed 1514 ms
+--- [relax-mpi.c] time elapsed 2787 ms
+--- [relax-mpi-vec.c] time elapsed 481 ms
+Measurement: 2
+--- [relax-omp.c] time elapsed 1527 ms
+--- [relax-omp-vec.c] time elapsed 1344 ms
+--- [relax-mpi.c] time elapsed 1471 ms
+--- [relax-mpi-vec.c] time elapsed 2475 ms
+Measurement: 3
+--- [relax-omp.c] time elapsed 1518 ms
+--- [relax-omp-vec.c] time elapsed 1364 ms
+--- [relax-mpi.c] time elapsed 1400 ms
+--- [relax-mpi-vec.c] time elapsed 1860 ms
+Measurement: 4
+--- [relax-omp.c] time elapsed 1570 ms
+--- [relax-omp-vec.c] time elapsed 1402 ms
+--- [relax-mpi.c] time elapsed 1892 ms
+--- [relax-mpi-vec.c] time elapsed 1542 ms
+Measurement: 5
+--- [relax-omp.c] time elapsed 1589 ms
+--- [relax-omp-vec.c] time elapsed 1602 ms
+--- [relax-mpi.c] time elapsed 1534 ms
+--- [relax-mpi-vec.c] time elapsed 429 ms
+Iterations: 700
+Number of cores: 1
+Measurement: 1
+--- [relax-sequential.c] time elapsed 23284 ms
+--- [relax-sequential-vec.c] time elapsed 5135 ms
+--- [relax-omp.c] time elapsed 22663 ms
+--- [relax-omp-vec.c] time elapsed 5426 ms
+--- [relax-mpi.c] time elapsed 23222 ms
+--- [relax-mpi-vec.c] time elapsed 4696 ms
+Measurement: 2
+--- [relax-sequential.c] time elapsed 23447 ms
+--- [relax-sequential-vec.c] time elapsed 5200 ms
+--- [relax-omp.c] time elapsed 22819 ms
+--- [relax-omp-vec.c] time elapsed 5527 ms
+--- [relax-mpi.c] time elapsed 23383 ms
+--- [relax-mpi-vec.c] time elapsed 5019 ms
+Measurement: 3
+--- [relax-sequential.c] time elapsed 23782 ms
+--- [relax-sequential-vec.c] time elapsed 5353 ms
+--- [relax-omp.c] time elapsed 23100 ms
+--- [relax-omp-vec.c] time elapsed 5523 ms
+--- [relax-mpi.c] time elapsed 23696 ms
+--- [relax-mpi-vec.c] time elapsed 5248 ms
+Measurement: 4
+--- [relax-sequential.c] time elapsed 23664 ms
+--- [relax-sequential-vec.c] time elapsed 5257 ms
+--- [relax-omp.c] time elapsed 22947 ms
+--- [relax-omp-vec.c] time elapsed 5604 ms
+--- [relax-mpi.c] time elapsed 24023 ms
+--- [relax-mpi-vec.c] time elapsed 5185 ms
+Measurement: 5
+--- [relax-sequential.c] time elapsed 23924 ms
+--- [relax-sequential-vec.c] time elapsed 5187 ms
+--- [relax-omp.c] time elapsed 23198 ms
+--- [relax-omp-vec.c] time elapsed 5741 ms
+--- [relax-mpi.c] time elapsed 23877 ms
+--- [relax-mpi-vec.c] time elapsed 5466 ms
+Number of cores: 2
+Measurement: 1
+--- [relax-omp.c] time elapsed 11868 ms
+--- [relax-omp-vec.c] time elapsed 3436 ms
+--- [relax-mpi.c] time elapsed 12282 ms
+--- [relax-mpi-vec.c] time elapsed 3171 ms
+Measurement: 2
+--- [relax-omp.c] time elapsed 12605 ms
+--- [relax-omp-vec.c] time elapsed 3901 ms
+--- [relax-mpi.c] time elapsed 12358 ms
+--- [relax-mpi-vec.c] time elapsed 3182 ms
+Measurement: 3
+--- [relax-omp.c] time elapsed 11978 ms
+--- [relax-omp-vec.c] time elapsed 3313 ms
+--- [relax-mpi.c] time elapsed 12532 ms
+--- [relax-mpi-vec.c] time elapsed 2626 ms
+Measurement: 4
+--- [relax-omp.c] time elapsed 11461 ms
+--- [relax-omp-vec.c] time elapsed 2753 ms
+--- [relax-mpi.c] time elapsed 11813 ms
+--- [relax-mpi-vec.c] time elapsed 2467 ms
+Measurement: 5
+--- [relax-omp.c] time elapsed 11440 ms
+--- [relax-omp-vec.c] time elapsed 2767 ms
+--- [relax-mpi.c] time elapsed 11850 ms
+--- [relax-mpi-vec.c] time elapsed 2516 ms
+Number of cores: 4
+Measurement: 1
+--- [relax-omp.c] time elapsed 5832 ms
+--- [relax-omp-vec.c] time elapsed 1555 ms
+--- [relax-mpi.c] time elapsed 8099 ms
+--- [relax-mpi-vec.c] time elapsed 1469 ms
+Measurement: 2
+--- [relax-omp.c] time elapsed 5816 ms
+--- [relax-omp-vec.c] time elapsed 1562 ms
+--- [relax-mpi.c] time elapsed 6160 ms
+--- [relax-mpi-vec.c] time elapsed 1389 ms
+Measurement: 3
+--- [relax-omp.c] time elapsed 5798 ms
+--- [relax-omp-vec.c] time elapsed 1559 ms
+--- [relax-mpi.c] time elapsed 10378 ms
+--- [relax-mpi-vec.c] time elapsed 1402 ms
+Measurement: 4
+--- [relax-omp.c] time elapsed 5822 ms
+--- [relax-omp-vec.c] time elapsed 1561 ms
+--- [relax-mpi.c] time elapsed 10377 ms
+--- [relax-mpi-vec.c] time elapsed 1452 ms
+Measurement: 5
+--- [relax-omp.c] time elapsed 5815 ms
+--- [relax-omp-vec.c] time elapsed 1568 ms
+--- [relax-mpi.c] time elapsed 6137 ms
+--- [relax-mpi-vec.c] time elapsed 1310 ms
+Number of cores: 8
+Measurement: 1
+--- [relax-omp.c] time elapsed 3181 ms
+--- [relax-omp-vec.c] time elapsed 1196 ms
+--- [relax-mpi.c] time elapsed 3207 ms
+--- [relax-mpi-vec.c] time elapsed 720 ms
+Measurement: 2
+--- [relax-omp.c] time elapsed 3183 ms
+--- [relax-omp-vec.c] time elapsed 1184 ms
+--- [relax-mpi.c] time elapsed 3247 ms
+--- [relax-mpi-vec.c] time elapsed 742 ms
+Measurement: 3
+--- [relax-omp.c] time elapsed 3094 ms
+--- [relax-omp-vec.c] time elapsed 1337 ms
+--- [relax-mpi.c] time elapsed 3198 ms
+--- [relax-mpi-vec.c] time elapsed 723 ms
+Measurement: 4
+--- [relax-omp.c] time elapsed 3100 ms
+--- [relax-omp-vec.c] time elapsed 1292 ms
+--- [relax-mpi.c] time elapsed 3172 ms
+--- [relax-mpi-vec.c] time elapsed 735 ms
+Measurement: 5
+--- [relax-omp.c] time elapsed 3056 ms
+--- [relax-omp-vec.c] time elapsed 1264 ms
+--- [relax-mpi.c] time elapsed 3190 ms
+--- [relax-mpi-vec.c] time elapsed 694 ms
+Number of cores: 16
+Measurement: 1
+--- [relax-omp.c] time elapsed 2111 ms
+--- [relax-omp-vec.c] time elapsed 1224 ms
+--- [relax-mpi.c] time elapsed 1848 ms
+--- [relax-mpi-vec.c] time elapsed 499 ms
+Measurement: 2
+--- [relax-omp.c] time elapsed 2400 ms
+--- [relax-omp-vec.c] time elapsed 1253 ms
+--- [relax-mpi.c] time elapsed 1820 ms
+--- [relax-mpi-vec.c] time elapsed 518 ms
+Measurement: 3
+--- [relax-omp.c] time elapsed 2244 ms
+--- [relax-omp-vec.c] time elapsed 1260 ms
+--- [relax-mpi.c] time elapsed 1809 ms
+--- [relax-mpi-vec.c] time elapsed 526 ms
+Measurement: 4
+--- [relax-omp.c] time elapsed 2407 ms
+--- [relax-omp-vec.c] time elapsed 1230 ms
+--- [relax-mpi.c] time elapsed 1844 ms
+--- [relax-mpi-vec.c] time elapsed 526 ms
+Measurement: 5
+--- [relax-omp.c] time elapsed 2567 ms
+--- [relax-omp-vec.c] time elapsed 1249 ms
+--- [relax-mpi.c] time elapsed 1835 ms
+--- [relax-mpi-vec.c] time elapsed 498 ms
+Number of cores: 32
+Measurement: 1
+--- [relax-omp.c] time elapsed 1748 ms
+--- [relax-omp-vec.c] time elapsed 1467 ms
+--- [relax-mpi.c] time elapsed 1645 ms
+--- [relax-mpi-vec.c] time elapsed 1057 ms
+Measurement: 2
+--- [relax-omp.c] time elapsed 1695 ms
+--- [relax-omp-vec.c] time elapsed 1412 ms
+--- [relax-mpi.c] time elapsed 1799 ms
+--- [relax-mpi-vec.c] time elapsed 590 ms
+Measurement: 3
+--- [relax-omp.c] time elapsed 1766 ms
+--- [relax-omp-vec.c] time elapsed 1376 ms
+--- [relax-mpi.c] time elapsed 1569 ms
+--- [relax-mpi-vec.c] time elapsed 584 ms
+Measurement: 4
+--- [relax-omp.c] time elapsed 1725 ms
+--- [relax-omp-vec.c] time elapsed 1419 ms
+--- [relax-mpi.c] time elapsed 1612 ms
+--- [relax-mpi-vec.c] time elapsed 806 ms
+Measurement: 5
+--- [relax-omp.c] time elapsed 1716 ms
+--- [relax-omp-vec.c] time elapsed 1419 ms
+--- [relax-mpi.c] time elapsed 1724 ms
+--- [relax-mpi-vec.c] time elapsed 662 ms
+Iterations: 800
+Number of cores: 1
+Measurement: 1
+--- [relax-sequential.c] time elapsed 27029 ms
+--- [relax-sequential-vec.c] time elapsed 5451 ms
+--- [relax-omp.c] time elapsed 25980 ms
+--- [relax-omp-vec.c] time elapsed 6217 ms
+--- [relax-mpi.c] time elapsed 26544 ms
+--- [relax-mpi-vec.c] time elapsed 5391 ms
+Measurement: 2
+--- [relax-sequential.c] time elapsed 26418 ms
+--- [relax-sequential-vec.c] time elapsed 5408 ms
+--- [relax-omp.c] time elapsed 25856 ms
+--- [relax-omp-vec.c] time elapsed 6156 ms
+--- [relax-mpi.c] time elapsed 26605 ms
+--- [relax-mpi-vec.c] time elapsed 5537 ms
+Measurement: 3
+--- [relax-sequential.c] time elapsed 26921 ms
+--- [relax-sequential-vec.c] time elapsed 5510 ms
+--- [relax-omp.c] time elapsed 25951 ms
+--- [relax-omp-vec.c] time elapsed 6142 ms
+--- [relax-mpi.c] time elapsed 26530 ms
+--- [relax-mpi-vec.c] time elapsed 5647 ms
+Measurement: 4
+--- [relax-sequential.c] time elapsed 26411 ms
+--- [relax-sequential-vec.c] time elapsed 5512 ms
+--- [relax-omp.c] time elapsed 25797 ms
+--- [relax-omp-vec.c] time elapsed 6125 ms
+--- [relax-mpi.c] time elapsed 26692 ms
+--- [relax-mpi-vec.c] time elapsed 5565 ms
+Measurement: 5
+--- [relax-sequential.c] time elapsed 26662 ms
+--- [relax-sequential-vec.c] time elapsed 5473 ms
+--- [relax-omp.c] time elapsed 25794 ms
+--- [relax-omp-vec.c] time elapsed 6380 ms
+--- [relax-mpi.c] time elapsed 26617 ms
+--- [relax-mpi-vec.c] time elapsed 5396 ms
+Number of cores: 2
+Measurement: 1
+--- [relax-omp.c] time elapsed 13258 ms
+--- [relax-omp-vec.c] time elapsed 3367 ms
+--- [relax-mpi.c] time elapsed 13645 ms
+--- [relax-mpi-vec.c] time elapsed 2845 ms
+Measurement: 2
+--- [relax-omp.c] time elapsed 13269 ms
+--- [relax-omp-vec.c] time elapsed 3342 ms
+--- [relax-mpi.c] time elapsed 13654 ms
+--- [relax-mpi-vec.c] time elapsed 2901 ms
+Measurement: 3
+--- [relax-omp.c] time elapsed 13321 ms
+--- [relax-omp-vec.c] time elapsed 3352 ms
+--- [relax-mpi.c] time elapsed 13651 ms
+--- [relax-mpi-vec.c] time elapsed 2906 ms
+Measurement: 4
+--- [relax-omp.c] time elapsed 13244 ms
+--- [relax-omp-vec.c] time elapsed 3392 ms
+--- [relax-mpi.c] time elapsed 13649 ms
+--- [relax-mpi-vec.c] time elapsed 2911 ms
+Measurement: 5
+--- [relax-omp.c] time elapsed 13272 ms
+--- [relax-omp-vec.c] time elapsed 3366 ms
+--- [relax-mpi.c] time elapsed 13653 ms
+--- [relax-mpi-vec.c] time elapsed 2878 ms
+Number of cores: 4
+Measurement: 1
+--- [relax-omp.c] time elapsed 6727 ms
+--- [relax-omp-vec.c] time elapsed 1943 ms
+--- [relax-mpi.c] time elapsed 7031 ms
+--- [relax-mpi-vec.c] time elapsed 1463 ms
+Measurement: 2
+--- [relax-omp.c] time elapsed 6702 ms
+--- [relax-omp-vec.c] time elapsed 1948 ms
+--- [relax-mpi.c] time elapsed 7043 ms
+--- [relax-mpi-vec.c] time elapsed 1470 ms
+Measurement: 3
+--- [relax-omp.c] time elapsed 6690 ms
+--- [relax-omp-vec.c] time elapsed 1940 ms
+--- [relax-mpi.c] time elapsed 7025 ms
+--- [relax-mpi-vec.c] time elapsed 1393 ms
+Measurement: 4
+--- [relax-omp.c] time elapsed 6727 ms
+--- [relax-omp-vec.c] time elapsed 1929 ms
+--- [relax-mpi.c] time elapsed 7061 ms
+--- [relax-mpi-vec.c] time elapsed 1408 ms
+Measurement: 5
+--- [relax-omp.c] time elapsed 6673 ms
+--- [relax-omp-vec.c] time elapsed 1925 ms
+--- [relax-mpi.c] time elapsed 7026 ms
+--- [relax-mpi-vec.c] time elapsed 1441 ms
+Number of cores: 8
+Measurement: 1
+--- [relax-omp.c] time elapsed 3662 ms
+--- [relax-omp-vec.c] time elapsed 1464 ms
+--- [relax-mpi.c] time elapsed 3753 ms
+--- [relax-mpi-vec.c] time elapsed 859 ms
+Measurement: 2
+--- [relax-omp.c] time elapsed 3689 ms
+--- [relax-omp-vec.c] time elapsed 1445 ms
+--- [relax-mpi.c] time elapsed 3738 ms
+--- [relax-mpi-vec.c] time elapsed 849 ms
+Measurement: 3
+--- [relax-omp.c] time elapsed 3631 ms
+--- [relax-omp-vec.c] time elapsed 1446 ms
+--- [relax-mpi.c] time elapsed 3731 ms
+--- [relax-mpi-vec.c] time elapsed 861 ms
+Measurement: 4
+--- [relax-omp.c] time elapsed 3675 ms
+--- [relax-omp-vec.c] time elapsed 1459 ms
+--- [relax-mpi.c] time elapsed 3730 ms
+--- [relax-mpi-vec.c] time elapsed 817 ms
+Measurement: 5
+--- [relax-omp.c] time elapsed 3630 ms
+--- [relax-omp-vec.c] time elapsed 1435 ms
+--- [relax-mpi.c] time elapsed 3752 ms
+--- [relax-mpi-vec.c] time elapsed 850 ms
+Number of cores: 16
+Measurement: 1
+--- [relax-omp.c] time elapsed 3318 ms
+--- [relax-omp-vec.c] time elapsed 1565 ms
+--- [relax-mpi.c] time elapsed 2158 ms
+--- [relax-mpi-vec.c] time elapsed 608 ms
+Measurement: 2
+--- [relax-omp.c] time elapsed 3302 ms
+--- [relax-omp-vec.c] time elapsed 1384 ms
+--- [relax-mpi.c] time elapsed 2198 ms
+--- [relax-mpi-vec.c] time elapsed 575 ms
+Measurement: 3
+--- [relax-omp.c] time elapsed 3310 ms
+--- [relax-omp-vec.c] time elapsed 1407 ms
+--- [relax-mpi.c] time elapsed 2184 ms
+--- [relax-mpi-vec.c] time elapsed 587 ms
+Measurement: 4
+--- [relax-omp.c] time elapsed 3319 ms
+--- [relax-omp-vec.c] time elapsed 1515 ms
+--- [relax-mpi.c] time elapsed 2201 ms
+--- [relax-mpi-vec.c] time elapsed 575 ms
+Measurement: 5
+--- [relax-omp.c] time elapsed 3091 ms
+--- [relax-omp-vec.c] time elapsed 1365 ms
+--- [relax-mpi.c] time elapsed 2180 ms
+--- [relax-mpi-vec.c] time elapsed 576 ms
+Number of cores: 32
+Measurement: 1
+--- [relax-omp.c] time elapsed 2029 ms
+--- [relax-omp-vec.c] time elapsed 1571 ms
+--- [relax-mpi.c] time elapsed 1879 ms
+--- [relax-mpi-vec.c] time elapsed 576 ms
+Measurement: 2
+--- [relax-omp.c] time elapsed 2051 ms
+--- [relax-omp-vec.c] time elapsed 1647 ms
+--- [relax-mpi.c] time elapsed 2127 ms
+--- [relax-mpi-vec.c] time elapsed 790 ms
+Measurement: 3
+--- [relax-omp.c] time elapsed 2060 ms
+--- [relax-omp-vec.c] time elapsed 1703 ms
+--- [relax-mpi.c] time elapsed 1867 ms
+--- [relax-mpi-vec.c] time elapsed 640 ms
+Measurement: 4
+--- [relax-omp.c] time elapsed 1963 ms
+--- [relax-omp-vec.c] time elapsed 1631 ms
+--- [relax-mpi.c] time elapsed 1884 ms
+--- [relax-mpi-vec.c] time elapsed 638 ms
+Measurement: 5
+--- [relax-omp.c] time elapsed 1944 ms
+--- [relax-omp-vec.c] time elapsed 1648 ms
+--- [relax-mpi.c] time elapsed 1889 ms
+--- [relax-mpi-vec.c] time elapsed 818 ms
+Iterations: 900
+Number of cores: 1
+Measurement: 1
+--- [relax-sequential.c] time elapsed 30199 ms
+--- [relax-sequential-vec.c] time elapsed 6549 ms
+--- [relax-omp.c] time elapsed 29516 ms
+--- [relax-omp-vec.c] time elapsed 7460 ms
+--- [relax-mpi.c] time elapsed 30110 ms
+--- [relax-mpi-vec.c] time elapsed 6186 ms
+Measurement: 2
+--- [relax-sequential.c] time elapsed 30697 ms
+--- [relax-sequential-vec.c] time elapsed 7108 ms
+--- [relax-omp.c] time elapsed 29935 ms
+--- [relax-omp-vec.c] time elapsed 7425 ms
+--- [relax-mpi.c] time elapsed 29156 ms
+--- [relax-mpi-vec.c] time elapsed 6090 ms
+Measurement: 3
+--- [relax-sequential.c] time elapsed 30213 ms
+--- [relax-sequential-vec.c] time elapsed 6531 ms
+--- [relax-omp.c] time elapsed 29437 ms
+--- [relax-omp-vec.c] time elapsed 7420 ms
+--- [relax-mpi.c] time elapsed 30301 ms
+--- [relax-mpi-vec.c] time elapsed 6521 ms
+Measurement: 4
+--- [relax-sequential.c] time elapsed 30226 ms
+--- [relax-sequential-vec.c] time elapsed 6406 ms
+--- [relax-omp.c] time elapsed 29525 ms
+--- [relax-omp-vec.c] time elapsed 7377 ms
+slurmstepd: error: *** JOB 3195763 ON cn47 CANCELLED AT 2021-05-26T11:43:02 ***
+
+
+###############################################################################
+Science Cluster
+Job 3195763 for user 'hzubi'
+Finished at: Wed May 26 11:43:05 CEST 2021
+
+Job details:
+============
+
+Name                : relax-script.sh
+User                : hzubi
+Partition           : csedu
+Nodes               : cn47
+Cores               : 32
+State               : CANCELLED,CANCELLED by 34965
+Submit              : 2021-05-26T09:08:13
+Start               : 2021-05-26T09:08:14
+End                 : 2021-05-26T11:43:04
+Reserved walltime   : 10:00:00
+Used walltime       : 02:34:50
+Used CPU time       : 09:38:31 (efficiency: 11.68%)
+% User (Computation): 90.32%
+% System (I/O)      :  9.68%
+Mem reserved        : 2G/core
+Max Mem used        : 24.05G (cn47)
+Max Disk Write      : 49.80M (cn47)
+Max Disk Read       : 14.88G (cn47)
+
