@@ -40,7 +40,7 @@ while (( $itr <= 1000 ))
 do	
 	echo "Iterations: $itr"
     c=1
-	while (( $c <= 2 ))
+	while (( $c <= 32 ))
 	do
 		echo "Number of cores: $c"
 		for i in `seq 1 5`
