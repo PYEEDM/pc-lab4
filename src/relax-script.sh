@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
 #SBATCH -p csedu
-#SBATCH --cpus-per-task 32
+#SBATCH -n 32
+#SBATCH --time=3:00:00
 
 echo "Compiling..."
 make
