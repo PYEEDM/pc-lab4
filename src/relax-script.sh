@@ -2,7 +2,7 @@
 
 #SBATCH -p csedu
 #SBATCH -n 32
-#SBATCH --time=3:00:00
+#SBATCH --time=10:00:00
 
 echo "Compiling..."
 make
@@ -21,13 +21,13 @@ do
 			echo "Measurement: $i"
 			if (( c==1 ))
 			then
-				./relax-seq.o $n 1
-				./relax-seq-vec.o $n 1
+				./relax-seq.o $n 5
+				./relax-seq-vec.o $n 5
 			fi
-			./relax-omp.o $n 1 $c
-			./relax-omp-vec.o $n 1 $c
-			mpirun -n $c ./relax-mpi.o $n 1 
-			mpirun -n $c ./relax-mpi-vec.o $n 1 
+			./relax-omp.o $n 5 $c
+			./relax-omp-vec.o $n 5 $c
+			mpirun -n $c ./relax-mpi.o $n 5 
+			mpirun -n $c ./relax-mpi-vec.o $n 5 
 				
 		done
 		c=$(( 2*c ))
